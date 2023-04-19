@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+
+<body>
+    <header>
+        {% block header %}
+        <img src="../static/images/thebag.png" height="100" width="80">
+        <img src="../static/images/pantherpantrypcc.PNG"height="100">
+
+        <nav>
+        <p>
+            <a href="/create_template">Create A Template </a> &nbsp; &#8739; &nbsp;
+            <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
+            <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
+            <a href="/home">Log Out</a>
+        </p>
+        </nav>
+        {% endblock %}
+    </header>
+
+    <main style="text-align: center">
+        {% block content %}<p>Content</p>{% endblock %}
+    </main>
+
+    <footer id="footer">
+        <p>12000 SW 49th Ave</p>
+        <img src="../static/images/pccbulletpoint.PNG" alt="pcc_bulletpoint">
+        <p>Portland, Oregon</p>
+        <img src="../static/images/pccbulletpoint.PNG" alt="pcc_bulletpoint">
+        <p>pantherpantry@pcc.edu</p>
+    </footer>
+</body>
+</html>

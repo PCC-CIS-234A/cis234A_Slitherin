@@ -1,0 +1,99 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/background_vegtables.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+html, body {
+  height: 100%;
+}
+main {
+        flex: 1 0 auto;
+        margin-top: 100px;
+}
+
+header img {
+        margin-top: 25px;
+        float: bottom;
+}
+nav a {
+        text-decoration: none;
+        padding: 6px;
+        font-size: large;
+        color: black;
+        background-color: white;
+
+}
+
+nav a:hover {
+        background-color: darkgray;
+        color: black;
+}
+
+nav {
+        margin-top: 50px;
+
+}
+footer {
+        background-color: #0088A4;
+        color: white;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+}
+
+footer p, footer img {
+        margin-right: 10px;
+        margin-left: 10px;
+}
+
+#title {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+}
+
+
+/*FOR LARGE SCREENS*/
+@media screen and (min-width: 1010px), print {
+    nav {
+        float: right;
+        margin-right: 100px;
+
+    }
+
+    footer {
+        background-color: #0088A4;
+        color: white;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+    }
+
+    footer p, footer img {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    #banner {
+        display: flex;
+        align-items: center;
+
+    }
+
+    header {
+        margin-left: 20px;
+    }
+
+}
