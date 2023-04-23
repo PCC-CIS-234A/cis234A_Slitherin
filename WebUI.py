@@ -45,18 +45,17 @@ class WebUI:
         return render_template("landing_page.html")
 
     @staticmethod
-    @__app.route("/under_construction.html")
     @__app.route("/under_construction")
-    def under_con():
+    def under_construction():
+        """This method displays the construction page"""
+
         return render_template("under_construction.html")
 
     @staticmethod
     @__app.route("/create_notification")
-    def send_notification():
+    def create_notification():
         """This method allows the user to send a food availability
         notification to all subscribers"""
-
-        # TODO: REMOVE TEST CODE
 
         return render_template("create_notification.html", template_list=WebUI.__template_list)
 
@@ -97,7 +96,7 @@ class WebUI:
     @__app.route("/send_notification")
     def send_not():
         subject = request.args['subject']
-        msg = request.args['message']
+        # msg = request.args['message']
 
         # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE (cont)
         # TODO: WITHOUT THE ENTIRE MESSAGE TEXT BEING IN THE URL - POST METHOD?
@@ -108,7 +107,7 @@ class WebUI:
     @__app.route("/send_success")
     def send_success():
         # TODO: ADD TO LOG HERE
-        template = request.args["subject"]
+        # template = request.args["subject"]
 
         return render_template("send_success.html")
 
