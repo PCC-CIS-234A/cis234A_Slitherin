@@ -20,3 +20,26 @@ class Database:
                 + ';DATABASE=' + database
                 + ';UID=' + username + ';PWD=' + password
             )
+
+    @classmethod
+    def build_email_list(cls):
+        # Define SQL call
+        sql = '''
+            SELECT DISTINCT Email
+            FROM User_Test;
+            '''
+
+        # Establish connection and create cursor
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        # Make SQL call to retrieve list of available email addresses
+        cursor.execute(sql)
+        email_list = []
+        email = cursor.fetchone()
+
+        while email:
+            email_list.append(email)
+            email = cursor.fetchone()
+
+        return email_list

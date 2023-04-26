@@ -57,7 +57,10 @@ class WebUI:
         """This method allows the user to send a food availability
         notification to all subscribers"""
 
-        return render_template("create_notification.html", template_list=WebUI.__template_list)
+        return render_template(
+            "create_notification.html",
+            template_list=WebUI.__template_list
+        )
 
     @staticmethod
     @__app.route("/create_template")
@@ -94,14 +97,21 @@ class WebUI:
 
     @staticmethod
     @__app.route("/send_notification")
-    def send_not():
+    def send_notification():
+        import get_emails
+
+        email_list = get_emails.get_email_list()
         subject = request.args['subject']
         # msg = request.args['message']
 
         # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE (cont)
-        # TODO: WITHOUT THE ENTIRE MESSAGE TEXT BEING IN THE URL - POST METHOD?
+        # TODO: WITHOUT THE ENTIRE MESSAGE TEXT BEING IN THE URL- POST METHOD?
 
-        return render_template("send_success.html", subject=subject)
+        return render_template(
+            "send_success.html",
+            subject=subject,
+            email_list=email_list
+        )
 
     @staticmethod
     @__app.route("/send_success")
