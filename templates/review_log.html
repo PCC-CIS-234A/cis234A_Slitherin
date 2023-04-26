@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block title %}review_logs{% endblock %}
+{% block content %}
+     <p style="font-size: xx-large; color: #0088A4">
+       Review Logs!
+    </p>
+    <form action="{{ url_for('fetch_data') }}" method="get">
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date"><br><br>
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="/">Return Home...</a>
+{% endblock %}

@@ -59,6 +59,11 @@ footer p, footer img {
         align-items: center;
 }
 
+/* implemented by lakey */
+table {
+        margin: 0 auto;
+        border: 1px solid beige;
+}
 
 /*FOR LARGE SCREENS*/
 @media screen and (min-width: 1010px), print {

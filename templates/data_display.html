@@ -1,0 +1,29 @@
+{% extends "default.html" %}
+
+{% block title %}Display Data{% endblock %}
+{% block content %}
+   <table>
+      <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Staff</th>
+            <th>Date Sent</th>
+            <th>Number of Subscribers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+          <tr>
+            <td>{{ row['subject'] }}</td>
+            <td>{{ row['message'] }}</td>
+            <td>{{ row['staff'] }}</td>
+            <td>{{ row['date_sent'] }}</td>
+            <td>{{ row['num_subscribers'] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <a href="/">Return Home...</a>
+{% endblock %}
