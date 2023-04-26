@@ -1,3 +1,9 @@
+# *****************************************************************************
+# Author:           	Slitherin'
+# Date:		            April 2023
+# Description:	        This class handles interactions with the database
+# Sources:          	Project Specifications
+# *****************************************************************************
 import pyodbc
 
 

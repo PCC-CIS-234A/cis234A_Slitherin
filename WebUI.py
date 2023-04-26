@@ -1,3 +1,9 @@
+# *****************************************************************************
+# Author:           	Slitherin'
+# Date:		            April 2023
+# Description:	        This is the main UI class for Panther Pantry
+# Sources:          	Project Specifications
+# *****************************************************************************
 from flask import Flask, render_template, redirect, url_for, request
 from Template import Template
 
@@ -93,19 +99,23 @@ class WebUI:
                 error_message=f"There is no template named '{template_name}'"
             )
 
-        return render_template("use_template.html", template=template)
+        return render_template(
+            "use_template.html",
+            template_name=template.get_name(),
+            template_subject=template.get_subject(),
+            template_text=template.get_text()
+        )
 
     @staticmethod
     @__app.route("/send_notification")
     def send_notification():
-        import get_emails
-
-        email_list = get_emails.get_email_list()
+        import Email
+        email_list = Email.get_email_list()
         subject = request.args['subject']
         # msg = request.args['message']
 
-        # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE (cont)
-        # TODO: WITHOUT THE ENTIRE MESSAGE TEXT BEING IN THE URL- POST METHOD?
+        # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE WITHOUT
+        # TODO: THE ENTIRE MESSAGE TEXT BEING IN THE URL - POST METHOD?
 
         return render_template(
             "send_success.html",

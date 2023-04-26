@@ -2,17 +2,22 @@
 
 {% block title %}Use Template{% endblock %}
 {% block content %}
-    <p style="color: crimson; font-size: x-large">
-        UNDER CONSTRUCTION
-    </p>
-    <p>
-        <br>
-        THIS PAGE WILL LOAD A CHOSEN TEMPLATE.
-        <br>
-        NEEDS FIELDS FOR NAME, SUBJECT AND TEXT TO BE ABLE TO CALL SEND FUNCTION
-    </p>
     <p style="color: #0088A4">
-        Template: {{ template.get_name() }}
+        Template: {{ template_name }}
     </p>
-    <a href="/">Return Home...</a>
+
+    <br>
+
+    <p>
+        Subject: {{ template_subject }}
+    </p>
+
+    <label>Message:
+        <textarea cols="80" rows="20">{{ template_text }}</textarea>
+        <button type="submit">Send</button>
+    </label>
+
+    <p>
+        <a href="/">Return Home...</a>
+    </p>
 {% endblock %}
