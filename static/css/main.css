@@ -59,6 +59,23 @@ footer p, footer img {
         align-items: center;
 }
 
+#subject {
+    text-align: left;
+}
+
+#send_notification {
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+#send_notification button {
+    float: right;
+}
+
+#send_notification label {
+    float: left;
+}
 
 /*FOR LARGE SCREENS*/
 @media screen and (min-width: 1010px), print {
