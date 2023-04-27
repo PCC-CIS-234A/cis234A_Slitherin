@@ -71,6 +71,7 @@ footer p, footer img {
 
 #send_notification button {
     float: right;
+    margin-bottom: 5px;
 }
 
 #send_notification label {
