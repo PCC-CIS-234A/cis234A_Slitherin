@@ -31,7 +31,7 @@ class Template:
         temp1 = Template(
             'Default',
             'Food Available!',
-            'Food is now available at Panther Pantry!'
+            """Food is now available at Panther Pantry!"""
         )
 
         temp2 = Template(

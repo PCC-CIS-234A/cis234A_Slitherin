@@ -109,10 +109,10 @@ class WebUI:
     @staticmethod
     @__app.route("/send_notification")
     def send_notification():
-        import Email
-        email_list = Email.get_email_list()
+        from Notification import Notification
+        email_list = Notification.get_email_list()
         subject = request.args['subject']
-        # msg = request.args['message']
+        msg = request.args['message']
 
         # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE WITHOUT
         # TODO: THE ENTIRE MESSAGE TEXT BEING IN THE URL - POST METHOD?
@@ -120,6 +120,7 @@ class WebUI:
         return render_template(
             "send_success.html",
             subject=subject,
+            message=msg,
             email_list=email_list
         )
 
@@ -142,7 +143,8 @@ class WebUI:
     def run():
         """This method runs the UI"""
 
-        WebUI.__app.run(port=5000)
+        # TODO: REMOVE HOST ARGUMENT
+        WebUI.__app.run(host="0.0.0.0", port=5000)
 
 
 if __name__ == "__main__":

@@ -2,22 +2,30 @@
 
 {% block title %}Use Template{% endblock %}
 {% block content %}
-    <p style="color: #0088A4">
+    <p style="color: #0088A4; font-size: x-large">
         Template: {{ template_name }}
     </p>
 
     <br>
 
-    <p>
-        Subject: {{ template_subject }}
-    </p>
+    <form method="get" action="/send_notification">
+        <label id="subject" style="color: #0088A4">
+            <p>
+                Subject: {{ template_subject }}
+            </p>
+        </label>
+        <label for="message">Message:</label>
 
-    <label>Message:
-        <textarea cols="80" rows="20">{{ template_text }}</textarea>
         <button type="submit">Send</button>
-    </label>
+        <br>
+        <textarea id="message" name="message" cols="80" rows="20">
+            {{ template_text }}
+        </textarea>
+
+
+    </form>
 
     <p>
-        <a href="/">Return Home...</a>
+        <a href="/landing_page">Return Home...</a>
     </p>
 {% endblock %}
