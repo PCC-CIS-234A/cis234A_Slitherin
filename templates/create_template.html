@@ -8,14 +8,7 @@
         CREATE AND SAVE A NOTIFICATION TEMPLATE
     </p>
 <p>
-    Create a notification and save it:
-    <br>
-    <form method="get" action="/use_template">
-    </form>
-
-    <br><br>
-
-    <form method="get" action="/send_notification">
+    <form method="get" action="/create_notification">
         <label id="create_notification">
             <input type="text" name="subject" placeholder="Template Title" style="text-align: left">
 
@@ -38,3 +31,5 @@
         </label>
     </form>
 {% endblock %}
+<! -- TODO: Refresh page after saving it -->
+<! -- TODO: Select existing templates found in DB -->
