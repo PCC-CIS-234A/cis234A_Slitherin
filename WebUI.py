@@ -144,13 +144,9 @@ class WebUI:
         user_email = User.search_emails(email)
         user_username = User.search_usernames(username)
 
-        if Validation.validate_username_length(username):
+        if Validation.validate_username(username):
             return render_template('create_account_form.html')
-        elif Validation.validate_no_spaces(username):
-            return render_template('create_account_form.html')
-        elif Validation.validate_passwords_match(password1, password2):
-            return render_template('create_account_form.html')
-        elif Validation.validate_password_length(password1):
+        elif Validation.validate_password(password1, password2):
             return render_template('create_account_form.html')
         elif user_email:
             flash("Email already in use!", category='error')
