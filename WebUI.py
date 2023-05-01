@@ -109,16 +109,26 @@ class WebUI:
     @staticmethod
     @__app.route("/send_notification")
     def send_notification():
+        """This method gathers information from the UI for sending a
+        notification"""
+
         from Email import Email
         from Notification import Notification
 
+        # Collect required information from UI
         emails = Notification.get_email_list()
         email_list = ", ".join(emails)
         subject = request.args['subject']
         body = request.args['message']
         count = len(emails)
 
-        Email.send_email("PantherPantry.PCC.01@gmail.com", email_list, subject, body)
+        # Call the method to send emails
+        Email.send_email(
+            "PantherPantry.PCC.01@gmail.com",
+            email_list,
+            subject,
+            body
+        )
 
         return render_template(
             "send_success.html",
@@ -131,8 +141,8 @@ class WebUI:
     @staticmethod
     @__app.route("/send_success")
     def send_success():
+        """This method renders the 'Send Success' page"""
         # TODO: ADD TO LOG HERE
-        # template = request.args["subject"]
 
         return render_template("send_success.html")
 
