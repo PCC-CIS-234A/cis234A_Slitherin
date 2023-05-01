@@ -19,3 +19,9 @@ class User:
         user = Database.login(username_email, password)
         return user
 
+    @classmethod
+    def search_emails(cls, email):
+        from Database import Database
+        user = Database.search_emails(email)
+        return user
+

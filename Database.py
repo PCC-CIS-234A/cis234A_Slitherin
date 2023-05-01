@@ -48,3 +48,17 @@ class Database:
 
         return user
 
+    @classmethod
+    def search_emails(cls, email):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_emails = '''
+        SELECT * FROM User_HD WHERE Email = ?
+        '''
+
+        cursor.execute(search_emails, (email,))
+        user = cursor.fetchone()
+
+        return user
+
