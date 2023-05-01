@@ -150,6 +150,8 @@ class WebUI:
             return render_template('create_account_form.html')
         elif Validation.validate_passwords_match(password1, password2):
             return render_template('create_account_form.html')
+        elif Validation.validate_password_length(password1):
+            return render_template('create_account_form.html')
         elif user_email:
             flash("Email already in use!", category='error')
             return render_template('create_account_form.html')
