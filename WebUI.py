@@ -145,6 +145,23 @@ class WebUI:
         return render_template('login.html')
 
     @staticmethod
+    @__app.route('/login', methods=['POST'])
+    def login():
+        from User import User
+
+        username_email = request.form["username_email_entry"]
+        password = request.form["password_entry"]
+        user = User.login(username_email, password)
+
+        if user[1] == username_email and user[2] == password:
+            return render_template('landing_page.html')
+        elif user[3] == username_email and user[2] == password:
+            return render_template('landing_page.html')
+        else:
+            flash("Username/Email or Password Incorrect! Please log in again.", category='error')
+            return render_template('login.html')
+
+    @staticmethod
     def run():
         """This method runs the UI"""
 

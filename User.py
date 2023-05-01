@@ -13,3 +13,9 @@ class User:
         user = User(fname, lname, email, username, password1)
         Database.add_user(user)
 
+    @classmethod
+    def login(cls, username_email, password):
+        from Database import Database
+        user = Database.login(username_email, password)
+        return user
+
