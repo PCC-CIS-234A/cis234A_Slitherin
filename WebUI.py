@@ -139,11 +139,10 @@ class WebUI:
         password1 = request.form["password1"]
         password2 = request.form["password2"]
 
-        User.create_account(fname, lname, email, username, password1, password2)
+        User.create_account(fname, lname, email, username, password1)
 
         flash("Account Created Successfully! Please log in to your account.")
         return render_template('login.html')
-
 
     @staticmethod
     def run():

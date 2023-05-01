@@ -20,3 +20,17 @@ class Database:
                 + ';DATABASE=' + database
                 + ';UID=' + username + ';PWD=' + password
             )
+
+    @classmethod
+    def add_user(cls, user):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        insert_user = '''
+        INSERT INTO User_HD(First_Name, Last_Name, Username, Password, Email, Role)
+        VALUES (?, ?, ?, ?, ?, ?)
+        '''
+
+        cursor.execute(insert_user, (user.fname, user.lname, user.username, user.password,  user.email, user.role))
+        cursor.commit()
+
