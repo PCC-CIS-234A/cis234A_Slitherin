@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
+
+import Validation
 from Template import Template
 
 
@@ -142,7 +144,9 @@ class WebUI:
         user_email = User.search_emails(email)
         user_username = User.search_usernames(username)
 
-        if user_email:
+        if Validation.validate_username_length(username):
+            return render_template('create_account_form.html')
+        elif user_email:
             flash("Email already in use!", category='error')
             return render_template('create_account_form.html')
         elif user_username:
