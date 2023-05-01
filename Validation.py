@@ -34,6 +34,14 @@ def validate_password_length(password1):
         return True
 
 
+def validate_num_in_password(password1):
+    if any(char.isdigit() for char in password1):
+        return False
+    else:
+        flash("Password must contain a number!", category='error')
+        return True
+
+
 def validate_username(username):
     if validate_username_length(username):
         return render_template('create_account_form.html')
@@ -49,6 +57,8 @@ def validate_password(password1, password2):
     elif validate_password_length(password1):
         return render_template('create_account_form.html')
     elif validate_no_spaces_password(password1):
+        return render_template('create_account_form.html')
+    elif validate_num_in_password(password1):
         return render_template('create_account_form.html')
     else:
         return False
