@@ -4,21 +4,40 @@
         <img src="../static/images/thebag.png" height="100" width="80">
         <img src="../static/images/pantherpantrypcc.PNG"height="100">
 {% endblock %}
+
 {% block title %}Home Page{% endblock %}
+
 {% block content %}
-    <div id="login">
-        <p>Username or Email:</p>
-        <label id="username_email_entry">
-            <input type="text">
-        </label>
-        <p>Password:</p>
-        <label id="password_entry">
-            <input type="password">
-        </label>
-        <br><br>
-        <button ><a href="/landing_page" style="text-decoration: none">LOG IN</a></button>
-        <button>CLEAR</button>
-    </div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+    <form name="user_login_info" action="/login" method="post">
+        <div id="lf">
+            <label for="username_email_entry">Username or Email: </label>
+            <input type="text" id="username_email_entry" name="username_email_entry" required>
+        </div>
+
+        <br>
+
+        <div id="lf">
+            <label for="password_entry">Password: </label>
+            <input type="password" id="password_entry" name="password_entry" required>
+        </div>
+
+        <br>
+
+        <div id="lf">
+            <input type="reset">
+            <input type="submit">
+        </div>
+
+    </form>
 
     <div id="switch">
         <h4><a href="/under_construction">Need to create an account? Click here!</a></h4>
