@@ -5,6 +5,9 @@ def validate_username_length(username):
     if len(username) < 8:
         flash("Invalid username length, must be 8 characters long!", category='error')
         return True
+    elif len(username) > 25:
+        flash("Invalid username length, cannot be more than 25 characters long")
+        return True
 
 
 def validate_no_spaces_username(username):
