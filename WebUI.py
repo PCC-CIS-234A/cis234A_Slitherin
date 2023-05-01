@@ -32,10 +32,18 @@ class WebUI:
 
     @staticmethod
     @__app.route("/")
+    @__app.route("/login")
     def homepage():
         """This method displays the homepage"""
 
         return render_template("login.html")
+
+    @staticmethod
+    @__app.route('/create_account_form')
+    def create_account_form():
+        """This method displays the create account page"""
+
+        return render_template("create_account_form.html")
 
     @staticmethod
     @__app.route("/landing_page")
