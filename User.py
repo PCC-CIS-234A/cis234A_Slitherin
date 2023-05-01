@@ -25,3 +25,9 @@ class User:
         user = Database.search_emails(email)
         return user
 
+    @classmethod
+    def search_usernames(cls, username):
+        from Database import Database
+        user = Database.search_usernames(username)
+        return user
+

@@ -140,9 +140,13 @@ class WebUI:
         password2 = request.form["password2"]
 
         user_email = User.search_emails(email)
+        user_username = User.search_usernames(username)
 
         if user_email:
             flash("Email already in use!", category='error')
+            return render_template('create_account_form.html')
+        elif user_username:
+            flash("Username already in use!", category='error')
             return render_template('create_account_form.html')
         else:
             User.create_account(fname, lname, email, username, password1)
@@ -165,7 +169,6 @@ class WebUI:
         else:
             flash("Username/Email or Password Incorrect! Please log in again.", category='error')
             return render_template('login.html')
-
 
     @staticmethod
     def run():

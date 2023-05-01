@@ -62,3 +62,17 @@ class Database:
 
         return user
 
+    @classmethod
+    def search_usernames(cls, username):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_usernames = '''
+        SELECT * FROM User_HD WHERE Username = ?
+        '''
+
+        cursor.execute(search_usernames, (username,))
+        user = cursor.fetchone()
+
+        return user
+
