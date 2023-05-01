@@ -34,11 +34,20 @@ def validate_password_length(password1):
         return True
 
 
-def validate_num_in_password(password1):
+def validate_contains_number(password1):
     if any(char.isdigit() for char in password1):
         return False
     else:
         flash("Password must contain a number!", category='error')
+        return True
+
+
+def validate_contains_special_character(password1):
+    special_characters = ["!", "@", "#", '$', "%", "^", "&", "*"]
+    if any(c in special_characters for c in password1):
+        return False
+    else:
+        flash("Password must contain a special character! (!, @, #, $, %, ^, &, *)", category='error')
         return True
 
 
@@ -58,7 +67,9 @@ def validate_password(password1, password2):
         return render_template('create_account_form.html')
     elif validate_no_spaces_password(password1):
         return render_template('create_account_form.html')
-    elif validate_num_in_password(password1):
+    elif validate_contains_number(password1):
+        return render_template('create_account_form.html')
+    elif validate_contains_special_character(password1):
         return render_template('create_account_form.html')
     else:
         return False
