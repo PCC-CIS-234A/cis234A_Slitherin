@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from Template import Template
 
 
@@ -126,6 +126,24 @@ class WebUI:
         """This method allows a user to view the notification log"""
 
         return render_template("under_construction.html")
+
+    @staticmethod
+    @__app.route('/create_account', methods=['POST'])
+    def create_account():
+        from User import User
+
+        fname = request.form["fname"]
+        lname = request.form["lname"]
+        email = request.form["email"]
+        username = request.form["username"]
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+
+        User.create_account(fname, lname, email, username, password1, password2)
+
+        flash("Account Created Successfully! Please log in to your account.")
+        return render_template('login.html')
+
 
     @staticmethod
     def run():

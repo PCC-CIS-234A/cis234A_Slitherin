@@ -6,3 +6,7 @@ class User:
         self.username = username
         self.password = password
         self.role = role
+
+    @classmethod
+    def create_account(cls, fname, lname, email, username, password1, password2):
+        pass
