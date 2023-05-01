@@ -29,10 +29,12 @@ class Database:
 
     @classmethod
     def build_email_list(cls):
+        """This method builds a list of email from database entries"""
+
         # Define SQL call
         sql = '''
-            SELECT DISTINCT Email
-            FROM User_Test;
+            SELECT DISTINCT EMAIL
+            FROM USER_ID;
             '''
 
         # Establish connection and create cursor
@@ -44,8 +46,9 @@ class Database:
         email_list = []
         email = cursor.fetchone()
 
+        # Build the email list
         while email:
-            email_list.append(email)
+            email_list.append(email[0])
             email = cursor.fetchone()
 
         return email_list

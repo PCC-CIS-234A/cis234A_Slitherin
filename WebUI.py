@@ -109,18 +109,22 @@ class WebUI:
     @staticmethod
     @__app.route("/send_notification")
     def send_notification():
+        from Email import Email
         from Notification import Notification
-        email_list = Notification.get_email_list()
-        subject = request.args['subject']
-        msg = request.args['message']
 
-        # TODO: ADD SEND FUNCTION HERE AND ASK HOW TO GET MESSAGE WITHOUT
-        # TODO: THE ENTIRE MESSAGE TEXT BEING IN THE URL - POST METHOD?
+        emails = Notification.get_email_list()
+        email_list = ", ".join(emails)
+        subject = request.args['subject']
+        body = request.args['message']
+        count = len(emails)
+
+        Email.send_email("PantherPantry.PCC.01@gmail.com", email_list, subject, body)
 
         return render_template(
             "send_success.html",
             subject=subject,
-            message=msg,
+            message=body,
+            send_count=count,
             email_list=email_list
         )
 

@@ -2,18 +2,13 @@
 
 {% block title %}Send Success{% endblock %}
 {% block content %}
-    <p>
-        '{{ subject }}' notification successfully sent to:
+    <p style="color: #0088A4; font-size: x-large">
+        '{{ subject }}' notification sent!
     </p>
+    <br>
     <p>
-        {% for email in email_list %}
-                <option value="{{ email }}">
-                    {{ email }}
-                </option>
-                {% endfor %}
+        Number of recipients: {{ send_count }}
     </p>
-    <p>
-        {{ message }}
-    </p>
+
     <a href="/landing_page">Return Home...</a>
 {% endblock %}

@@ -59,6 +59,14 @@ footer p, footer img {
         align-items: center;
 }
 
+#create_notification {
+    text-align: left;
+}
+
+#create_notification input {
+    margin-bottom: 5px;
+}
+
 #subject {
     text-align: left;
 }
