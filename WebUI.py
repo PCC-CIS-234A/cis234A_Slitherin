@@ -150,7 +150,7 @@ class WebUI:
             return render_template('create_account_form.html')
         else:
             User.create_account(fname, lname, email, username, password1)
-            flash("Account Created Successfully! Please log in to your account.")
+            flash("Account Created Successfully! Please log in to your account.", category='success')
             return render_template('login.html')
 
     @staticmethod

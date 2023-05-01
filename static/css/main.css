@@ -59,6 +59,29 @@ footer p, footer img {
         align-items: center;
 }
 
+    /* CSS For Content */
+
+.alert.success {
+  background-color: green;
+}
+
+.alert.error {
+    background-color: #ff8585;
+    padding: 10px 25px;
+    width: fit-content;
+    margin: auto;
+    align-content: center;
+    border-radius: 4px ;
+}
+
+#lf {
+    margin: 15px 0;
+}
+
+#ca {
+    margin: 5px 0;
+}
+
 
 /*FOR LARGE SCREENS*/
 @media screen and (min-width: 1010px), print {
@@ -95,5 +118,6 @@ footer p, footer img {
     header {
         margin-left: 20px;
     }
+
 
 }
