@@ -146,6 +146,8 @@ class WebUI:
 
         if Validation.validate_username_length(username):
             return render_template('create_account_form.html')
+        elif Validation.validate_no_spaces(username):
+            return render_template('create_account_form.html')
         elif user_email:
             flash("Email already in use!", category='error')
             return render_template('create_account_form.html')
