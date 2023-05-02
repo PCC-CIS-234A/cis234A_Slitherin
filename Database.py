@@ -35,15 +35,15 @@ class Database:
         cursor.commit()
 
     @classmethod
-    def login(cls, username_email, password):
+    def login(cls, username_email):
         cls.connect()
         cursor = cls.__connection.cursor()
 
         search_username_email = '''
-        SELECT * FROM User_HD WHERE Password = ? AND Username = ? OR Email = ?
+        SELECT * FROM User_HD WHERE Username = ? OR Email = ?
         '''
 
-        cursor.execute(search_username_email, (password, username_email, username_email))
+        cursor.execute(search_username_email, (username_email, username_email))
         user = cursor.fetchone()
 
         return user

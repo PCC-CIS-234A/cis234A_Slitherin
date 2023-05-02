@@ -1,4 +1,6 @@
+import bcrypt
 from flask import Flask, render_template, redirect, url_for, request, flash
+from flask_session import Session
 
 import Validation
 from Template import Template
@@ -155,7 +157,8 @@ class WebUI:
             flash("Username already in use!", category='error')
             return render_template('create_account_form.html')
         else:
-            User.create_account(fname, lname, email, username, password1)
+            password = Validation.hash_password(password1)
+            User.create_account(fname, lname, email, username, password)
             flash("Account Created Successfully! Please log in to your account.", category='success')
             return render_template('login.html')
 
@@ -166,14 +169,21 @@ class WebUI:
 
         username_email = request.form["username_email_entry"]
         password = request.form["password_entry"]
-        user = User.login(username_email, password)
+
+        user = User.login(username_email)
+        stored_password = user[2]
+        correct_password = Validation.return_hash_password(password, stored_password)
+
         if user:
-            if user[1] == username_email and user[2] == password:
+            if user[1] == username_email and correct_password:
                 return render_template('landing_page.html')
-            elif user[3] == username_email and user[2] == password:
+            elif user[3] == username_email and correct_password:
                 return render_template('landing_page.html')
+            else:
+                flash("Password Incorrect! Please log in again.", category='error')
+                return render_template('login.html')
         else:
-            flash("Username/Email or Password Incorrect! Please log in again.", category='error')
+            flash("Username or Email Incorrect! Please log in again.", category='error')
             return render_template('login.html')
 
     @staticmethod

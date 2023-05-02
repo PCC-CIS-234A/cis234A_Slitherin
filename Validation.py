@@ -1,3 +1,4 @@
+import bcrypt
 from flask import flash, render_template
 
 
@@ -73,3 +74,13 @@ def validate_password(password1, password2):
         return render_template('create_account_form.html')
     else:
         return False
+
+
+def hash_password(password1):
+    password = bcrypt.hashpw(password1.encode('utf-8'), bcrypt.gensalt(12))
+    return password
+
+
+def return_hash_password(password1, password):
+    stored_password = bcrypt.checkpw(password1.encode('utf-8'), password.encode('utf-8'))
+    return stored_password
