@@ -82,5 +82,5 @@ def hash_password(password1):
 
 
 def return_hash_password(password1, password):
-    stored_password = bcrypt.checkpw(password1.encode('utf-8'), password.encode('utf-8'))
-    return stored_password
+    pass_hash = bcrypt.checkpw(password1.encode('utf-8'), password.encode('utf-8'))
+    return pass_hash

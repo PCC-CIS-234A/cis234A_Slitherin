@@ -1,6 +1,4 @@
-import bcrypt
 from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_session import Session
 
 import Validation
 from Template import Template
@@ -39,7 +37,6 @@ class WebUI:
     @__app.route("/login")
     def homepage():
         """This method displays the homepage"""
-
         return render_template("login.html")
 
     @staticmethod
@@ -171,8 +168,8 @@ class WebUI:
         password = request.form["password_entry"]
 
         user = User.login(username_email)
-        stored_password = user[2]
-        correct_password = Validation.return_hash_password(password, stored_password)
+        pass_hash = user[2]
+        correct_password = Validation.return_hash_password(password, pass_hash)
 
         if user:
             if user[1] == username_email and correct_password:
@@ -191,6 +188,10 @@ class WebUI:
         """This method runs the UI"""
 
         WebUI.__app.run(port=5000)
+
+        # WebUI.__app.run(port=5000, debug=True, ssl_context=(
+        #     'C:/Users/hd416/OneDrive/Desktop/PCC/CIS234A_SecureProgramming/cis234A_Slitherin_V2/cert.pem',
+        #     'C:/Users/hd416/OneDrive/Desktop/PCC/CIS234A_SecureProgramming/cis234A_Slitherin_V2/key.pem'))
 
 
 if __name__ == "__main__":
