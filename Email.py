@@ -13,10 +13,9 @@ class Email:
     def send_email(from_address, to_addresses, subject, body):
         """This method sends the notification"""
 
-        message = f"From: {from_address}\nTo: {to_addresses}\n" \
+        message = f"From: {from_address}\nTo: Subscribers\n" \
                   f"Subject: {subject}\n\n{body}"
 
-        # TODO: SET BCC KEY FOR RECIPIENTS
         smtp_server = "smtp.gmail.com"
         port = 587
         username = "PantherPantry.PCC.01@gmail.com"

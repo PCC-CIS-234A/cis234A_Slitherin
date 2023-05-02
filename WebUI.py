@@ -125,7 +125,7 @@ class WebUI:
         # Call the method to send emails
         Email.send_email(
             "PantherPantry.PCC.01@gmail.com",
-            email_list,
+            emails,
             subject,
             body
         )
