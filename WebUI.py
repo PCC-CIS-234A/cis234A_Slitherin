@@ -187,11 +187,7 @@ class WebUI:
     def run():
         """This method runs the UI"""
 
-        WebUI.__app.run(port=5000)
-
-        # WebUI.__app.run(port=5000, debug=True, ssl_context=(
-        #     'C:/Users/hd416/OneDrive/Desktop/PCC/CIS234A_SecureProgramming/cis234A_Slitherin_V2/cert.pem',
-        #     'C:/Users/hd416/OneDrive/Desktop/PCC/CIS234A_SecureProgramming/cis234A_Slitherin_V2/key.pem'))
+        WebUI.__app.run(port=5000, debug=True, ssl_context=('cert.pem', 'key.pem'))
 
 
 if __name__ == "__main__":
