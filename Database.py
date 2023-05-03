@@ -54,6 +54,19 @@ class Database:
 
         return email_list
 
-    @staticmethod
-    def send_to_log():
-        pass
+    @classmethod
+    def add_log(cls, subject, body, sender_id, time_sent, count):
+        """This method adds a log object to the database"""
+
+        # Define SQL call
+        # sql = "INSERT INTO Review_log VALUES (%s, %s, %s, %s, %s)", \
+        #    subject, body, sender_id, time_sent, count
+
+        # Establish connection and add notification to the log
+        subject = subject
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+        cursor.execute("INSERT INTO Review_log VALUES (?, ?, ?, ?, ?)",
+                       subject, body, sender_id, time_sent, count)
+        cursor.commit()

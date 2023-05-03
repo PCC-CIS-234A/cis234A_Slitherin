@@ -5,9 +5,15 @@
 # Sources:          	Project Specifications
 # *****************************************************************************
 import smtplib
+from Database import Database
 
 
 class Email:
+    @staticmethod
+    def get_email_list():
+        """This method gets a list of emails from the database"""
+
+        return Database.build_email_list()
 
     @staticmethod
     def send_email(from_address, to_addresses, subject, body):

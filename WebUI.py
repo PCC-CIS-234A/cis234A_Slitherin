@@ -113,18 +113,18 @@ class WebUI:
         notification"""
 
         from Email import Email
-        from Notification import Notification
+        from Log import Log
         from datetime import datetime
 
         # Collect required information
-        to_addresses = Notification.get_email_list()
+        to_addresses = Email.get_email_list()
         from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
         count = len(to_addresses)
         time_sent = datetime.now()
 
-        # Call the method to send emails
+        # Send emails
         Email.send_email(
             from_address,
             to_addresses,
@@ -132,25 +132,11 @@ class WebUI:
             body
         )
 
-        # TODO: DETERMINE LOG FUNCTION (LOCATION, ETC.)
-        # Create object?
-        # notification = Notification() -> <class>.send_to_log(notification)
-        #
-        # Database.send_to_log(
-        #     subject,
-        #     body,
-        #     'change me',
-        #     time_sent,
-        #     count
-        #     )
-        #
-        # notification.send_to_log(
-        #     subject,
-        #     body,
-        #     'change me',
-        #     time_sent,
-        #     count)
+        # Send notification to log
+        entry = Log(subject, body, 'change me', time_sent, count)
+        Log.send_to_db(subject, body, 'change me', time_sent, count)
 
+        # TODO: FINE-TUNE SUCCESS PAGE
         return render_template(
             "send_success.html",
             subject=subject,
