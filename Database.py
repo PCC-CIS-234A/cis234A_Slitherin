@@ -20,3 +20,18 @@ class Database:
                 + ';DATABASE=' + database
                 + ';UID=' + username + ';PWD=' + password
             )
+
+        """This method builds a list of templates"""
+    @classmethod
+    def build_template_list(cls, template):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        insert_template = '''
+        INSERT INTO TEMPLATE(NAME, SUBJECT, MESSAGE)
+        VALUES (?, ?, ?)
+        '''
+
+        cursor.execute(insert_template, (template.NAME, template.SUBJECT, template.MESSAGE))
+        cursor.commit()
+
