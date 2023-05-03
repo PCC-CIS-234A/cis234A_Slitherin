@@ -34,7 +34,8 @@ class Database:
         # Define SQL call
         sql = '''
             SELECT DISTINCT EMAIL
-            FROM USER_ID;
+            FROM USER_ID
+            WHERE ROLE='Subscriber';
             '''
 
         # Establish connection and create cursor
@@ -52,3 +53,7 @@ class Database:
             email = cursor.fetchone()
 
         return email_list
+
+    @staticmethod
+    def send_to_log():
+        pass

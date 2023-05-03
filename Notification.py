@@ -19,4 +19,10 @@ class Notification:
 
     @staticmethod
     def get_email_list():
+        """This method gets a list of emails from the database"""
+
         return d.Database.build_email_list()
+
+    @staticmethod
+    def send_to_log():
+        pass

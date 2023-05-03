@@ -114,37 +114,49 @@ class WebUI:
 
         from Email import Email
         from Notification import Notification
+        from datetime import datetime
 
-        # Collect required information from UI
-        emails = Notification.get_email_list()
-        email_list = ", ".join(emails)
+        # Collect required information
+        to_addresses = Notification.get_email_list()
+        from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
-        count = len(emails)
+        count = len(to_addresses)
+        time_sent = datetime.now()
 
         # Call the method to send emails
         Email.send_email(
-            "PantherPantry.PCC.01@gmail.com",
-            emails,
+            from_address,
+            to_addresses,
             subject,
             body
         )
 
+        # TODO: DETERMINE LOG FUNCTION (LOCATION, ETC.)
+        # Create object?
+        # notification = Notification() -> <class>.send_to_log(notification)
+        #
+        # Database.send_to_log(
+        #     subject,
+        #     body,
+        #     'change me',
+        #     time_sent,
+        #     count
+        #     )
+        #
+        # notification.send_to_log(
+        #     subject,
+        #     body,
+        #     'change me',
+        #     time_sent,
+        #     count)
+
         return render_template(
             "send_success.html",
             subject=subject,
-            message=body,
-            send_count=count,
-            email_list=email_list
+            time=time_sent,
+            send_count=count
         )
-
-    @staticmethod
-    @__app.route("/send_success")
-    def send_success():
-        """This method renders the 'Send Success' page"""
-        # TODO: ADD TO LOG HERE
-
-        return render_template("send_success.html")
 
     @staticmethod
     @__app.route("/review_log")
