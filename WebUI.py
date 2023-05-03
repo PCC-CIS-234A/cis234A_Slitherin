@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Template import Template
-from FetchLogs import Database
-
+from Database import *
 
 
 class WebUI:
@@ -121,18 +120,15 @@ class WebUI:
 
         return render_template('review_log.html')
 
-    # Lakey's addition for fetch_data
+    # Lakey's addition for fetching_data
     @staticmethod
     @__app.route("/fetch_data")
     def fetch_data():
-
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
         data = Database.fetch_data(start_date, end_date)
+
         return render_template('data_display.html', data=data)
-
-        """This method allows a user to view the notification log"""
-
 
     @staticmethod
     def run():

@@ -1,4 +1,5 @@
 import pyodbc
+from FetchLogs import ReviewLogs
 
 
 class Database:
@@ -20,3 +21,26 @@ class Database:
                 + ';DATABASE=' + database
                 + ';UID=' + username + ';PWD=' + password
             )
+
+    # Lakey's fetch_data classmethod
+    @classmethod
+    def fetch_data(cls, start_date, end_date):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        query = '''
+            SELECT * FROM Review_log 
+            WHERE Date_sent 
+            BETWEEN ? 
+            AND ?
+            '''
+        cursor.execute(query, start_date, end_date)
+        rows = cursor.fetchall()
+        result = []
+
+        for row in rows:
+            review_log = ReviewLogs.from_row(row)
+            result.append(review_log)
+
+        return result
+
