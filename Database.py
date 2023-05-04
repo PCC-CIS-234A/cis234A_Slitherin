@@ -29,7 +29,7 @@ class Database:
 
     @classmethod
     def build_email_list(cls):
-        """This method builds a list of email from database entries"""
+        """This method builds a list of emails from database"""
 
         # Define SQL call
         sql = '''
@@ -42,7 +42,7 @@ class Database:
         cls.connect()
         cursor = cls.__connection.cursor()
 
-        # Make SQL call to retrieve list of available email addresses
+        # Make SQL call to retrieve list of email addresses
         cursor.execute(sql)
         email_list = []
         email = cursor.fetchone()
@@ -55,17 +55,40 @@ class Database:
         return email_list
 
     @classmethod
-    def add_log(cls, subject, body, sender_id, time_sent, count):
-        """This method adds a log object to the database"""
+    def build_template_list(cls):
+        """This method builds a list of templates from database"""
+
+        from Template import Template
 
         # Define SQL call
-        # sql = "INSERT INTO Review_log VALUES (%s, %s, %s, %s, %s)", \
-        #    subject, body, sender_id, time_sent, count
+        sql = '''
+            SELECT *
+            FROM TEMPLATE;
+            '''
 
-        # Establish connection and add notification to the log
-        subject = subject
+        # Establish connection and create cursor
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        # Make SQL call to retrieve list of available templates
+        cursor.execute(sql)
+        template_list = []
+        template = cursor.fetchone()
+
+        # Build the template list
+        while template:
+            template = Template(template[0], template[1], template[2])
+            template_list.append(template)
+            template = cursor.fetchone()
+
+        return template_list
+
+    @classmethod
+    def add_log(cls, subject, body, sender_id, time_sent, count):
+        """This method adds a log to the database"""
 
         cls.connect()
+
         cursor = cls.__connection.cursor()
         cursor.execute("INSERT INTO Review_log VALUES (?, ?, ?, ?, ?)",
                        subject, body, sender_id, time_sent, count)

@@ -1,9 +1,11 @@
 # *****************************************************************************
-# Author:           	Slitherin' - Mike Winebarger
+# Author:           	Slitherin'
 # Date:		            April 2023
-# Description:	        This is a temporary template class for testing
+# Description:	        This is a class definition for templates
 # Sources:          	Project Specifications
 # *****************************************************************************
+from Database import Database
+
 
 class Template:
     def __init__(self, name, subject, text):
@@ -28,26 +30,6 @@ class Template:
 
     @staticmethod
     def build_list():
-        temp1 = Template(
-            'Default',
-            'Food Available!',
-            """Food is now available at Panther Pantry!"""
-        )
+        """This method builds a list of templates"""
 
-        temp2 = Template(
-            'Perishable',
-            'Perishable Food Available!',
-            """Perishable food is now available at Panther Pantry!\n
-            \nGet it while it\'s good!"""
-        )
-
-        temp3 = Template(
-            'New Item',
-            'New Item Available!',
-            """There is a new item available at Panther Pantry!\n
-            \nWe now have <BLANK>. Come and get your <BLANK>!"""
-        )
-
-        template_list = [temp1, temp2, temp3]
-
-        return template_list
+        return Database.build_template_list()
