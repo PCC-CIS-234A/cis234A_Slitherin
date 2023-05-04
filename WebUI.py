@@ -133,10 +133,8 @@ class WebUI:
         )
 
         # Send notification to log
-        entry = Log(subject, body, 'change me', time_sent, count)
         Log.send_to_db(subject, body, 'change me', time_sent, count)
 
-        # TODO: FINE-TUNE SUCCESS PAGE
         return render_template(
             "send_success.html",
             subject=subject,
@@ -155,8 +153,7 @@ class WebUI:
     def run():
         """This method runs the UI"""
 
-        # TODO: REMOVE HOST ARGUMENT
-        WebUI.__app.run(host="0.0.0.0", port=5000)
+        WebUI.__app.run(port=5000)
 
 
 if __name__ == "__main__":

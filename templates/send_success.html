@@ -3,12 +3,13 @@
 {% block title %}Send Success{% endblock %}
 {% block content %}
     <p style="color: #0088A4; font-size: x-large">
-        '{{ subject }}' notification sent @ {{ time }}!
+        '{{ subject }}' notification sent!
     </p>
     <br>
-    <p>
-        Number of recipients: {{ send_count }}
+    <p style="font-size: larger">
+        You helped {{ send_count }} people find food today, that's AWESOME!
     </p>
+    <br><br>
 
     <a href="/landing_page">Return Home...</a>
 {% endblock %}
