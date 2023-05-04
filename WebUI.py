@@ -39,7 +39,7 @@ class WebUI:
     @staticmethod
     @__app.route("/")
     def homepage():
-        """This method displays the homepage"""
+        """This method displays the login page"""
 
         return render_template("login.html")
 
@@ -60,8 +60,8 @@ class WebUI:
     @staticmethod
     @__app.route("/create_notification")
     def create_notification():
-        """This method allows the user to send a food availability
-        notification to all subscribers"""
+        """This method allows the user to send a notification to
+        all subscribers"""
 
         return render_template(
             "create_notification.html",
@@ -77,8 +77,9 @@ class WebUI:
 
     @staticmethod
     def find_template(template_name):
-        """This method takes a list name and returns a list object"""
+        """This method takes a template name and returns a template object"""
 
+        # Search template list for template
         for template in WebUI.__template_list:
             if template.get_key() == template_name.lower():
                 return template
@@ -88,11 +89,13 @@ class WebUI:
     @staticmethod
     @__app.route("/use_template")
     def use_template():
-        """This method allows the use of a Template to send a notification"""
+        """This method allows the use of a template to send a notification"""
 
+        # Find template object using name from input
         template_name = request.args['template']
         template = WebUI.find_template(template_name)
 
+        # If no template found, raise error
         if template is None:
             return render_template(
                 "error.html",

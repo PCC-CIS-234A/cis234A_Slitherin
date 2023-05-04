@@ -17,4 +17,6 @@ class Log:
 
     @staticmethod
     def send_to_db(subject, body, sender_id, time_sent, count):
+        """This method adds a notification to the Log database"""
+
         Database.add_log(subject, body, sender_id, time_sent, count)

@@ -15,12 +15,14 @@ class Database:
     def connect(cls):
         """This method connects to the database"""
 
+        # Set connection variables
         if cls.__connection is None:
             server = 'tcp:cisdbss.pcc.edu'
             database = 'cis234A_Slitherin'
             username = 'cis234A_Slitherin'
             password = 'CIS234ATeamTry2!'
 
+            # Set connection string
             cls.__connection = pyodbc.connect(
                 'DRIVER={SQL Server};SERVER=' + server
                 + ';DATABASE=' + database
@@ -85,11 +87,13 @@ class Database:
 
     @classmethod
     def add_log(cls, subject, body, sender_id, time_sent, count):
-        """This method adds a log to the database"""
+        """This method adds each notification to the Log database"""
 
+        # Establish connection and create cursor
         cls.connect()
-
         cursor = cls.__connection.cursor()
+
+        # Add to log
         cursor.execute("INSERT INTO Review_log VALUES (?, ?, ?, ?, ?)",
                        subject, body, sender_id, time_sent, count)
         cursor.commit()
