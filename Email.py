@@ -16,8 +16,9 @@ class Email:
         return Database.build_email_list()
 
     @staticmethod
-    def send_email(from_address, to_addresses, subject, body):
-        """This method sends the notification"""
+    def send_email(from_address, bcc, subject, body):
+        """This method sends the notification - Note: Passing recipient list
+        using a variable named 'bcc' automatically lists addresses as such"""
 
         # Define message for smtplib
         message = f"From: {from_address}\nTo: Subscribers\n" \
@@ -34,4 +35,4 @@ class Email:
             server.starttls()
             server.login(username, password)
 
-            server.sendmail(from_address, to_addresses, message)
+            server.sendmail(from_address, bcc, message)
