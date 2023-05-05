@@ -17,8 +17,7 @@ class Email:
 
     @staticmethod
     def send_email(from_address, bcc, subject, body):
-        """This method sends the notification - Note: Passing recipient list
-        using a variable named 'bcc' automatically lists addresses as such"""
+        """This method sends the notification"""
 
         # Define message for smtplib
         message = f"From: {from_address}\nTo: Subscribers\n" \
@@ -35,4 +34,6 @@ class Email:
             server.starttls()
             server.login(username, password)
 
+            # Passing recipient list using a variable named 'bcc'
+            # automatically sends to given addresses as such
             server.sendmail(from_address, bcc, message)
