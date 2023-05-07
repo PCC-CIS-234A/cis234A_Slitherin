@@ -21,7 +21,6 @@ class Database:
                 + ';UID=' + username + ';PWD=' + password
             )
 
-        """This method builds a list of templates"""
     @classmethod
     def create_template(cls, name, subject, message):
         cls.connect()
@@ -30,4 +29,3 @@ class Database:
         cursor.execute("INSERT INTO TEMPLATE VALUES (?, ?, ?)",
                        name, subject, message)
         cursor.commit()
-
