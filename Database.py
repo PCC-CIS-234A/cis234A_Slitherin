@@ -27,11 +27,11 @@ class Database:
         cursor = cls.__connection.cursor()
 
         insert_user = '''
-        INSERT INTO User_HD(First_Name, Last_Name, Username, Password, Email, Role)
+        INSERT INTO User_HD(Username, Password, Email, First_Name, Last_Name, Role)
         VALUES (?, ?, ?, ?, ?, ?)
         '''
 
-        cursor.execute(insert_user, (user.fname, user.lname, user.username, user.password,  user.email, user.role))
+        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname, user.role))
         cursor.commit()
 
     @classmethod

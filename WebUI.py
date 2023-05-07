@@ -155,7 +155,7 @@ class WebUI:
             return render_template('create_account_form.html')
         else:
             password = Validation.hash_password(password1)
-            User.create_account(fname, lname, email, username, password)
+            User.create_account(username, password, email, fname, lname)
             flash("Account Created Successfully! Please log in to your account.", category='success')
             return render_template('login.html')
 

@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, fname, lname, email, username, password, role="subscriber"):
+    def __init__(self, username, password, email, fname, lname, role="subscriber"):
         self.fname = fname
         self.lname = lname
         self.email = email
@@ -8,9 +8,9 @@ class User:
         self.role = role
 
     @classmethod
-    def create_account(cls, fname, lname, email, username, password1):
+    def create_account(cls, username, password1, email, fname, lname):
         from Database import Database
-        user = User(fname, lname, email, username, password1)
+        user = User(username, password1, email, fname, lname)
         Database.add_user(user)
 
     @classmethod
