@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Template import Template
-from Database import *
+from Database import Database
+from datetime import datetime
 
 
 class WebUI:
@@ -122,13 +123,23 @@ class WebUI:
 
     # Lakey's addition for fetching_data
     @staticmethod
-    @__app.route("/fetch_data")
+    @__app.route("/data_display")
     def fetch_data():
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
-        data = Database.fetch_data(start_date, end_date)
+        data = Database.fetch_data(start_date=start_date, end_date=end_date)
 
         return render_template('data_display.html', data=data)
+
+    # Lakey's addition for display_row
+    @staticmethod
+    @__app.route('/display_row/<date_sent>')
+    def display_row(date_sent):
+        start_date = datetime.strptime(date_sent, '%Y-%m-%d %H:%M:%S')
+        end_date = start_date
+        data = Database.fetch_data(start_date, end_date)
+        # print("data", data)
+        return render_template('row_display.html', data=data)
 
     @staticmethod
     def run():

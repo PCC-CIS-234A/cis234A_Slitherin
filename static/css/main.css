@@ -63,6 +63,8 @@ footer p, footer img {
 table {
         margin: 0 auto;
         border: 1px solid beige;
+        justify-content: normal;
+        width: 70%;
 }
 
 /*FOR LARGE SCREENS*/

@@ -28,3 +28,16 @@ class ReviewLogs:
             date_sent=datetime.strptime(row[3], '%Y-%m-%d'),
             num_subscribers=row[4]
         )
+
+    @classmethod
+    def format_data(cls, data):
+        result = []
+        for row in data:
+            subject = row.subject
+            message = row.message
+            staff = row.staff
+            date_sent = row.date_sent.strftime('%Y-%m-%d')
+            num_subscribers = row.num_subscribers
+            formatted_row = f"{subject} - {message} - {staff} - {date_sent} - {num_subscribers}"
+            result.append(formatted_row)
+        return result
