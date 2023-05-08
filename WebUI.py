@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, session
 
 import Validation
 from Template import Template
@@ -163,18 +163,23 @@ class WebUI:
     @__app.route('/login', methods=['POST'])
     def login():
         from User import User
+        session.pop('username', None)
 
         username_email = request.form["username_email_entry"]
         password = request.form["password_entry"]
 
         user = User.login(username_email)
-        pass_hash = user[2]
-        correct_password = Validation.return_hash_password(password, pass_hash)
 
         if user:
+            pass_hash = user[2]
+            correct_password = Validation.return_hash_password(password, pass_hash)
             if user[1] == username_email and correct_password:
+                session['username'] = user[1]
+                session['role'] = user[6]
                 return render_template('landing_page.html')
             elif user[3] == username_email and correct_password:
+                session['username'] = user[1]
+                session['role'] = user[6]
                 return render_template('landing_page.html')
             else:
                 flash("Password Incorrect! Please log in again.", category='error')

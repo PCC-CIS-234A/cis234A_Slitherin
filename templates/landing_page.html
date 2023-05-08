@@ -1,9 +1,11 @@
 {% extends "default.html" %}
 
 {% block title %}Staff Homepage{% endblock %}
+
+
 {% block content %}
     <p style="font-size: xx-large; color: #0088A4">
-        Welcome to Panther Pantry Notification System!
+        Welcome {{ session.username }} to the Panther Pantry Notification System! You are a {{ session.role }} !
     </p>
     <br>
     <p>

@@ -9,17 +9,42 @@
 <body>
     <header>
         {% block header %}
-        <img src="../static/images/thebag.png" height="100" width="80">
-        <img src="../static/images/pantherpantrypcc.PNG"height="100">
+            {% if session.role == 'subscriber' %}
+                    <img src="../static/images/thebag.png" height="100" width="80">
+                    <img src="../static/images/pantherpantrypcc.PNG"height="100">
+                    <nav>
+                        <p>
+                            <a href="/home">Log Out</a>
+                        </p>
+                </nav>
+            {% endif %}
 
-        <nav>
-        <p>
-            <a href="/create_template">Create A Template </a> &nbsp; &#8739; &nbsp;
-            <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
-            <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
-            <a href="/home">Log Out</a>
-        </p>
-        </nav>
+            {% if session.role == 'staff' %}
+                <img src="../static/images/thebag.png" height="100" width="80">
+                <img src="../static/images/pantherpantrypcc.PNG"height="100">
+
+                <nav>
+                <p>
+                    <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
+                    <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
+                    <a href="/home">Log Out</a>
+                </p>
+                </nav>
+            {% endif %}
+
+            {% if session.role == 'admin' %}
+                <img src="../static/images/thebag.png" height="100" width="80">
+                <img src="../static/images/pantherpantrypcc.PNG"height="100">
+
+                <nav>
+                <p>
+                    <a href="/create_template">Create A Template </a> &nbsp; &#8739; &nbsp;
+                    <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
+                    <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
+                    <a href="/home">Log Out</a>
+                </p>
+                </nav>
+            {% endif %}
         {% endblock %}
     </header>
 
