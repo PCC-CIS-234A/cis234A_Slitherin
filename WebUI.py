@@ -120,6 +120,18 @@ class WebUI:
         return render_template("under_construction.html")
 
     @staticmethod
+    @__app.route("/create_template", methods=['POST'])
+    def create_template():
+        from AddDB import AddDB
+
+        # Collect required information
+        name = request.form['Template Title']
+        subject = request.form['Subject Line']
+        message = request.form['Message']
+
+        AddDB.add_to_db(name, subject, message)
+
+    @staticmethod
     def run():
         """This method runs the UI"""
 
