@@ -125,9 +125,9 @@ class WebUI:
         from AddDB import AddDB
 
         # Collect required information
-        name = request.args['Template Title']
-        subject = request.args['Subject Line']
-        message = request.args['Message']
+        name = request.args.get('template title')
+        subject = request.args.get('subject line')
+        message = request.args.get('message')
 
         AddDB.add_to_db(name, subject, message)
 
