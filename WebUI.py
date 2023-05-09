@@ -136,6 +136,7 @@ class WebUI:
         )
 
         # Send notification to log
+        # TODO: POPULATE sender_id WITH USER DATA (REQUIRES LOGIN INFO)
         Log.send_to_db(subject, body, 'change me', time_sent, count)
 
         return render_template(

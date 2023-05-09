@@ -94,6 +94,6 @@ class Database:
         cursor = cls.__connection.cursor()
 
         # Add to log
-        cursor.execute("INSERT INTO Review_log VALUES (?, ?, ?, ?, ?)",
+        cursor.execute("INSERT INTO REVIEW_LOG VALUES (?, ?, ?, ?, ?)",
                        subject, body, sender_id, time_sent, count)
         cursor.commit()
