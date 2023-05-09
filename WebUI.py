@@ -120,7 +120,7 @@ class WebUI:
         return render_template("under_construction.html")
 
     @staticmethod
-    @__app.route("/add_create_template", methods=['POST'])
+    @__app.route("/add_create_template")
     def add_create_template():
         from AddDB import AddDB
 
@@ -131,7 +131,7 @@ class WebUI:
 
         AddDB.add_to_db(name, subject, message)
 
-        return render_template("create_template.html")
+        return render_template("save_success.html")
 
     @staticmethod
     def run():
