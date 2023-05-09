@@ -1,4 +1,6 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash, session
+
+import Validation
 from Template import Template
 
 
@@ -32,10 +34,17 @@ class WebUI:
 
     @staticmethod
     @__app.route("/")
+    @__app.route("/login")
     def homepage():
         """This method displays the homepage"""
-
         return render_template("login.html")
+
+    @staticmethod
+    @__app.route('/create_account_form')
+    def create_account_form():
+        """This method displays the create account page"""
+
+        return render_template("create_account_form.html")
 
     @staticmethod
     @__app.route("/landing_page")
@@ -134,10 +143,70 @@ class WebUI:
         return render_template("save_success.html")
 
     @staticmethod
+    @__app.route('/create_account', methods=['POST'])
+    def create_account():
+        from User import User
+
+        fname = request.form["fname"]
+        lname = request.form["lname"]
+        email = request.form["email"]
+        username = request.form["username"]
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+
+        user_email = User.search_emails(email)
+        user_username = User.search_usernames(username)
+
+        if Validation.validate_username(username):
+            return render_template('create_account_form.html')
+        elif Validation.validate_password(password1, password2):
+            return render_template('create_account_form.html')
+        elif user_email:
+            flash("Could not create account, please try again!", category='error')
+            return render_template('create_account_form.html')
+        elif user_username:
+            flash("Could not create account, please try again!", category='error')
+            return render_template('create_account_form.html')
+        else:
+            password = Validation.hash_password(password1)
+            User.create_account(username, password, email, fname, lname)
+            flash("Account Created Successfully! Please log in to your account.", category='success')
+            return render_template('login.html')
+
+    @staticmethod
+    @__app.route('/login', methods=['POST'])
+    def login():
+        from User import User
+        session.pop('username', None)
+
+        username_email = request.form["username_email_entry"]
+        password = request.form["password_entry"]
+
+        user = User.login(username_email)
+
+        if user:
+            pass_hash = user[2]
+            correct_password = Validation.return_hash_password(password, pass_hash)
+            if user[1] == username_email and correct_password:
+                session['username'] = user[1]
+                session['role'] = user[6]
+                return render_template('landing_page.html')
+            elif user[3] == username_email and correct_password:
+                session['username'] = user[1]
+                session['role'] = user[6]
+                return render_template('landing_page.html')
+            else:
+                flash("Password Incorrect! Please log in again.", category='error')
+                return render_template('login.html')
+        else:
+            flash("Username or Email Incorrect! Please log in again.", category='error')
+            return render_template('login.html')
+
+    @staticmethod
     def run():
         """This method runs the UI"""
 
-        WebUI.__app.run(port=5000)
+        WebUI.__app.run(port=5000, debug=True, ssl_context=('cert.pem', 'key.pem'))
 
 
 if __name__ == "__main__":

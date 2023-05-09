@@ -11,57 +11,105 @@ body {
 html, body {
   height: 100%;
 }
+
 main {
-        flex: 1 0 auto;
-        margin-top: 100px;
+    flex: 1 0 auto;
+    margin-top: 100px;
 }
 
 header img {
-        margin-top: 25px;
-        float: bottom;
+    margin-top: 25px;
 }
+
+#the_bag {
+    display: none;
+}
+
+header {
+    margin-left: 20px;
+}
+
 nav a {
-        text-decoration: none;
-        padding: 6px;
-        font-size: large;
-        color: black;
-        background-color: white;
+    text-decoration: none;
+    padding: 6px;
+    font-size: large;
+    color: black;
+    background-color: white;
 
 }
 
 nav a:hover {
-        background-color: darkgray;
-        color: black;
+    background-color: darkgray;
+    color: black;
 }
 
 nav {
-        margin-top: 50px;
+    margin-top: 50px;
 
 }
 footer {
-        background-color: #0088A4;
-        color: white;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
+    background-color: #0088A4;
+    color: white;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 footer p, footer img {
-        margin-right: 10px;
-        margin-left: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #title {
-        display: flex;
-        justify-content: left;
-        align-items: center;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/* CSS For Content */
+
+.alert.success {
+    background-color: #bbfdbb;
+    padding: 10px 10px;
+    width: fit-content;
+    margin: 15px auto;
+    align-content: center;
+    border-radius: 4px ;
+    border: black 1px solid;
+}
+
+.alert.error {
+    background-color: #ec9797;
+    padding: 10px 10px;
+    width: fit-content;
+    margin: 15px auto;
+    align-content: center;
+    border-radius: 4px ;
+    border: black 1px solid;
+}
+
+#lf {
+    margin: 15px 0;
+}
+
+#ca {
+    margin: 5px 0;
 }
 
 
 /*FOR LARGE SCREENS*/
 @media screen and (min-width: 1010px), print {
+
+    header {
+        margin-left: 20px;
+    }
+
+    #the_bag {
+        display: inline;
+    }
+
     nav {
         float: right;
         margin-right: 100px;
@@ -92,8 +140,6 @@ footer p, footer img {
 
     }
 
-    header {
-        margin-left: 20px;
-    }
+
 
 }

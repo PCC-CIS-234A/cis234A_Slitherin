@@ -29,3 +29,60 @@ class Database:
         cursor.execute("INSERT INTO TEMPLATE VALUES (?, ?, ?)",
                        name, subject, message)
         cursor.commit()
+
+    @classmethod
+    def add_user(cls, user):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        insert_user = '''
+        INSERT INTO User_HD(Username, Password, Email, First_Name, Last_Name, Role)
+        VALUES (?, ?, ?, ?, ?, ?)
+        '''
+
+        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname, user.role))
+        cursor.commit()
+
+    @classmethod
+    def login(cls, username_email):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_username_email = '''
+        SELECT * FROM User_HD WHERE Username = ? OR Email = ?
+        '''
+
+        cursor.execute(search_username_email, (username_email, username_email))
+        user = cursor.fetchone()
+
+        return user
+
+    @classmethod
+    def search_emails(cls, email):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_emails = '''
+        SELECT * FROM User_HD WHERE Email = ?
+        '''
+
+        cursor.execute(search_emails, (email,))
+        user = cursor.fetchone()
+
+        return user
+
+    @classmethod
+    def search_usernames(cls, username):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_usernames = '''
+        SELECT * FROM User_HD WHERE Username = ?
+        '''
+
+        cursor.execute(search_usernames, (username,))
+        user = cursor.fetchone()
+
+        return user
+
+
