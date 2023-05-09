@@ -8,23 +8,17 @@
         CREATE AND SAVE A NOTIFICATION TEMPLATE
     </p>
 <p>
-    <form method="get" action="/create_notification">
-        <label id="create_notification">
-            <input type="text" name="subject" placeholder="Template Title" style="text-align: left">
-
+    <form method="get" action="/add_create_notification">
+        <label id="create_template">
+            <input type="text" name="Template Title" placeholder="Template Title" style="text-align: left">
 
             <br><br>
 
-            <input type="text" name="subject" placeholder="Subject Line" style="text-align: left">
+            <input type="text" name="Subject Line" placeholder="Subject Line" style="text-align: left">
 
-            <br>
+            <br><br>
 
-            <textarea
-                    name="message"
-                    cols="150"
-                    rows="20"
-                    placeholder="Enter text here">
-            </textarea>
+            <textarea name="message" cols="150" rows="20" placeholder="Enter message here"></textarea>
 
             <br><br>
 
