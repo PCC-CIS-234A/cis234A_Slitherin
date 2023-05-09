@@ -148,10 +148,10 @@ class WebUI:
         elif Validation.validate_password(password1, password2):
             return render_template('create_account_form.html')
         elif user_email:
-            flash("Email already in use!", category='error')
+            flash("Could not create account, please try again!", category='error')
             return render_template('create_account_form.html')
         elif user_username:
-            flash("Username already in use!", category='error')
+            flash("Could not create account, please try again!", category='error')
             return render_template('create_account_form.html')
         else:
             password = Validation.hash_password(password1)
