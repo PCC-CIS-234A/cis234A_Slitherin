@@ -1,0 +1,28 @@
+{% extends "default.html" %}
+
+
+
+{% block title %}Create Template{% endblock %}
+{% block content %}
+    <p style="color: #0088A4; font-size: x-large">
+        CREATE AND SAVE A NOTIFICATION TEMPLATE
+    </p>
+<p>
+    <form method="get" action="/add_create_template">
+        <label id="create_template">
+            <input type="text" name="template title" placeholder="Template Title" style="text-align: left">
+
+            <br><br>
+
+            <input type="text" name="subject line" placeholder="Subject Line" style="text-align: left">
+
+            <br><br>
+
+            <textarea name="message" cols="150" rows="20" placeholder="Enter message here"></textarea>
+
+            <br><br>
+
+            <button type="save">Save</button>
+        </label>
+    </form>
+{% endblock %}
