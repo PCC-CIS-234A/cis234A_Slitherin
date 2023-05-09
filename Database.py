@@ -5,6 +5,7 @@
 # Sources:          	Project Specifications
 # *****************************************************************************
 import pyodbc
+from FetchLogs import ReviewLogs
 
 
 class Database:
@@ -97,3 +98,92 @@ class Database:
         cursor.execute("INSERT INTO REVIEW_LOG VALUES (?, ?, ?, ?, ?)",
                        subject, body, sender_id, time_sent, count)
         cursor.commit()
+
+    # Lakey's fetch_data classmethod
+    @classmethod
+    def fetch_data(cls, start_date, end_date):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        query = '''
+            SELECT * FROM Review_log 
+            WHERE Date_sent 
+            BETWEEN ? 
+            AND ?
+            '''
+        cursor.execute(query, start_date, end_date)
+        rows = cursor.fetchall()
+        result = []
+
+        for row in rows:
+            review_log = ReviewLogs.from_row(row)
+            result.append(review_log)
+
+        return result
+
+    @classmethod
+    def create_template(cls, name, subject, message):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        cursor.execute("INSERT INTO TEMPLATE VALUES (?, ?, ?)",
+                       name, subject, message)
+        cursor.commit()
+
+    @classmethod
+    def add_user(cls, user):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        insert_user = '''
+        INSERT INTO User_HD(Username, Password, Email, First_Name, Last_Name, Role)
+        VALUES (?, ?, ?, ?, ?, ?)
+        '''
+
+        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname, user.role))
+        cursor.commit()
+
+    @classmethod
+    def login(cls, username_email):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_username_email = '''
+        SELECT * FROM User_HD WHERE Username = ? OR Email = ?
+        '''
+
+        cursor.execute(search_username_email, (username_email, username_email))
+        user = cursor.fetchone()
+
+        return user
+
+    @classmethod
+    def search_emails(cls, email):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_emails = '''
+        SELECT * FROM User_HD WHERE Email = ?
+        '''
+
+        cursor.execute(search_emails, (email,))
+        user = cursor.fetchone()
+
+        return user
+
+    @classmethod
+    def search_usernames(cls, username):
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        search_usernames = '''
+        SELECT * FROM User_HD WHERE Username = ?
+        '''
+
+        cursor.execute(search_usernames, (username,))
+        user = cursor.fetchone()
+
+        return user
+
+
+

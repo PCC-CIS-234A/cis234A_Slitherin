@@ -1,0 +1,30 @@
+{% extends "default.html" %}
+
+{% block title %}Display Data{% endblock %}
+{% block content %}
+    <p style="color: #0088A4; font-size: x-large">
+        Detailed View of Log
+    </p>
+   <table>
+      <tr>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Staff</th>
+        <th>Date Sent</th>
+        <th>Number of Subscribers</th>
+      </tr>
+       {% for row in data %}
+      <tr>
+        <td>{{ row.subject }}</td>
+        <td>{{ row.message }}</td>
+        <td>{{ row.staff }}</td>
+        <td>{{ row.date_sent }}</td>
+        <td>{{ row.num_subscribers }}</td>
+      </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/data_display">Return to Data Display</a>
+
+
+{% endblock %}

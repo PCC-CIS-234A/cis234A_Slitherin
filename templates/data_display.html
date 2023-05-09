@@ -1,0 +1,36 @@
+{% extends "default.html" %}
+
+{% block title %}Display Data{% endblock %}
+{% block content %}
+    <p style="color: #0088A4; font-size: x-large">
+        LIST OF LOG VIEWS
+    </p>
+   <table>
+      <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Staff</th>
+            <th>Date Sent</th>
+            <th>Number of Subscribers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+            <td>{{ row.subject }}</td>
+            <td>{{ row.message }}</td>
+            <td>{{ row.staff }}</td>
+            <td><a href="{{ url_for('display_row', date_sent=row.date_sent) }}">{{ row.date_sent }}</a></td>
+            <td>{{ row.date_sent}}</td>
+            <td>{{ row.num_subscribers }}</td>
+        </tr>
+
+
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+
+    <a href="/review_log">Return to Review Logs</a>
+
+{% endblock %}
