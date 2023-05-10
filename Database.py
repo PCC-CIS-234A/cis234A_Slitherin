@@ -136,7 +136,7 @@ class Database:
         cursor = cls.__connection.cursor()
 
         insert_user = '''
-        INSERT INTO User_HD(Username, Password, Email, First_Name, Last_Name, Role)
+        INSERT INTO USERS(USERNAME, PASSWORD, EMAIL, FIRSTNAME, LASTNAME, ROLE)
         VALUES (?, ?, ?, ?, ?, ?)
         '''
 
@@ -149,7 +149,7 @@ class Database:
         cursor = cls.__connection.cursor()
 
         search_username_email = '''
-        SELECT * FROM User_HD WHERE Username = ? OR Email = ?
+        SELECT * FROM USERS WHERE USERNAME = ? OR EMAIL = ?
         '''
 
         cursor.execute(search_username_email, (username_email, username_email))
@@ -163,7 +163,7 @@ class Database:
         cursor = cls.__connection.cursor()
 
         search_emails = '''
-        SELECT * FROM User_HD WHERE Email = ?
+        SELECT * FROM USERS WHERE EMAIL = ?
         '''
 
         cursor.execute(search_emails, (email,))
@@ -177,7 +177,7 @@ class Database:
         cursor = cls.__connection.cursor()
 
         search_usernames = '''
-        SELECT * FROM User_HD WHERE Username = ?
+        SELECT * FROM USERS WHERE USERNAME = ?
         '''
 
         cursor.execute(search_usernames, (username,))
