@@ -1,30 +1,32 @@
 {% extends "default.html" %}
 
-{% block title %}Display Data{% endblock %}
+{% block title %}Logs View{% endblock %}
 {% block content %}
+
+
     <p style="color: #0088A4; font-size: x-large">
-        LIST OF LOG VIEWS
+        LIST OF LOGS
     </p>
    <table>
       <thead>
+
         <tr>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Staff</th>
-            <th>Date Sent</th>
-            <th>Number of Subscribers</th>
+            <th>SUBJECT</th>
+            <th>MESSAGE</th>
+            <th>STAFF</th>
+            <th>DATE SENT</th>
+            <th>NUMBER OF SUBSCRIBERS</th>
         </tr>
       </thead>
       <tbody>
         {% for row in data %}
-            <td>{{ row.subject }}</td>
-            <td>{{ row.message }}</td>
-            <td>{{ row.staff }}</td>
-            <td><a href="{{ url_for('display_row', date_sent=row.date_sent) }}">{{ row.date_sent }}</a></td>
-            <td>{{ row.date_sent}}</td>
-            <td>{{ row.num_subscribers }}</td>
-        </tr>
 
+            <td><a href="{{ url_for('display_row', DATE_SENT=row.DATE_SENT) }}">{{ row.SUBJECT }}</a></td>
+            <td>{{ row.MESSAGE }}</td>
+            <td>{{ row.STAFF }}</td>
+            <td>{{ row.DATE_SENT}}</td>
+            <td>{{ row.NUM_SUBSCRIBERS }}</td>
+        </tr>
 
         {% endfor %}
       </tbody>

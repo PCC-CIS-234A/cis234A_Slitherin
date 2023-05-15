@@ -173,18 +173,18 @@ class WebUI:
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
         data = Database.fetch_data(start_date=start_date, end_date=end_date)
-
+        print('fetch_data', data)
         return render_template('data_display.html', data=data)
 
     # Lakey's addition for display_row
     @staticmethod
-    @__app.route('/display_row/<date_sent>')
-    def display_row(date_sent):
-        start_date = datetime.strptime(date_sent, '%Y-%m-%d %H:%M:%S')
+    @__app.route('/row_display/<DATE_SENT>')  # display_row
+    def display_row(DATE_SENT):
+        start_date = datetime.now()
         end_date = start_date
-        data = Database.fetch_data(start_date, end_date)
-        # print("data", data)
+        data = Database.fetch_data(DATE_SENT, end_date)
         return render_template('row_display.html', data=data)
+
 
     @staticmethod
     @__app.route("/add_create_template")

@@ -6,6 +6,7 @@
 # *****************************************************************************
 import pyodbc
 from FetchLogs import ReviewLogs
+from datetime import datetime
 
 
 class Database:
@@ -101,23 +102,27 @@ class Database:
 
     # Lakey's fetch_data classmethod
     @classmethod
-    def fetch_data(cls, start_date, end_date):
+    def fetch_data(cls, start_date, end_date=None):
         cls.connect()
         cursor = cls.__connection.cursor()
 
+        if not end_date:
+            end_date = datetime.now()
+
         query = '''
-            SELECT * FROM Review_log 
-            WHERE Date_sent 
-            BETWEEN ? 
-            AND ?
-            '''
+                 SELECT * FROM REVIEW_LOG
+                 WHERE DATE_SENT BETWEEN ? AND ?
+                 '''
+
         cursor.execute(query, start_date, end_date)
         rows = cursor.fetchall()
         result = []
 
         for row in rows:
-            review_log = ReviewLogs.from_row(row)
-            result.append(review_log)
+            # DATE_SENT = row[3]
+            DATE_SENT = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            REVIEW_LOG = ReviewLogs(row[0], row[1], row[2], DATE_SENT, row[4])
+            result.append(REVIEW_LOG)
 
         return result
 
