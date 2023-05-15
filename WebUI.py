@@ -64,13 +64,6 @@ class WebUI:
         return render_template("landing_page.html")
 
     @staticmethod
-    @__app.route("/under_construction")
-    def under_construction():
-        """This method displays the construction page"""
-
-        return render_template("under_construction.html")
-
-    @staticmethod
     @__app.route("/create_notification")
     def create_notification():
         """This method allows the user to send a notification to
@@ -179,12 +172,11 @@ class WebUI:
     # Lakey's addition for display_row
     @staticmethod
     @__app.route('/row_display/<DATE_SENT>')  # display_row
-    def display_row(DATE_SENT):
+    def display_row(date_sent):
         start_date = datetime.now()
         end_date = start_date
-        data = Database.fetch_data(DATE_SENT, end_date)
+        data = Database.fetch_data(date_sent, end_date)
         return render_template('row_display.html', data=data)
-
 
     @staticmethod
     @__app.route("/add_create_template")
