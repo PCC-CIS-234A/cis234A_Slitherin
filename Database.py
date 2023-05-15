@@ -38,8 +38,8 @@ class Database:
         # Define SQL call
         sql = '''
             SELECT DISTINCT EMAIL
-            FROM USER_ID
-            WHERE ROLE='Subscriber';
+            FROM USERS
+            WHERE ROLE='subscriber';
             '''
 
         # Establish connection and create cursor
