@@ -120,9 +120,9 @@ class Database:
 
         for row in rows:
             # DATE_SENT = row[3]
-            DATE_SENT = row[3].strftime('%Y-%m-%d %H:%M:%S')
-            REVIEW_LOG = ReviewLogs(row[0], row[1], row[2], DATE_SENT, row[4])
-            result.append(REVIEW_LOG)
+            date_sent = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            review_log = ReviewLogs(row[0], row[1], row[2], date_sent, row[4])
+            result.append(review_log)
 
         return result
 
@@ -189,6 +189,3 @@ class Database:
         user = cursor.fetchone()
 
         return user
-
-
-
