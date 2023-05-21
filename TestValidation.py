@@ -15,19 +15,17 @@ class TestValidation:
 
     def test_username_too_short(self):
         """If username is too long, function returns True"""
+        # NOT WORKING
+        username = "one"
 
-        pass
-        # username = "one"
-        #
-        # assert Validation.validate_username(username)
+        assert Validation.validate_username(username)
 
     def test_username_too_long(self):
         """If username is too long, function returns True"""
 
-        pass
-        # username = "twentyfivecharactersisverylong"
-        #
-        # assert Validation.validate_username_length(username)
+        username = "twentyfivecharactersisverylong"
+
+        assert Validation.validate_username_length(username)
 
     def test_username_no_spaces(self):
         """If username does not contain spaces, functions returns False"""
@@ -38,11 +36,10 @@ class TestValidation:
 
     def test_username_has_spaces(self):
         """If username has spaces, function returns True"""
+        # NOT WORKING
+        username = "sp aces"
 
-        pass
-        # username = "sp aces"
-        #
-        # assert Validation.validate_no_spaces_username(username)
+        assert Validation.validate_no_spaces_username(username)
 
     def test_passwords_match(self):
         """If passwords match, function returns False"""
@@ -54,12 +51,11 @@ class TestValidation:
 
     def test_passwords_dont_match(self):
         """If passwords do not match, function returns True"""
+        # NOT WORKING
+        password1 = "password"
+        password2 = "password1"
 
-        pass
-        # password1 = "password"
-        # password2 = "password1"
-        #
-        # assert Validation.validate_password(password1, password2)
+        assert Validation.validate_password(password1, password2)
 
     def test_password_contains_special_character(self):
         """If password contains special character, function returns False"""
@@ -70,10 +66,10 @@ class TestValidation:
 
     def test_password_no_special_character(self):
         """If password does not contain special character, function returns True"""
-        pass
-        # password = "no special character"
-        #
-        # assert Validation.validate_contains_special_character(password)
+        # NOT WORKING
+        password = "no special character"
+
+        assert Validation.validate_contains_special_character(password)
 
     def test_password_contains_number(self):
         """If password contains number, function returns False"""
@@ -84,8 +80,7 @@ class TestValidation:
 
     def test_password_no_number(self):
         """If password does not contain a number, function returns True"""
+        # NOT WORKING
+        password = "nonumber"
 
-        pass
-        # password = "nonumber"
-        #
-        # assert Validation.validate_contains_number(password)
+        assert Validation.validate_contains_number(password)
