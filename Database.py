@@ -16,6 +16,7 @@ class Database:
     @classmethod
     def connect(cls):
         """This method connects to the database"""
+        print('Connecting to DB')
 
         # Set connection variables
         if cls.__connection is None:
@@ -30,6 +31,10 @@ class Database:
                 + ';DATABASE=' + database
                 + ';UID=' + username + ';PWD=' + password
             )
+
+    @classmethod
+    def get_connection(cls):
+        return cls.__connection
 
     @classmethod
     def build_email_list(cls):
