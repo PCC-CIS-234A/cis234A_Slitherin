@@ -1,19 +1,20 @@
 import unittest
+
+import unittest
+
 from Template import Template
 
 
 class TestTemplate(unittest.TestCase):
     def test_get_name(self):
-        self.assertTrue(True)
+        name = 1
+        subject = 2
+        test = 3
+        key = 4
 
-    def test_get_subject(self):
-        self.assertTrue(True)
+    template = Template(name, subject, text, key)
 
-    def test_get_text(self):
-        self.assertTrue(True)
-
-    def test_get_key(self):
-        self.assertTrue(True)
-
-    def test_build_list(self):
-        self.assertTrue(True)
+    self.assertEqual(name, template.get_name())
+    self.assertEqual(subject, template.get_subject())
+    self.assertEqual(text, template.get_text())
+    self.assertEqual(key, template.get_key())
