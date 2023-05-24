@@ -195,6 +195,7 @@ class WebUI:
     @staticmethod
     @__app.route('/create_account', methods=['POST'])
     def create_account():
+        """This method creates a user account"""
         from User import User
 
         fname = request.form["fname"]
@@ -226,6 +227,7 @@ class WebUI:
     @staticmethod
     @__app.route('/login', methods=['POST'])
     def login():
+        """This method logs in a user"""
         from User import User
         session.pop('username', None)
 
