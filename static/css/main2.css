@@ -60,7 +60,7 @@ footer img {
 }
 
 nav {
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 .mnu-icon {
@@ -95,20 +95,9 @@ nav {
     top: -10px;
 }
 
-.sub_list {
-    display: block;
-}
-
-/* Set properties for our <ul>s */
 .mnu-list, .mnu-list ul {
     list-style: none;
     display: none;
-}
-
-.mnu-list a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
 }
 
 .mnu-list li {
@@ -121,72 +110,43 @@ nav {
     color: #0088A4;
 }
 
-#user_li {
+.mnu-list li div:hover {
+    background-color: #0088A4;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+}
+
+.sub_list_user, .sub_list_notification, .sub_list_template {
     width: 50px;
 }
 
-#user_li:hover {
-    width: 100px;
-}
 
-.sub_list li {
-    background-color: white;
-    color: #0088A4;
-    padding: 5px;
-    width: fit-content;
-    margin: 0 10px;
-}
 
-.mnu-list li a:hover {
-    background-color: #0088A4;
-    color: white;
-    width: fit-content;
-    padding: 5px;
-}
+/*.mnu-button:focus .mnu-icon {*/
+/*    background: transparent;*/
+/*}*/
 
-.sub_list li a:hover {
-    background-color: #0088A4;
-    color: white;
-    width: fit-content;
-    padding: 5px;
-}
+/*!* Rotate the top line counter clock-wise *!*/
+/*.mnu-button:focus .mnu-icon::before {*/
+/*    transform: rotate(-45deg);*/
+/*}*/
 
-.mnu-list li:hover ul {
-    display: block;
-}
+/*!* Rotate the bottom line clock-wise *!*/
+/*.mnu-button:focus .mnu-icon::after {*/
+/*    transform: rotate(45deg);*/
+/*}*/
 
-.mnu-button:active~.mnu-list {
-    display: block;
-}
+/*!* Change the offset of our two buns so they *!*/
+/*.mnu-button:focus .mnu-icon::before,*/
+/*.mnu-button:focus .mnu-icon::after {*/
+/*    top: 0;*/
+/*}*/
 
-.mnu-button:focus~.mnu-list {
-    display: block;
-}
-
-.mnu-button:focus .mnu-icon {
-    background: transparent;
-}
-
-/* Rotate the top line counter clock-wise */
-.mnu-button:focus .mnu-icon::before {
-    transform: rotate(-45deg);
-}
-
-/* Rotate the bottom line clock-wise */
-.mnu-button:focus .mnu-icon::after {
-    transform: rotate(45deg);
-}
-
-/* Change the offset of our two buns so they */
-.mnu-button:focus .mnu-icon::before,
-.mnu-button:focus .mnu-icon::after {
-    top: 0;
-}
-
-/* Allow the 'X' to close the menu */
-.mnu-button:focus {
-    pointer-events: none;
-}
+/*!* Allow the 'X' to close the menu *!*/
+/*.mnu-button:focus {*/
+/*    pointer-events: none;*/
+/*}*/
 
 /** ---------- CSS For Content ---------- **/
 
@@ -255,18 +215,20 @@ table {
     float: left;
 }
 
-@media screen and (min-width: 1010px), print {
-
+@media screen and (min-width: 960px) {
     nav {
         margin-right: 50px;
-    }
-
-    header {
-        display: inline;
+        font-size: 1.25em;
     }
 
     header img {
         float: left;
+        display: block;
+    }
+
+    header nav {
+        float: right;
+        display: block;
     }
 
     .mnu-icon {
@@ -279,11 +241,15 @@ table {
         margin-top: 50px;
     }
 
-    #the_bag {
-        display: inline;
+    .sub_list_user, .sub_list_notification, .sub_list_template {
+    width: 120px;
     }
 
 }
+
+
+
+
 
 
 

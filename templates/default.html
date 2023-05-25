@@ -6,27 +6,129 @@
     <title>{% block title %}Title{% endblock %}</title>
     <link rel="stylesheet" href="../static/css/main2.css">
 
-<body>
+    <script>
+    function clickedMnuButton() {
+        [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "block");
+        [].slice.call(document.getElementsByClassName("mnu-icon::before")).forEach(x => x.style.transform = "rotate(-45deg)");
+        [].slice.call(document.getElementsByClassName("mnu-icon::after")).forEach(x => x.style.transform = "rotate(45deg)");
+        [].slice.call(document.getElementsByClassName("mnu-icon")).forEach(x => x.style.background = "transparent");
+    }
+
+    function clickedHome() {
+        window.location.href = "/landing_page";
+    }
+
+    function hoverHome() {
+        [].slice.call(document.getElementsByClassName("sub_list_template")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_user")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_notification")).forEach(x => x.style.display = "none");
+    }
+
+    function hoverUser() {
+        [].slice.call(document.getElementsByClassName("sub_list_user")).forEach(x => x.style.display = "block");
+        [].slice.call(document.getElementsByClassName("sub_list_notification")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_template")).forEach(x => x.style.display = "none");
+    }
+
+    function clickedSetting() {
+        window.location.href = "/settings";
+    }
+
+    function clickedLogout() {
+        window.location.href = "/login";
+    }
+
+    function hoverNotification() {
+        [].slice.call(document.getElementsByClassName("sub_list_notification")).forEach(x => x.style.display = "block");
+        [].slice.call(document.getElementsByClassName("sub_list_template")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_user")).forEach(x => x.style.display = "none");
+    }
+
+    function clickedReviewLog() {
+        window.location.href = "/review_log";
+    }
+
+    function clickedSendNotification() {
+        window.location.href = "/create_notification";
+    }
+
+    function hoverTemplate() {
+        [].slice.call(document.getElementsByClassName("sub_list_template")).forEach(x => x.style.display = "block");
+        [].slice.call(document.getElementsByClassName("sub_list_user")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_notification")).forEach(x => x.style.display = "none");
+    }
+
+    function clickedCreateTemplate() {
+        window.location.href = "/create_template";
+    }
+
+    function clickedViewTemplates() {
+        console.log("VIEW TEMPLATES")
+        window.location.href = "/view_templates";
+    }
+
+    function init() {
+        [].slice.call(document.getElementsByClassName("mnu-button")).forEach(x => x.addEventListener("click", clickedMnuButton));
+        document.getElementById("home_div").addEventListener("click", clickedHome);
+        document.getElementById("home_div").addEventListener("mouseover", hoverHome)
+        document.getElementById("user_div").addEventListener("mouseover", hoverUser);
+        document.getElementById("settings_div").addEventListener("click", clickedSetting);
+        document.getElementById("logout_div").addEventListener("click", clickedLogout);
+
+        const notification = document.getElementById("notification_div");
+        if (notification) {
+            notification.addEventListener("mouseover", hoverNotification);
+        }
+
+        const review_log = document.getElementById("review_div");
+        if (review_log) {
+            review_log.addEventListener("click", clickedReviewLog);
+        }
+
+        const send_notification = document.getElementById("send_div");
+        if (send_notification) {
+            send_notification.addEventListener("click", clickedSendNotification);
+        }
+
+        const template = document.getElementById("template_div");
+        if (template) {
+            template.addEventListener("mouseover", hoverTemplate);
+        }
+
+        const create_template = document.getElementById("create_template_div");
+        if (create_template) {
+            create_template.addEventListener("click", clickedCreateTemplate);
+        }
+
+        const view_templates = document.getElementById("view_template_div");
+        if (view_templates) {
+            view_templates.addEventListener("click", clickedViewTemplates)
+        }
+    }
+    </script>
+</head>
+
+<body onload="init();">
     <header>
         {% block header %}
             {% if session.role == 'subscriber' %}
-                    <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
-                    <img src="../static/images/pantherpantrypcc.PNG"height="100">
+                <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
+                <img src="../static/images/pantherpantrypcc.PNG"height="100">
 
-                    <nav>
-                        <div tabindex="0" class="mnu-button">
-                            <a href="#" class="mnu-icon"></a>
-                        </div>
-                            <ul class="mnu-list">
-                                <li><a href="#">Home</a></li>
-                                <li id="user_li"><a href="#">User</a>
-                                    <ul class="sub_list">
-                                        <li><a href="#">Settings</a></li>
-                                        <li><a href="/home">Logout</a></li>
-                                    </ul>
-                                </li>
+                <nav>
+                    <div tabindex="0" class="mnu-button">
+                        <a href="#" class="mnu-icon"></a>
+                    </div>
+                    <ul class="mnu-list">
+                        <li><div id="home_div">Home</div></li>
+                        <li><div id="user_div">User</div>
+                            <ul class="sub_list_user">
+                                <li><div id="settings_div">Settings</div></li>
+                                <li><div id="logout_div">Logout</div></li>
                             </ul>
-                    </nav>
+                        </li>
+                    </ul>
+                </nav>
             {% endif %}
 
             {% if session.role == 'staff' %}
@@ -34,11 +136,24 @@
                 <img src="../static/images/pantherpantrypcc.PNG"height="100">
 
                 <nav>
-                <p>
-                    <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
-                    <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
-                    <a href="/home">Log Out</a>
-                </p>
+                    <div tabindex="0" class="mnu-button">
+                        <a href="#" class="mnu-icon"></a>
+                    </div>
+                    <ul class="mnu-list">
+                        <li><div id="home_div">Home</div></li>
+                        <li><div id="notification_div">Notifications</div>
+                            <ul class="sub_list_notification">
+                                <li><div id="review_div">Review Log</div></li>
+                                <li><div id="send_div">Send Notification</div></li>
+                            </ul>
+                        </li>
+                        <li><div id="user_div">User</div>
+                            <ul class="sub_list_user">
+                                <li><div id="settings_div">Settings</div></li>
+                                <li><div id="logout_div">Logout</div></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </nav>
             {% endif %}
 
@@ -46,17 +161,36 @@
                 <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
                 <img src="../static/images/pantherpantrypcc.PNG"height="100">
 
-                <nav>
-                <p>
-                    <a href="/create_template">Create A Template </a> &nbsp; &#8739; &nbsp;
-                    <a href="/create_notification">Send A Notification</a> &nbsp; &#8739; &nbsp;
-                    <a href="/review_log">Review Log</a> &nbsp; &#8739; &nbsp;
-                    <a href="/home">Log Out</a>
-                </p>
+                <nav class="nav_area">
+                    <div tabindex="0" class="mnu-button">
+                        <a href="#" class="mnu-icon"></a>
+                    </div>
+                    <ul class="mnu-list">
+                        <li><div id="home_div">Home</div></li>
+                        <li><div id="notification_div">Notifications</div>
+                            <ul class="sub_list_notification">
+                                <li><div id="review_div">Review Log</div></li>
+                                <li><div id="send_div">Send Notification</div></li>
+                            </ul>
+                        </li>
+                        <li><div id="template_div">Templates</div>
+                            <ul class="sub_list_template">
+                                <li><div id="create_template_div">Create Template</div></li>
+                                <li><div id="view_template_div">View Templates</div></li>
+                            </ul>
+                        </li>
+                        <li><div id="user_div">User</div>
+                            <ul class="sub_list_user">
+                                <li><div id="settings_div">Settings</div></li>
+                                <li><div id="logout_div">Logout</div></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </nav>
             {% endif %}
         {% endblock %}
     </header>
+
 
     <main style="text-align: center">
         {% block content %}<p>Content</p>{% endblock %}
