@@ -141,6 +141,9 @@ class Database:
 
     @classmethod
     def add_user(cls, user):
+        """ This method adds the user object to the DB
+        @author Hannah Doty """
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
@@ -154,6 +157,9 @@ class Database:
 
     @classmethod
     def login(cls, username_email):
+        """ This method searches the DB for an existing user by username OR email
+        @author Hannah Doty """
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
@@ -168,6 +174,9 @@ class Database:
 
     @classmethod
     def search_emails(cls, email):
+        """ This method searches the DB for an existing email address
+        @author Hannah Doty """
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
@@ -182,6 +191,9 @@ class Database:
 
     @classmethod
     def search_usernames(cls, username):
+        """ This method searches the DB for an existing username
+        @author Hannah Doty """
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
