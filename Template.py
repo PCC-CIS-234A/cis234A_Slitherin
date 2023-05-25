@@ -8,10 +8,10 @@ from Database import Database
 
 
 class Template:
-    def __init__(self, name, subject, text):
+    def __init__(self, name, subject, message):
         self.__name = name
         self.__subject = subject
-        self.__text = text
+        self.__message = message
 
     def __str__(self):
         return self.__name
@@ -22,8 +22,8 @@ class Template:
     def get_subject(self):
         return self.__subject
 
-    def get_text(self):
-        return self.__text
+    def get_message(self):
+        return self.__message
 
     def get_key(self):
         return self.__name.lower()

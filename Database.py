@@ -32,6 +32,10 @@ class Database:
             )
 
     @classmethod
+    def get_connection(cls):
+        return cls.__connection
+
+    @classmethod
     def build_email_list(cls):
         """This method builds a list of emails from database"""
 
@@ -66,7 +70,7 @@ class Database:
 
         # Define SQL call
         sql = '''
-            SELECT *
+            SELECT NAME, SUBJECT, MESSAGE
             FROM TEMPLATE;
             '''
 
@@ -113,7 +117,7 @@ class Database:
             end_date = datetime.now()
 
         query = '''
-                 SELECT * FROM REVIEW_LOG
+                 SELECT *FROM REVIEW_LOG
                  WHERE DATE_SENT BETWEEN ? AND ?
                  '''
 
