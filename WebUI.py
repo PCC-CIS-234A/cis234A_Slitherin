@@ -120,7 +120,7 @@ class WebUI:
             "use_template.html",
             template_name=template.get_name(),
             template_subject=template.get_subject(),
-            template_text=template.get_text()
+            template_text=template.get_message()
         )
 
     @staticmethod

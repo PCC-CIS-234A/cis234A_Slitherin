@@ -16,7 +16,6 @@ class Database:
     @classmethod
     def connect(cls):
         """This method connects to the database"""
-        print('Connecting to DB')
 
         # Set connection variables
         if cls.__connection is None:
@@ -71,7 +70,7 @@ class Database:
 
         # Define SQL call
         sql = '''
-            SELECT *
+            SELECT NAME, SUBJECT, MESSAGE
             FROM TEMPLATE;
             '''
 
@@ -115,7 +114,7 @@ class Database:
             end_date = datetime.now()
 
         query = '''
-                 SELECT * FROM REVIEW_LOG
+                 SELECT *FROM REVIEW_LOG
                  WHERE DATE_SENT BETWEEN ? AND ?
                  '''
 
