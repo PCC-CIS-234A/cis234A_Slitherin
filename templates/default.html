@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Title{% endblock %}</title>
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/main2.css">
 
 <body>
     <header>
@@ -12,11 +12,21 @@
             {% if session.role == 'subscriber' %}
                     <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
                     <img src="../static/images/pantherpantrypcc.PNG"height="100">
+
                     <nav>
-                        <p>
-                            <a href="/home">Log Out</a>
-                        </p>
-                </nav>
+                        <div tabindex="0" class="mnu-button">
+                            <a href="#" class="mnu-icon"></a>
+                        </div>
+                            <ul class="mnu-list">
+                                <li><a href="#">Home</a></li>
+                                <li id="user_li"><a href="#">User</a>
+                                    <ul class="sub_list">
+                                        <li><a href="#">Settings</a></li>
+                                        <li><a href="/home">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </nav>
             {% endif %}
 
             {% if session.role == 'staff' %}
