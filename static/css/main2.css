@@ -177,15 +177,6 @@ table {
 }
 
 @media screen and (min-width: 960px) {
-    nav {
-        margin-right: 50px;
-        font-size: 1.25em;
-    }
-
-    .mnu-button {
-        display: none;
-    }
-
     header img {
         float: left;
         display: block;
@@ -195,8 +186,12 @@ table {
         float: right;
         display: block;
     }
+    nav {
+        margin-right: 50px;
+        font-size: 1.25em;
+    }
 
-    .mnu-icon {
+    .mnu-button {
         display: none;
     }
 
@@ -206,8 +201,12 @@ table {
         margin-top: 50px;
     }
 
+    .sub_list_user {
+        display: block;
+    }
+
     .sub_list_user, .sub_list_notification, .sub_list_template {
-    width: 120px;
+        width: 120px;
     }
 
 }
