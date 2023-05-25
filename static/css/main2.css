@@ -23,6 +23,7 @@ html, body {
 
 main {
     flex: 1 0 auto;
+    margin-top: 25px;
 }
 
 header img {
@@ -57,42 +58,31 @@ footer img {
 .mnu-button {
     cursor: pointer;
     float: left;
+    margin-right: 25px;
+}
+
+#line1 {
+    position: absolute;
+    top: 100px;
+}
+
+#line2 {
+    position: absolute;
+    top: 110px;
+}
+
+#line3 {
+    position: absolute;
+    top: 120px;
 }
 
 nav {
     font-size: 1em;
 }
 
-.mnu-icon {
-    float: right;
-    position: relative;
-    display: block;
-    background: #0088A4;
-    height: 4px;
-    width: 40px;
-    margin: 25px 25px;
-}
-
-/* Make the two buns of the hamburger. */
-.mnu-icon::before,
-.mnu-icon::after {
-    background: #0088A4;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    transition: all .2s ease-out;
-    width: 100%;
-}
-
-/* Bottom bun */
-.mnu-icon::before {
-    top: 10px;
-}
-
-/* Top bun */
-.mnu-icon::after {
-    top: -10px;
+.mnu-list {
+    margin-top: 10px;
+    margin-left: 100px;
 }
 
 .mnu-list, .mnu-list ul {
@@ -120,35 +110,6 @@ nav {
 .sub_list_user, .sub_list_notification, .sub_list_template {
     width: 50px;
 }
-
-
-
-/*.mnu-button:focus .mnu-icon {*/
-/*    background: transparent;*/
-/*}*/
-
-/*!* Rotate the top line counter clock-wise *!*/
-/*.mnu-button:focus .mnu-icon::before {*/
-/*    transform: rotate(-45deg);*/
-/*}*/
-
-/*!* Rotate the bottom line clock-wise *!*/
-/*.mnu-button:focus .mnu-icon::after {*/
-/*    transform: rotate(45deg);*/
-/*}*/
-
-/*!* Change the offset of our two buns so they *!*/
-/*.mnu-button:focus .mnu-icon::before,*/
-/*.mnu-button:focus .mnu-icon::after {*/
-/*    top: 0;*/
-/*}*/
-
-/*!* Allow the 'X' to close the menu *!*/
-/*.mnu-button:focus {*/
-/*    pointer-events: none;*/
-/*}*/
-
-/** ---------- CSS For Content ---------- **/
 
 /* Hannah */
 .alert.success {
@@ -219,6 +180,10 @@ table {
     nav {
         margin-right: 50px;
         font-size: 1.25em;
+    }
+
+    .mnu-button {
+        display: none;
     }
 
     header img {

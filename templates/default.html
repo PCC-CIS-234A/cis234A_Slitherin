@@ -9,13 +9,34 @@
     <script>
     function clickedMnuButton() {
         var elem = document.getElementsByClassName("mnu-list")[0];
-        var display = window.getComputedStyle(elem, null).getPropertyValue("display")
+        var display = window.getComputedStyle(elem, null).getPropertyValue("display");
 
         if(display === "none"){
-             [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "block");
-         } else {
-             [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "none");
-         }
+            document.getElementById("line1").style.transform = "rotate(-45deg)";
+            document.getElementById("line1").style.top = "130px";
+
+            document.getElementById("line2").style.display = "none";
+
+            document.getElementById("line3").style.transform = "rotate(45deg)";
+            document.getElementById("line3").style.top = "130px";
+
+            [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "block");
+        } else {
+            document.getElementById("line1").style.transform = "rotate(0deg)";
+            document.getElementById("line1").style.top = "100px";
+
+            document.getElementById("line2").style.display = "block";
+            document.getElementById("line1").style.top = "120px";
+
+            document.getElementById("line3").style.transform = "rotate(0deg)";
+            document.getElementById("line3").style.top = "130px";
+
+            [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "none");
+        }
+
+        [].slice.call(document.getElementsByClassName("sub_list_template")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_user")).forEach(x => x.style.display = "none");
+        [].slice.call(document.getElementsByClassName("sub_list_notification")).forEach(x => x.style.display = "none");
     }
 
     function clickedHome() {
@@ -117,11 +138,13 @@
         {% block header %}
             {% if session.role == 'subscriber' %}
                 <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
-                <img src="../static/images/pantherpantrypcc.PNG"height="100">
+                <img src="../static/images/pantherpantrypcc.PNG" height="100">
 
                 <nav>
                     <div tabindex="0" class="mnu-button">
-                        <a href="#" class="mnu-icon"></a>
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line1">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line2">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line3">
                     </div>
                     <ul class="mnu-list">
                         <li><div id="home_div">Home</div></li>
@@ -141,7 +164,9 @@
 
                 <nav>
                     <div tabindex="0" class="mnu-button">
-                        <a href="#" class="mnu-icon"></a>
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line1">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line2">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line3">
                     </div>
                     <ul class="mnu-list">
                         <li><div id="home_div">Home</div></li>
@@ -165,9 +190,11 @@
                 <img src="../static/images/thebag.png" id='the_bag' height="100" width="80">
                 <img src="../static/images/pantherpantrypcc.PNG"height="100">
 
-                <nav class="nav_area">
+                <nav>
                     <div tabindex="0" class="mnu-button">
-                        <a href="#" class="mnu-icon"></a>
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line1">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line2">
+                        <img src="../static/images/the_line.png" alt="line" width="50px" height="25px" id="line3">
                     </div>
                     <ul class="mnu-list">
                         <li><div id="home_div">Home</div></li>
