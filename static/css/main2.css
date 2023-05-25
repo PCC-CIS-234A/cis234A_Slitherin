@@ -96,8 +96,8 @@ nav {
 }
 
 .mnu-list, .mnu-list ul {
-    list-style: none;
     display: none;
+    list-style: none;
 }
 
 .mnu-list li {

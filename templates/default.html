@@ -8,10 +8,14 @@
 
     <script>
     function clickedMnuButton() {
-        [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "block");
-        [].slice.call(document.getElementsByClassName("mnu-icon::before")).forEach(x => x.style.transform = "rotate(-45deg)");
-        [].slice.call(document.getElementsByClassName("mnu-icon::after")).forEach(x => x.style.transform = "rotate(45deg)");
-        [].slice.call(document.getElementsByClassName("mnu-icon")).forEach(x => x.style.background = "transparent");
+        var elem = document.getElementsByClassName("mnu-list")[0];
+        var display = window.getComputedStyle(elem, null).getPropertyValue("display")
+
+        if(display === "none"){
+             [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "block");
+         } else {
+             [].slice.call(document.getElementsByClassName("mnu-list")).forEach(x => x.style.display = "none");
+         }
     }
 
     function clickedHome() {
