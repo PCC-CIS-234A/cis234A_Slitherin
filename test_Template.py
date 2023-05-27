@@ -9,12 +9,11 @@ class TestTemplate(unittest.TestCase):
     def test_get_name(self):
         name = 1
         subject = 2
-        text = 3
-        key = 4
+        message = 3
 
-        template = Template(name, subject, text, key)
+        template = Template(name, subject, message)
 
         self.assertEqual(name, template.get_name())
         self.assertEqual(subject, template.get_subject())
-        self.assertEqual(text, template.get_text())
-        self.assertEqual(key, template.get_key())
+        self.assertEqual(message, template.get_message())
+
