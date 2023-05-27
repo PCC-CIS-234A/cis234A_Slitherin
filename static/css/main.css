@@ -55,7 +55,7 @@ footer img {
 
 /** ---------- CSS for Navigation ---------- **/
 
-.mnu-button {
+.menu_button {
     cursor: pointer;
     float: left;
     margin-right: 25px;
@@ -80,17 +80,17 @@ nav {
     font-size: 1em;
 }
 
-.mnu-list {
+.menu_list {
     margin-top: 10px;
     margin-left: 100px;
 }
 
-.mnu-list, .mnu-list ul {
+.menu_list, .menu_list ul {
     display: none;
     list-style: none;
 }
 
-.mnu-list li {
+.menu_list li {
     width: fit-content;
     float: left;
     margin: 10px 10px;
@@ -100,7 +100,7 @@ nav {
     color: #0088A4;
 }
 
-.mnu-list li div:hover {
+.menu_list li div:hover {
     background-color: #0088A4;
     color: white;
     width: fit-content;
@@ -191,11 +191,11 @@ table {
         font-size: 1.25em;
     }
 
-    .mnu-button {
+    .menu_button {
         display: none;
     }
 
-    .mnu-list {
+    .menu_list {
         display: block;
         float: right;
         margin-top: 50px;
