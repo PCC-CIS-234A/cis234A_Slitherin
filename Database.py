@@ -32,6 +32,10 @@ class Database:
             )
 
     @classmethod
+    def get_connection(cls):
+        return cls.__connection
+
+    @classmethod
     def build_email_list(cls):
         """This method builds a list of emails from database"""
 
@@ -66,7 +70,7 @@ class Database:
 
         # Define SQL call
         sql = '''
-            SELECT *
+            SELECT NAME, SUBJECT, MESSAGE
             FROM TEMPLATE;
             '''
 
@@ -103,6 +107,9 @@ class Database:
     # Lakey's fetch_data classmethod
     @classmethod
     def fetch_data(cls, start_date, end_date=None):
+        """This method fetches review log data in a specified date range.
+        Hakeem"""
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
@@ -110,7 +117,7 @@ class Database:
             end_date = datetime.now()
 
         query = '''
-                 SELECT * FROM REVIEW_LOG
+                 SELECT *FROM REVIEW_LOG
                  WHERE DATE_SENT BETWEEN ? AND ?
                  '''
 
@@ -119,8 +126,10 @@ class Database:
         result = []
 
         for row in rows:
-            # DATE_SENT = row[3]
-            date_sent = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            """This method creates/returns review logs object from data.
+            Hakeem"""
+
+            date_sent = row[3]
             review_log = ReviewLogs(row[0], row[1], row[2], date_sent, row[4])
             result.append(review_log)
 

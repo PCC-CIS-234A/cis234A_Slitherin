@@ -20,7 +20,7 @@ class Email:
         """This method sends the notification"""
 
         # Define message for smtplib
-        message = f"From: {from_address}\nTo: Subscribers\n" \
+        message = f"From: Panther Pantry\nTo: Subscribers\n" \
                   f"Subject: {subject}\n\n{body}"
 
         # Set variables

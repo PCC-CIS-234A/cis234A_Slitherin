@@ -6,7 +6,6 @@
 # *****************************************************************************
 
 from flask import Flask, render_template, redirect, url_for, request, flash, session
-
 import Validation
 from Template import Template
 from Database import Database
@@ -18,10 +17,19 @@ class WebUI:
     View the output on localhost:5000/"""
 
     __app = Flask(__name__)
-    __template_list = Template.build_list()
+    __template_list = None
 
     def __init__(self):
         self.__app.secret_key = self.generate_key()
+
+    @classmethod
+    def get_template_list(cls):
+        """This method initializes the template list from database"""
+
+        if cls.__template_list is None:
+            cls.__template_list = Template.build_list()
+
+        return cls.__template_list
 
     @staticmethod
     def generate_key():
@@ -71,7 +79,7 @@ class WebUI:
 
         return render_template(
             "create_notification.html",
-            template_list=WebUI.__template_list
+            template_list=WebUI.get_template_list()
         )
 
     @staticmethod
@@ -86,7 +94,7 @@ class WebUI:
         """This method takes a template name and returns a template object"""
 
         # Search template list for template
-        for template in WebUI.__template_list:
+        for template in WebUI.get_template_list():
             if template.get_key() == template_name.lower():
                 return template
 
@@ -112,7 +120,7 @@ class WebUI:
             "use_template.html",
             template_name=template.get_name(),
             template_subject=template.get_subject(),
-            template_text=template.get_text()
+            template_text=template.get_message()
         )
 
     @staticmethod
@@ -163,6 +171,8 @@ class WebUI:
     @staticmethod
     @__app.route("/data_display")
     def fetch_data():
+        """This method fetches review log data from the database within a specified date range
+            Hakeem"""
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
         data = Database.fetch_data(start_date=start_date, end_date=end_date)
@@ -173,6 +183,8 @@ class WebUI:
     @staticmethod
     @__app.route('/row_display/<DATE_SENT>')  # display_row
     def display_row(date_sent):
+        """This method displays fetched data from the database
+        Hakeem"""
         start_date = datetime.now()
         end_date = start_date
         data = Database.fetch_data(date_sent, end_date)
@@ -181,14 +193,14 @@ class WebUI:
     @staticmethod
     @__app.route("/add_create_template")
     def add_create_template():
-        from AddDB import AddDB
+        from Template import Template
 
         # Collect required information
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
 
-        AddDB.add_to_db(name, subject, message)
+        Template.add_to_db(name, subject, message)
 
         return render_template("save_success.html")
 
