@@ -193,14 +193,14 @@ class WebUI:
     @staticmethod
     @__app.route("/add_create_template")
     def add_create_template():
-        from AddDB import AddDB
+        from Template import Template
 
         # Collect required information
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
 
-        AddDB.add_to_db(name, subject, message)
+        Template.add_to_db(name, subject, message)
 
         return render_template("save_success.html")
 

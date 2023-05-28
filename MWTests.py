@@ -10,8 +10,7 @@ from WebUI import WebUI
 
 
 class TestDB(unittest.TestCase):
-    """This method tests various methods in the Database class
-    Numeric values should be changed to reflect database changes"""
+    """This class tests various methods in the Database class"""
 
     def test_connection(self):
         """Test the database connection"""
@@ -20,25 +19,23 @@ class TestDB(unittest.TestCase):
         assert Database.get_connection() is not None
 
     def test_build_template_list(self):
-        """Test the template list - Value should be edited as the size changes
-        I know that this is not a good test, but there aren't many
-        methods that I wrote that are testable"""
+        """Test the template list builder"""
 
         template_list = Database.build_template_list()
         assert template_list is not None
 
     def test_build_email_list(self):
-        """Test the template list - Value should be edited as the size changes
-        I know that this is not a good test, but there aren't many
-        methods that I wrote that are testable"""
+        """Test the email list builder"""
 
         email_list = Database.build_email_list()
         assert email_list is not None
 
 
 class TestKey(unittest.TestCase):
+    """This class tests key generation methods in the UI class"""
+
     def test_generate_key(self):
-        """This method defines test for key generation"""
+        """Test UI key generation"""
 
         # Call the generate_key method
         key = WebUI.generate_key()
@@ -47,7 +44,7 @@ class TestKey(unittest.TestCase):
         self.assertIsNotNone(key)
 
     def test_key_random(self):
-        """This method tests that the key is random"""
+        """Test that the key is random"""
 
         # Generate two keys
         key = WebUI.generate_key()
