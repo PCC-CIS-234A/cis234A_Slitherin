@@ -143,7 +143,7 @@ class Database:
 
     @classmethod
     def update_template(cls, name, subject, message):
-        """ This method adds the template to the DB
+        """ This method updates the template to the DB
                 @author Tarin Aguirre """
         cls.connect()
         cursor = cls.__connection.cursor()
