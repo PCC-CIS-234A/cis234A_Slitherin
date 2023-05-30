@@ -46,6 +46,10 @@ class Template:
         Database.create_template(name, subject, message)
 
     @staticmethod
+    def update_to_db(name, subject, message):
+        Database.update_template(name, subject, message)
+
+    @staticmethod
     def validate_template_name(name):
         if '' in name:
             flash("Template must have name.", category='error')

@@ -201,6 +201,20 @@ class WebUI:
         return render_template("save_success.html")
 
     @staticmethod
+    @__app.route("/update_create_template")
+    def update_create_template():
+        from Template import Template
+
+        # Collect required information
+        name = request.args.get('template title')
+        subject = request.args.get('subject line')
+        message = request.args.get('message')
+
+        Template.add_to_db(name, subject, message)
+
+        return render_template("save_success.html")
+
+    @staticmethod
     @__app.route('/create_account', methods=['POST'])
     def create_account():
         """This method creates a user account"""
