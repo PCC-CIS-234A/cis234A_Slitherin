@@ -142,6 +142,18 @@ class Database:
         cursor.commit()
 
     @classmethod
+    def update_template(cls, name, subject, message):
+        """ This method adds the template to the DB
+                @author Tarin Aguirre """
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        cursor.execute("UPDATE TEMPLATE "
+                       "SET VALUES (?, ?, ?)",
+                       name, subject, message)
+        cursor.commit()
+
+    @classmethod
     def add_user(cls, user):
         """ This method adds the user object to the DB
         @author Hannah Doty """
