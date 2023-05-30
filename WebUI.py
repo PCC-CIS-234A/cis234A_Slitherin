@@ -129,12 +129,12 @@ class WebUI:
         """This method gathers information from the UI for sending a
         notification"""
 
-        from Email import Email
+        from Notification import Notification
         from Log import Log
         from datetime import datetime
 
         # Collect required information
-        to_addresses = Email.get_email_list()
+        to_addresses = Notification.get_email_list()
         from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
@@ -142,7 +142,7 @@ class WebUI:
         time_sent = datetime.now()
 
         # Send emails
-        Email.send_email(
+        Notification.send_email(
             from_address,
             to_addresses,
             subject,
@@ -150,7 +150,6 @@ class WebUI:
         )
 
         # Send notification to log
-        # TODO: POPULATE sender_id WITH USER DATA (REQUIRES LOGIN INFO)
         Log.send_to_db(subject, body, 101, time_sent, count)
 
         return render_template(
