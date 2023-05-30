@@ -153,11 +153,12 @@ class Database:
         cursor = cls.__connection.cursor()
 
         insert_user = '''
-        INSERT INTO USERS(USERNAME, PASSWORD, EMAIL, FIRSTNAME, LASTNAME, ROLE)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO USERS(USERNAME, PASSWORD, EMAIL, FNAME, LNAME, PHONENUMBER, PREFERENCE, ROLE)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         '''
 
-        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname, user.role))
+        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname,
+                                     user.phone, user.pref, user.role))
         cursor.commit()
 
     @classmethod
