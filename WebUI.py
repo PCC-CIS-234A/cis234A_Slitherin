@@ -210,7 +210,7 @@ class WebUI:
         subject = request.args.get('subject line')
         message = request.args.get('message')
 
-        Template.add_to_db(name, subject, message)
+        Template.update_to_db(name, subject, message)
 
         return render_template("save_success.html")
 

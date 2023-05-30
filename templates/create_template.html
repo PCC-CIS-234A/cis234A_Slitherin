@@ -32,16 +32,16 @@
     <br><br>
 
     <form method="get" action="/use_template">
-        <form id="select_template">
+        <label id="select_template">
             <select name="template">
                 {% for item in template_list %}
-                    <option value="{{ item }}">
-                        {{ item.get_name() }}
-                    </option>
+                <option value="{{ item }}">
+                    {{ item.get_name() }}
+                </option>
                 {% endfor %}
             </select>
             <button type="submit">Use</button>
-        </form>
+        </label>
     </form>
 
     <form method="get" action="/update_create_template">
