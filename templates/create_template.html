@@ -4,10 +4,13 @@
 
 {% block title %}Create Template{% endblock %}
 {% block content %}
+    <p>
     <p style="color: #0088A4; font-size: x-large">
-        CREATE AND SAVE A NOTIFICATION TEMPLATE
+        CREATE/EDIT/SAVE A NOTIFICATION TEMPLATE
     </p>
-<p>
+
+    <br><br>
+
     <form method="get" action="/add_create_template">
         <label id="create_template">
             <input type="text" name="template title" placeholder="Template Title" style="text-align: left">
@@ -25,4 +28,36 @@
             <button type="save">Save</button>
         </label>
     </form>
+
+    <br><br>
+
+    <form method="get" action="/use_template">
+        <form id="select_template">
+            <select name="template">
+                {% for item in template_list %}
+                    <option value="{{ item }}">
+                        {{ item.get_name() }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Use</button>
+        </form>
+    </form>
+
+    <form method="get" action="/send_notification">
+        <label id="create_notification">
+
+            <br><br>
+
+            <textarea name="message" cols="80" rows="20" placeholder="Enter message here"></textarea>
+
+            <br><br>
+
+            <button type="submit">Save</button>
+        </label>
+    </form>
+
+    </div>
+
+
 {% endblock %}

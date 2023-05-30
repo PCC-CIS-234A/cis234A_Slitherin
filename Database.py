@@ -132,6 +132,8 @@ class Database:
 
     @classmethod
     def create_template(cls, name, subject, message):
+        """ This method adds the template to the DB
+                @author Tarin Aguirre """
         cls.connect()
         cursor = cls.__connection.cursor()
 
