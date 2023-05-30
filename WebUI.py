@@ -135,6 +135,7 @@ class WebUI:
 
         # Collect required information
         to_addresses = Notification.get_email_list()
+        to_numbers = Notification.get_phone_list()
         from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
@@ -148,6 +149,10 @@ class WebUI:
             subject,
             body
         )
+
+        # Send SMS
+        for num in to_numbers:
+            Notification.send_sms(num, body)
 
         # Send notification to log
         Log.send_to_db(subject, body, 101, time_sent, count)

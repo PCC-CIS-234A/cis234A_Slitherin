@@ -16,6 +16,12 @@ class Notification:
         return Database.build_email_list()
 
     @staticmethod
+    def get_phone_list():
+        """This method gets a list of emails from the database"""
+
+        return Database.build_phone_list()
+
+    @staticmethod
     def send_email(from_address, bcc, subject, body):
         """This method sends the notification"""
 
@@ -54,8 +60,8 @@ class Notification:
         print(message.sid)
 
 
-msg = "This is a test of the dumb broadcast system"
-numbers = ["9713716946", "5038751835"]
-# for num in numbers:
-#     Email.send_sms(num, msg)
-Notification.send_email("PantherPantry.PCC.01@gmail.com", numbers, "Test", msg)
+# msg = "This is a test of the dumb broadcast system"
+# numbers = ["9713716946", "5038751835"]
+# # for num in numbers:
+# #     Email.send_sms(num, msg)
+# Notification.send_email("PantherPantry.PCC.01@gmail.com", numbers, "Test", msg)

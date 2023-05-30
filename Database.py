@@ -43,7 +43,8 @@ class Database:
         sql = '''
             SELECT DISTINCT EMAIL
             FROM USERS
-            WHERE ROLE='subscriber';
+            WHERE ROLE='subscriber'
+            AND PREFERENCE='email' OR PREFERENCE='both';
             '''
 
         # Establish connection and create cursor
@@ -90,6 +91,34 @@ class Database:
             template = cursor.fetchone()
 
         return template_list
+
+    @classmethod
+    def build_phone_list(cls):
+        """This method builds a list of emails from database"""
+
+        # Define SQL call
+        sql = '''
+                SELECT DISTINCT PHONENUMBER
+                FROM USERS
+                WHERE ROLE='subscriber'
+                AND PREFERENCE='sms' OR PREFERENCE='both';
+                '''
+
+        # Establish connection and create cursor
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        # Make SQL call to retrieve list of email addresses
+        cursor.execute(sql)
+        phone_list = []
+        phone = cursor.fetchone()
+
+        # Build the email list
+        while phone:
+            phone_list.append(phone[0])
+            phone = cursor.fetchone()
+
+        return phone_list
 
     @classmethod
     def add_log(cls, subject, body, sender_id, time_sent, count):
