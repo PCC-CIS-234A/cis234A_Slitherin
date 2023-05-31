@@ -220,6 +220,8 @@ class WebUI:
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
+        phone = request.form["phone"]
+        pref = request.form["notification_delivery"]
 
         user_email = User.search_emails(email)
         user_username = User.search_usernames(username)
@@ -236,7 +238,7 @@ class WebUI:
             return render_template('create_account_form.html')
         else:
             password = Validation.hash_password(password1)
-            User.create_account(username, password, email, fname, lname)
+            User.create_account(username, password, email, fname, lname, phone, pref)
             flash("Account Created Successfully! Please log in to your account.", category='success')
             return render_template('login.html')
 
