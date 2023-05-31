@@ -139,7 +139,7 @@ class WebUI:
         from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
-        count = len(to_addresses)
+        count = len(to_addresses) + len(to_numbers)
         time_sent = datetime.now()
 
         # Send emails

@@ -23,7 +23,7 @@ class Notification:
 
     @staticmethod
     def send_email(from_address, bcc, subject, body):
-        """This method sends the notification"""
+        """This method sends the notification to email subs"""
 
         # Define message for smtplib
         message = f"From: Panther Pantry\nTo: Subscribers\n" \
@@ -46,22 +46,15 @@ class Notification:
 
     @staticmethod
     def send_sms(number, body):
+        """This method sends the notification to sms subs"""
+
         from twilio.rest import Client
 
         account_sid = "AC0afd914d5be65b0873ed7a832a9c0f6c"
         auth_token = "d9ed081e90525c4f328e2e9371350557"
         client = Client(account_sid, auth_token)
-        message = client.messages.create(
+        client.messages.create(
             body=body,
             from_="+18883781722",
             to=number
         )
-
-        print(message.sid)
-
-
-# msg = "This is a test of the dumb broadcast system"
-# numbers = ["9713716946", "5038751835"]
-# # for num in numbers:
-# #     Email.send_sms(num, msg)
-# Notification.send_email("PantherPantry.PCC.01@gmail.com", numbers, "Test", msg)
