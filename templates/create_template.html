@@ -11,7 +11,7 @@
 
     <br><br>
 
-    <form  methods='GET', action="/add_create_template">
+    <form methods='GET' , action="/add_create_template">
         <label id="create_template">
             <label for="template title">Template Title:</label><br>
             <input type="text" name="template title" placeholder="Template Title" required style="text-align: left">
@@ -24,14 +24,18 @@
             <br><br>
 
             <label for="message">Message:</label><br>
-            <textarea name="message" cols="150" rows="20" placeholder="Enter message here" required></textarea>
+            <textarea name="message" cols="100" rows="10" placeholder="Enter message here" required></textarea>
 
             <br><br>
 
             <label for="tags">Tags:</label><br>
-        <div class="tag" contenteditable="true" name="tag1"></div>
-        <div class="tag" contenteditable="true" name="tag2"></div>
-        <div class="tag" contenteditable="true" name="tag3"></div>
+            <input type="text" name="tags[]" placeholder="Tag 1" required style="text-align: left">
+            <input type="text" name="tags[]" placeholder="Tag 2" required style="text-align: left">
+            <input type="text" name="tags[]" placeholder="Tag 3" required style="text-align: left">
+            <input type="text" name="tags[]" placeholder="Tag 4" required style="text-align: left">
+            <input type="text" name="tags[]" placeholder="Tag 5" required style="text-align: left">
+
+            <br><br>
 
             <button type="save">Save</button>
         </label>
@@ -40,12 +44,12 @@
     <br><br>
 
     <form method="GET" action="/use_template">
-        <label id="select_template">
+        <label id="select_template">Select Template:
             <select name="template">
                 {% for item in template_list %}
-                <option value="{{ item }}">
-                    {{ item.get_name() }}
-                </option>
+                    <option value="{{ item }}">
+                        {{ item.get_name() }}
+                    </option>
                 {% endfor %}
             </select>
             <button type="submit">Use</button>
@@ -57,7 +61,8 @@
 
             <br><br>
 
-            <textarea name="message" cols="150" rows="20" placeholder="Enter message here"></textarea>
+            <label for="message">Message:</label><br>
+            <textarea name="message" cols="100" rows="10" placeholder="Enter message here"></textarea>
 
             <br><br>
 

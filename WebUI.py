@@ -200,13 +200,15 @@ class WebUI:
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
-        tags = request.form.getlist('tag')
+        tags = request.form.getlist('tags[]')
 
-        tags = []
-        for i in range(1, 4):
-            tag = request.form.get(f'tag{i}')
-            if tag:
-                tags.append(tag)
+        # Generate the email message using the template and the entered values
+        create_template = f"Dear {tags[1]} Panther Pantry Subscriber,\n\n" \
+                          f"The {tags[1]} Panther Pantry has {tags[2]} available.\n" \
+                          f"Please come between {tags[3]} and {tags[4]} on {{ utc_dt }}.\n" \
+                          f"Remember to bring your PCC ID along with proof of Registration.\n\n" \
+                          f"Sincerely, {tags[5]}\n" \
+                          f"{tags[1]} Panther Pantry"
 
         Template.add_to_db(name, subject, message, tags)
 
