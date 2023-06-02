@@ -171,6 +171,8 @@ class WebUI:
     @staticmethod
     @__app.route("/data_display")
     def fetch_data():
+        """This method fetches review log data from the database within a specified date range
+            Hakeem"""
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
         data = Database.fetch_data(start_date=start_date, end_date=end_date)
@@ -181,6 +183,8 @@ class WebUI:
     @staticmethod
     @__app.route('/row_display/<DATE_SENT>')  # display_row
     def display_row(date_sent):
+        """This method displays fetched data from the database
+        Hakeem"""
         start_date = datetime.now()
         end_date = start_date
         data = Database.fetch_data(date_sent, end_date)
@@ -282,11 +286,11 @@ class WebUI:
             correct_password = Validation.return_hash_password(password, pass_hash)
             if user[1] == username_email and correct_password:
                 session['username'] = user[1]
-                session['role'] = user[6]
+                session['role'] = user[8]
                 return render_template('landing_page.html')
             elif user[3] == username_email and correct_password:
                 session['username'] = user[1]
-                session['role'] = user[6]
+                session['role'] = user[8]
                 return render_template('landing_page.html')
             else:
                 flash("Password Incorrect! Please log in again.", category='error')

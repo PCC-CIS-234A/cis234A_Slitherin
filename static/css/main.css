@@ -1,3 +1,11 @@
+/* CSS Reset */
+body, header, nav, main, footer, img, h1, h3, ul, aside, figure, figcaption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/** Main Style Rules (Mobile First Design) **/
 
 body {
     font-family: Arial, sans-serif;
@@ -8,45 +16,25 @@ body {
     background-position: center;
     background-size: cover;
 }
+
 html, body {
   height: 100%;
 }
 
 main {
     flex: 1 0 auto;
-    margin-top: 100px;
-}
-
-header img {
     margin-top: 25px;
 }
 
-#the_bag {
-    display: none;
+header img {
+    margin-left: 25px;
+    margin-top: 25px;
 }
 
 header {
-    margin-left: 20px;
+    display: inline;
 }
 
-nav a {
-    text-decoration: none;
-    padding: 6px;
-    font-size: large;
-    color: black;
-    background-color: white;
-
-}
-
-nav a:hover {
-    background-color: darkgray;
-    color: black;
-}
-
-nav {
-    margin-top: 50px;
-
-}
 footer {
     background-color: #0088A4;
     color: white;
@@ -57,46 +45,73 @@ footer {
     flex-shrink: 0;
 }
 
-footer p, footer img {
-    margin-right: 10px;
-    margin-left: 10px;
+footer img {
+    margin: 0 2px;
 }
 
-#title {
-    display: flex;
-    justify-content: left;
-    align-items: center;
+#the_bag {
+    display: none;
 }
 
-#create_notification {
-    text-align: left;
-}
+/** ---------- CSS for Navigation ---------- **/
 
-#create_notification input {
-    margin-bottom: 5px;
-}
-
-#subject {
-    text-align: left;
-}
-
-#send_notification {
-    margin: 0 auto;
-    max-width: 600px;
-    text-align: left;
-}
-
-#send_notification button {
-    float: right;
-    margin-bottom: 5px;
-}
-
-#send_notification label {
+.menu_button {
+    cursor: pointer;
     float: left;
+    margin-right: 25px;
 }
 
-/* CSS For Content */
+#line1 {
+    position: absolute;
+    top: 100px;
+}
 
+#line2 {
+    position: absolute;
+    top: 110px;
+}
+
+#line3 {
+    position: absolute;
+    top: 120px;
+}
+
+nav {
+    font-size: 1em;
+}
+
+.menu_list {
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+.menu_list, .menu_list ul {
+    display: none;
+    list-style: none;
+}
+
+.menu_list li {
+    width: fit-content;
+    float: left;
+    margin: 10px 10px;
+    text-decoration: none;
+    padding: 5px;
+    background-color: white;
+    color: #0088A4;
+}
+
+.menu_list li div:hover {
+    background-color: #0088A4;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+}
+
+.sub_list_user, .sub_list_notification, .sub_list_template {
+    width: 50px;
+}
+
+/* Hannah */
 .alert.success {
     background-color: #bbfdbb;
     padding: 10px 10px;
@@ -125,55 +140,73 @@ footer p, footer img {
     margin: 5px 0;
 }
 
-/* implemented by lakey */
+/* Hakeem */
 table {
-        margin: 0 auto;
-        border: 1px solid beige;
-        justify-content: normal;
-        width: 70%;
+    margin: 0 auto;
+    border: 1px solid beige;
+    justify-content: normal;
+    width: 70%;
 }
 
-/*FOR LARGE SCREENS*/
-@media screen and (min-width: 1010px), print {
+/* Mike */
+#create_notification {
+    text-align: left;
+}
 
-    header {
-        margin-left: 20px;
+#create_notification input {
+    margin-bottom: 5px;
+}
+
+#subject {
+    text-align: left;
+}
+
+#send_notification {
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+#send_notification button {
+    float: right;
+    margin-bottom: 5px;
+}
+
+#send_notification label {
+    float: left;
+}
+
+@media screen and (min-width: 960px) {
+    header img {
+        float: left;
+        display: block;
     }
 
-    #the_bag {
-        display: inline;
-    }
-
-    nav {
+    header nav {
         float: right;
-        margin-right: 100px;
-
+        display: block;
     }
-
-    footer {
-        background-color: #0088A4;
-        color: white;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        margin-top: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-
-    }
-
-    footer p, footer img {
+    nav {
         margin-right: 50px;
-        margin-left: 50px;
+        font-size: 1.25em;
     }
 
-    #banner {
-        display: flex;
-        align-items: center;
-
+    .menu_button {
+        display: none;
     }
 
+    .menu_list {
+        display: block;
+        float: right;
+        margin-top: 50px;
+    }
 
+    .sub_list_user {
+        display: block;
+    }
+
+    .sub_list_user, .sub_list_notification, .sub_list_template {
+        width: 120px;
+    }
 
 }

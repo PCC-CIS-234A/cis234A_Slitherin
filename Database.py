@@ -107,6 +107,9 @@ class Database:
     # Lakey's fetch_data classmethod
     @classmethod
     def fetch_data(cls, start_date, end_date=None):
+        """This method fetches review log data in a specified date range.
+        Hakeem"""
+
         cls.connect()
         cursor = cls.__connection.cursor()
 
@@ -123,8 +126,10 @@ class Database:
         result = []
 
         for row in rows:
-            # DATE_SENT = row[3]
-            date_sent = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            """This method creates/returns review logs object from data.
+            Hakeem"""
+
+            date_sent = row[3]
             review_log = ReviewLogs(row[0], row[1], row[2], date_sent, row[4])
             result.append(review_log)
 
@@ -162,11 +167,12 @@ class Database:
         cursor = cls.__connection.cursor()
 
         insert_user = '''
-        INSERT INTO USERS(USERNAME, PASSWORD, EMAIL, FIRSTNAME, LASTNAME, ROLE)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO USERS(USERNAME, PASSWORD, EMAIL, FNAME, LNAME, PHONENUMBER, PREFERENCE, ROLE)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         '''
 
-        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname, user.role))
+        cursor.execute(insert_user, (user.username, user.password, user.email, user.fname, user.lname,
+                                     user.phone, user.pref, user.role))
         cursor.commit()
 
     @classmethod

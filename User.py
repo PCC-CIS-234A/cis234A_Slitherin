@@ -7,12 +7,14 @@ class User:
     @param fname First name
     @param lname Last name
     @param role User role (default value is subscriber)"""
-    def __init__(self, username, password, email, fname, lname, role="subscriber"):
-        self.fname = fname
-        self.lname = lname
-        self.email = email
+    def __init__(self, username, password, email, fname, lname, phone="123-456-7891", pref="email", role="subscriber"):
         self.username = username
         self.password = password
+        self.email = email
+        self.fname = fname
+        self.lname = lname
+        self.phone = phone
+        self.pref = pref
         self.role = role
 
     @classmethod

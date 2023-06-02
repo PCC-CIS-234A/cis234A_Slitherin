@@ -6,35 +6,39 @@
 # Sources:          Sprint 1 specifications
 # *****************************************************************************
 
-from datetime import datetime
 
 class ReviewLogs:
-    def __init__(self, SUBJECT, MESSAGE, STAFF, DATE_SENT, NUM_SUBSCRIBERS):
-        self.SUBJECT = SUBJECT
-        self.MESSAGE = MESSAGE
-        self.STAFF = STAFF
-        self.DATE_SENT = DATE_SENT
-        self.NUM_SUBSCRIBERS = NUM_SUBSCRIBERS
+    def __init__(self, subject, message, staff, date_sent, num_subscribers):
+        self.SUBJECT = subject
+        self.MESSAGE = message
+        self.STAFF = staff
+        self.DATE_SENT = date_sent
+        self.NUM_SUBSCRIBERS = num_subscribers
 
     @classmethod
     def from_row(cls, row):
+        """This method creates/returns review logs object from data.
+            Hakeem"""
         return row(
             SUBJECT=row[0],
             MESSAGE=row[1],
             STAFF=row[2],
-            DATE_SENT=datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S'),
+            DATE_SENT=row[3],
             NUM_SUBSCRIBERS=row[4]
         )
 
     @classmethod
     def format_data(cls, data):
+        """This method formats a list objects into a more readable format.
+        Hakeem"""
+
         result = []
         for row in data:
-            SUBJECT = row.SUBJECT
-            MESSAGE = row.MESSAGE
-            STAFF = row.STAFF
-            DATE_SENT = row.DATE_SENT.strftime('%Y-%m-%d')
-            NUM_SUBSCRIBERS = row.NUM_SUBSCRIBERS
-            formatted_row = f"{SUBJECT} - {MESSAGE} - {STAFF} - {DATE_SENT} - {NUM_SUBSCRIBERS}"
+            subject = row.SUBJECT
+            message = row.MESSAGE
+            staff = row.STAFF
+            date_sent = row.DATE_SENT
+            num_subscribers = row.NUM_SUBSCRIBERS
+            formatted_row = f"{subject} - {message} - {staff} - {date_sent} - {num_subscribers}"
             result.append(formatted_row)
         return result
