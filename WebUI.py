@@ -189,6 +189,7 @@ class WebUI:
     @staticmethod
     @__app.route("/add_create_template")
     def add_create_template():
+        """This method creates a template"""
         from Template import Template
 
         # Collect required information
@@ -203,6 +204,7 @@ class WebUI:
     @staticmethod
     @__app.route("/update_create_template")
     def update_create_template():
+        """This method updates the template"""
         from Template import Template
 
         # Collect required information
@@ -211,6 +213,23 @@ class WebUI:
         message = request.args.get('message')
 
         Template.update_to_db(name, subject, message)
+
+        return render_template("save_success.html")
+
+    @staticmethod
+    @__app.route("/form", methods=['GET', 'POST'])
+    def form():
+        """This method creates a template with tags"""
+        from Template import Template
+
+        # Collect required information
+        if request.method == 'POST':
+            name = request.form['name']
+            email = request.form['email']
+            message = request.form['message']
+            # Do something with the form data
+
+            Template.update_to_db(name, subject, message)
 
         return render_template("save_success.html")
 
