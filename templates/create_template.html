@@ -11,19 +11,27 @@
 
     <br><br>
 
-    <form method="get" action="/add_create_template">
+    <form  methods='GET', action="/add_create_template">
         <label id="create_template">
-            <input type="text" name="template title" placeholder="Template Title" style="text-align: left">
+            <label for="template title">Template Title:</label><br>
+            <input type="text" name="template title" placeholder="Template Title" required style="text-align: left">
 
             <br><br>
 
-            <input type="text" name="subject line" placeholder="Subject Line" style="text-align: left">
+            <label for="subject line">Subject Line:</label><br>
+            <input type="text" name="subject line" placeholder="Subject Line" required style="text-align: left">
 
             <br><br>
 
-            <textarea name="message" cols="150" rows="20" placeholder="Enter message here"></textarea>
+            <label for="message">Message:</label><br>
+            <textarea name="message" cols="150" rows="20" placeholder="Enter message here" required></textarea>
 
             <br><br>
+
+            <label for="tags">Tags:</label><br>
+        <div class="tag" contenteditable="true" name="tag1"></div>
+        <div class="tag" contenteditable="true" name="tag2"></div>
+        <div class="tag" contenteditable="true" name="tag3"></div>
 
             <button type="save">Save</button>
         </label>
@@ -31,7 +39,7 @@
 
     <br><br>
 
-    <form method="get" action="/use_template">
+    <form method="GET" action="/use_template">
         <label id="select_template">
             <select name="template">
                 {% for item in template_list %}
@@ -44,7 +52,7 @@
         </label>
     </form>
 
-    <form method="get" action="/update_create_template">
+    <form method="GET" action="/update_create_template">
         <label id="update_template">
 
             <br><br>
@@ -57,18 +65,7 @@
         </label>
     </form>
 
-    <form method="POST" action="/form">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" required></textarea><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
+    <br><br>
 
     </div>
 

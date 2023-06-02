@@ -191,7 +191,7 @@ class WebUI:
         return render_template('row_display.html', data=data)
 
     @staticmethod
-    @__app.route("/add_create_template")
+    @__app.route("/add_create_template", methods=['GET', 'POST'])
     def add_create_template():
         """This method creates a template"""
         from Template import Template
@@ -200,8 +200,15 @@ class WebUI:
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
+        tags = request.form.getlist('tag')
 
-        Template.add_to_db(name, subject, message)
+        tags = []
+        for i in range(1, 4):
+            tag = request.form.get(f'tag{i}')
+            if tag:
+                tags.append(tag)
+
+        Template.add_to_db(name, subject, message, tags)
 
         return render_template("save_success.html")
 
@@ -217,23 +224,6 @@ class WebUI:
         message = request.args.get('message')
 
         Template.update_to_db(name, subject, message)
-
-        return render_template("save_success.html")
-
-    @staticmethod
-    @__app.route("/form", methods=['GET', 'POST'])
-    def form():
-        """This method creates a template with tags"""
-        from Template import Template
-
-        # Collect required information
-        if request.method == 'POST':
-            name = request.form['name']
-            email = request.form['email']
-            message = request.form['message']
-            # Do something with the form data
-
-            Template.update_to_db(name, subject, message)
 
         return render_template("save_success.html")
 

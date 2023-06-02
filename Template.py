@@ -15,10 +15,11 @@ from Database import Database
 
 
 class Template:
-    def __init__(self, name, subject, message):
+    def __init__(self, name, subject, message, tags):
         self.__name = name
         self.__subject = subject
         self.__message = message
+        self.__tags = tags
 
     def __str__(self):
         return self.__name
@@ -31,6 +32,9 @@ class Template:
 
     def get_message(self):
         return self.__message
+
+    def get_tags(self):
+        return self.__tags
 
     def get_key(self):
         return self.__name.lower()
