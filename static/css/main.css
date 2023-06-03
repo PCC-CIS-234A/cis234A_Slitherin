@@ -144,7 +144,8 @@ nav {
     display: inline-block;
 }
 
-#edit_username_box, #edit_email_box, #edit_phone_box, #edit_password_box, #edit_preference_box, #edit_status_box, #edit_preference_box_unpause {
+#edit_username_box, #edit_email_box, #edit_phone_box, #edit_password_box, #edit_preference_box,
+#edit_status_box, #edit_preference_box_unpause {
     display: none;
 }
 

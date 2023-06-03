@@ -346,3 +346,20 @@ class Database:
 
         cursor.execute(delete_user, (current_username,))
         cursor.commit()
+
+    @classmethod
+    def list_users(cls):
+        """ This method lists all current users
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        select_all_users = '''
+        SELECT * FROM USERS
+        '''
+
+        cursor.execute(select_all_users)
+        users = cursor.fetchall()
+        return users
+

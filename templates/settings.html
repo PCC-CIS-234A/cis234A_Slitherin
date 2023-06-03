@@ -211,6 +211,22 @@
 
         {% endif %}
 
+        {% if session.role == 'admin' %}
+            <h3>Admin Controls</h3>
+
+            <div id="delete_user_box">
+                <form name="admin_delete_form" action="/admin_delete_user" method="post">
+                    <button id="delete_user_button" type="submit">DELETE USER</button>
+                </form>
+            </div>
+
+            <div>
+                <button>EDIT USER ROLE</button>
+            </div>
+
+
+        {% endif %}
+
     </div>
 
 {% endblock %}

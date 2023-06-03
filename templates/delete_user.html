@@ -1,0 +1,42 @@
+{% extends "default.html" %}
+
+{% block title %}Users List{% endblock %}
+
+{% block add_functions_to_js %}
+
+    function clickedSelectUser(value) {
+        document.getElementById("delete_user_box").style.display = "block";
+        document.getElementById('selected_user_text').innerHTML = "Are you sure you want to delete " + value + "?";
+    }
+
+
+{% endblock %}
+
+{% block content %}
+
+    <h3>Delete Users</h3>
+
+    <table id="delete_users_table">
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        <tr>
+        {% for row in data %}
+            <td id="userid">{{ row.USERID }}</td>
+            <td id="username">{{ row.USERNAME }}</td>
+            <td id="email">{{ row.EMAIL }}</td>
+            <td id="role">{{ row.ROLE }}</td>
+            <td><button value={{ row.USERNAME }} onclick="clickedSelectUser(this.value)">SELECT</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div id="delete_user_box">
+        <p id="selected_user_text"></p>
+    </div>
+
+{% endblock %}
