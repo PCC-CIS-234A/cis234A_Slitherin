@@ -35,11 +35,17 @@
         document.getElementById("edit_password_box").style.display = "none";
     }
 
+    function clickedEditPreference() {
+        document.getElementById("edit_preference_box").style.display = "block";
+    }
+
+    function clickedCancelPreference() {
+        document.getElementById("edit_preference_box").style.display = "none";
+    }
+
 {% endblock %}
 
 {% block content %}
-
-    <h2>Settings</h2>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -50,6 +56,8 @@
     {% endwith %}
 
     <div id="profile_settings">
+
+        <h3>Profile Settings</h3>
 
         <div id="username_box">
             <p>Username:</p>
@@ -110,9 +118,34 @@
                 <input type="password" id="password2" name="password2">
                 <button id="save_password2_button" type="submit">SAVE</button>
             </form>
-            <button id="cancel_password_button" onclick="clickedCancelPassword">CANCEL</button>
+            <button id="cancel_password_button" onclick="clickedCancelPassword()">CANCEL</button>
         </div>
+
+        {% if session.role == 'subscriber' and session.preference != 'none' %}
+
+            <div id="preference_box">
+                <p>Notification Delivery:</p>
+                <p>{{ session.preference }}</p>
+                <button id="edit_preference_button" onclick="clickedEditPreference()">EDIT</button>
+            </div>
+
+            <div id="edit_preference_box">
+                <p>Notification Delivery: </p>
+                <form name="save_preference_form" action="/save_preference" method="post">
+                    <input type="radio" id="email_radio" name="preference" value="email">
+                    <label for="email_radio">email</label>
+                    <input type="radio" id="text_radio" name="preference" value="text">
+                    <label for="text_radio">text</label>
+                    <input type="radio" id="both_radio" name="preference" value="both">
+                    <label for="both_radio">both</label>
+                    <button id="save_preference_button" type="submit">SAVE</button>
+                </form>
+                <button id="cancel_preference_button" onclick="clickedCancelPreference()">CANCEL</button>
+            </div>
+
+        {% endif %}
 
     </div>
 
 {% endblock %}
+

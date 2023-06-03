@@ -140,11 +140,11 @@ nav {
     margin: 5px 0;
 }
 
-#username_box p, #email_box p, #phone_box p, #password_box p {
+#username_box p, #email_box p, #phone_box p, #password_box p, #preference_box p {
     display: inline-block;
 }
 
-#edit_username_box, #edit_email_box, #edit_phone_box, #edit_password_box {
+#edit_username_box, #edit_email_box, #edit_phone_box, #edit_password_box, #edit_preference_box {
     display: none;
 }
 
