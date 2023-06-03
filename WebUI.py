@@ -371,10 +371,19 @@ class WebUI:
         return render_template('settings.html')
 
     @staticmethod
-    @__app.route('/admin_delete_user', methods=['POST'])
-    def delete_user():
+    @__app.route('/admin_user_list', methods=['POST'])
+    def view_delete_user():
         users_list = Database.list_users()
-        return render_template('delete_user.html', data=users_list)
+        return render_template('edit_user.html', data=users_list)
+
+    @staticmethod
+    @__app.route('/delete_user')
+    def delete_user():
+        selected_username = request.args.get('username')
+        Database.delete_account(selected_username)
+
+        users_list = Database.list_users()
+        return render_template('edit_user.html', data=users_list)
 
     @staticmethod
     def set_session_data(user):
