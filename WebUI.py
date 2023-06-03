@@ -354,7 +354,21 @@ class WebUI:
     @staticmethod
     @__app.route('/delete_account', methods=['POST'])
     def delete_account():
-        return "DELETED"
+        current_username = session['username']
+
+        Database.delete_account(current_username)
+        WebUI.destroy_session_data()
+        return render_template('login.html')
+
+    @staticmethod
+    @__app.route('/unpause_account', methods=['POST'])
+    def unpause_account():
+        current_username = session['username']
+
+        Database.unpause_account(current_username)
+        user = User.search_usernames(current_username)
+        WebUI.set_session_data(user)
+        return render_template('settings.html')
 
     @staticmethod
     def set_session_data(user):

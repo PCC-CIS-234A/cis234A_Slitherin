@@ -59,6 +59,14 @@
         window.location.href = "/delete_account";
     }
 
+    function clickedUnpauseAccount() {
+        document.getElementById("edit_preference_box_unpause").style.display = "block";
+    }
+
+    function clickedCancelUnpause() {
+        document.getElementById("edit_preference_box_unpause").style.display = "none";
+    }
+
 {% endblock %}
 
 {% block content %}
@@ -169,10 +177,10 @@
                 <p>If you'd like to take a break from notifications, you can pause your account.</p>
 
                 <form name="delete_account_form" action="/delete_account" method="post">
-                    <button id="delete_account_button" onclick="clickedDeleteAccount()">Yes, delete my account.</button>
+                    <button id="delete_account_button" type="submit">Delete my account.</button>
                 </form>
                 <form name="pause_account_form" action="/pause_account" method="post">
-                    <button id="pause_account_button" onclick="clickedPauseAccount()">No, pause my account.</button>
+                    <button id="pause_account_button" type="submit">Pause my account.</button>
                 </form>
 
                 <button id="cancel_status_button" onclick="clickedCancelUnsubscribe()">CANCEL</button>
@@ -182,8 +190,26 @@
 
         {% if session.role == 'subscriber' and session.preference == 'none' %}
 
+            <div id="pause_box">
+                <p>Your account has been paused.</p>
+                <button id="unpause_account_button" onclick="clickedUnpauseAccount()">UNPAUSE</button>
+            </div>
+
+            <div id="edit_preference_box_unpause">
+                <p>Notification Delivery: </p>
+                <form name="save_preference_form" action="/save_preference" method="post">
+                    <input type="radio" id="email_radio" name="preference" value="email">
+                    <label for="email_radio">email</label>
+                    <input type="radio" id="text_radio" name="preference" value="text">
+                    <label for="text_radio">text</label>
+                    <input type="radio" id="both_radio" name="preference" value="both">
+                    <label for="both_radio">both</label>
+                    <button id="save_preference_button" type="submit">SAVE</button>
+                </form>
+                <button id="cancel_unpause_button" onclick="clickedCancelUnpause()">CANCEL</button>
+            </div>
+
         {% endif %}
-    `
 
     </div>
 

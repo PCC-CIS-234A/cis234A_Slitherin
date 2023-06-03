@@ -313,3 +313,36 @@ class Database:
 
         cursor.execute(update_preference, (current_username,))
         cursor.commit()
+
+    @classmethod
+    def unpause_account(cls, current_username):
+        """ This method changes the user preference to none in the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_preference = '''
+        UPDATE USERS 
+        SET PREFERENCE = 'none'
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_preference, (current_username,))
+        cursor.commit()
+
+    @classmethod
+    def delete_account(cls, current_username):
+        """ This method deletes a users account from the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        delete_user = '''
+        DELETE FROM USERS
+        WHERE USERNAME = ?;
+        '''
+
+        cursor.execute(delete_user, (current_username,))
+        cursor.commit()
