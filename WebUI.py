@@ -11,6 +11,8 @@ from Template import Template
 from Database import Database
 from datetime import datetime
 
+from User import User
+
 
 class WebUI:
     """Class definition for web UI -
@@ -270,6 +272,21 @@ class WebUI:
         else:
             flash("Username or Email Incorrect! Please log in again.", category='error')
             return render_template('login.html')
+
+    @staticmethod
+    @__app.route('/save_username', methods=['POST'])
+    def save_username():
+        new_username = request.form['username']
+        old_username = session['username']
+        user_exists = User.search_usernames(new_username)
+
+        if user_exists:
+            return "username already exists"
+        else:
+            Database.update_username(old_username, new_username)
+            user = User.search_usernames(new_username)
+            WebUI.set_session_data(user)
+            return render_template('settings.html')
 
     @staticmethod
     def set_session_data(user):

@@ -211,3 +211,20 @@ class Database:
         user = cursor.fetchone()
 
         return user
+
+    @classmethod
+    def update_username(cls, old_username, new_username):
+        """ This method updates the username in the DB
+        @author Hannah Doty """
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_username = '''
+        UPDATE USERS 
+        SET USERNAME = ?
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_username, (new_username, old_username,))
+        cursor.commit()

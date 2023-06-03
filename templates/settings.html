@@ -2,6 +2,21 @@
 
 {% block title %}Settings{% endblock %}
 
+{% block add_functions_to_js %}
+    function clickedEditUsername() {
+        document.getElementById("edit_username_box").style.display = "block"
+    }
+
+    function clickedCancelUsername() {
+        document.getElementById("edit_username_box").style.display = "none"
+    }
+
+    function clickedSaveUsername() {
+        window.location.href = "/save_username";
+    }
+
+{% endblock %}
+
 {% block content %}
 
     <h2>Settings</h2>
@@ -11,14 +26,16 @@
         <div id="username_box">
             <p>Username:</p>
             <p>{{session.username}}</p>
-            <button id="edit_username_button">EDIT</button>
+            <button id="edit_username_button" onclick="clickedEditUsername()">EDIT</button>
         </div>
 
-        <div id="edit_username_box" >
-            <label for="username"></label>
-            <input type="text" id="username" name="username">
-            <button id="save_user_button" >SAVE</button>
-            <button id="cancel_username_button" >CANCEL</button>
+        <div id="edit_username_box">
+            <form name="save_username_form" action="/save_username" method="post">
+                <label for="username"></label>
+                <input type="text" id="username" name="username">
+                <button id="save_user_button" onclick="clickedSaveUsername()" type="submit">SAVE</button>
+            </form>
+            <button id="cancel_username_button" onclick="clickedCancelUsername()">CANCEL</button>
         </div>
 
     </div>

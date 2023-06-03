@@ -140,6 +140,10 @@ nav {
     margin: 5px 0;
 }
 
+#edit_username_box {
+    display: none;
+}
+
 /* Hakeem */
 table {
     margin: 0 auto;
