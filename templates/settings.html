@@ -43,6 +43,22 @@
         document.getElementById("edit_preference_box").style.display = "none";
     }
 
+    function clickedUnsubscribe() {
+        document.getElementById("edit_status_box").style.display = "block";
+    }
+
+    function clickedCancelUnsubscribe() {
+        document.getElementById("edit_status_box").style.display = "none";
+    }
+
+    function clickedPauseAccount() {
+        window.location.href = "/pause_account";
+    }
+
+    function clickedDeleteAccount() {
+        window.location.href = "/delete_account";
+    }
+
 {% endblock %}
 
 {% block content %}
@@ -143,7 +159,31 @@
                 <button id="cancel_preference_button" onclick="clickedCancelPreference()">CANCEL</button>
             </div>
 
+            <div id="status_box">
+                <p>Want to stop receiving notifications?</p>
+                <button id="unsubscribe_button" onclick="clickedUnsubscribe()">UNSUBSCRIBE</button>
+            </div>
+
+            <div id="edit_status_box">
+                <p>Are you sure? Doing so will delete your account.</p>
+                <p>If you'd like to take a break from notifications, you can pause your account.</p>
+
+                <form name="delete_account_form" action="/delete_account" method="post">
+                    <button id="delete_account_button" onclick="clickedDeleteAccount()">Yes, delete my account.</button>
+                </form>
+                <form name="pause_account_form" action="/pause_account" method="post">
+                    <button id="pause_account_button" onclick="clickedPauseAccount()">No, pause my account.</button>
+                </form>
+
+                <button id="cancel_status_button" onclick="clickedCancelUnsubscribe()">CANCEL</button>
+            </div>
+
         {% endif %}
+
+        {% if session.role == 'subscriber' and session.preference == 'none' %}
+
+        {% endif %}
+    `
 
     </div>
 

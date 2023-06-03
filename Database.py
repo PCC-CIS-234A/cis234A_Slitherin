@@ -296,3 +296,20 @@ class Database:
 
         cursor.execute(update_preference, (new_preference, current_username))
         cursor.commit()
+
+    @classmethod
+    def pause_account(cls, current_username):
+        """ This method changes the user preference to none in the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_preference = '''
+        UPDATE USERS 
+        SET PREFERENCE = 'none'
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_preference, (current_username,))
+        cursor.commit()

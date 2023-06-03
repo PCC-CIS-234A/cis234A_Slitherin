@@ -330,7 +330,6 @@ class WebUI:
             WebUI.set_session_data(user)
             return render_template('settings.html')
 
-
     @staticmethod
     @__app.route('/save_preference', methods=['POST'])
     def save_preference():
@@ -342,7 +341,20 @@ class WebUI:
         WebUI.set_session_data(user)
         return render_template('settings.html')
 
+    @staticmethod
+    @__app.route('/pause_account', methods=['POST'])
+    def pause_account():
+        current_username = session['username']
 
+        Database.pause_account(current_username)
+        user = User.search_usernames(current_username)
+        WebUI.set_session_data(user)
+        return render_template('settings.html')
+
+    @staticmethod
+    @__app.route('/delete_account', methods=['POST'])
+    def delete_account():
+        return "DELETED"
 
     @staticmethod
     def set_session_data(user):
