@@ -71,7 +71,6 @@ class WebUI:
 
         return render_template("settings.html")
 
-
     @staticmethod
     @__app.route("/landing_page")
     def index():
@@ -96,7 +95,6 @@ class WebUI:
         """This method allows a user to create a template"""
 
         return render_template("create_template.html")
-
 
     @staticmethod
     def find_template(template_name):
@@ -261,12 +259,10 @@ class WebUI:
             pass_hash = user[2]
             correct_password = Validation.return_hash_password(password, pass_hash)
             if user[1] == username_email and correct_password:
-                session['username'] = user[1]
-                session['role'] = user[8]
+                WebUI.get_session_data(user)
                 return render_template('landing_page.html')
             elif user[3] == username_email and correct_password:
-                session['username'] = user[1]
-                session['role'] = user[8]
+                WebUI.get_session_data(user)
                 return render_template('landing_page.html')
             else:
                 flash("Password Incorrect! Please log in again.", category='error')
@@ -274,6 +270,16 @@ class WebUI:
         else:
             flash("Username or Email Incorrect! Please log in again.", category='error')
             return render_template('login.html')
+
+    @staticmethod
+    def set_session_data(user):
+        session['username'] = user[1]
+        session['email'] = user[3]
+        session['first_name'] = user[4]
+        session['last_name'] = user[5]
+        session['phone_number'] = user[6]
+        session['email'] = user[7]
+        session['role'] = user[8]
 
     @staticmethod
     def run():
