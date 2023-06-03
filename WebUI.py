@@ -289,13 +289,28 @@ class WebUI:
             return render_template('settings.html')
 
     @staticmethod
+    @__app.route('/save_email', methods=['POST'])
+    def save_email():
+        new_email = request.form['email']
+        old_email = session['email']
+        email_exists = User.search_emails(new_email)
+
+        if email_exists:
+            return "email already exists"
+        else:
+            Database.update_email(old_email, new_email)
+            user = User.search_emails(new_email)
+            WebUI.set_session_data(user)
+            return render_template('settings.html')
+
+    @staticmethod
     def set_session_data(user):
         session['username'] = user[1]
         session['email'] = user[3]
         session['first_name'] = user[4]
         session['last_name'] = user[5]
         session['phone_number'] = user[6]
-        session['email'] = user[7]
+        session['preference'] = user[7]
         session['role'] = user[8]
 
     @staticmethod

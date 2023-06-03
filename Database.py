@@ -228,3 +228,21 @@ class Database:
 
         cursor.execute(update_username, (new_username, old_username,))
         cursor.commit()
+
+    @classmethod
+    def update_email(cls, old_email, new_email):
+        """ This method updates the email in the DB
+        @author Hannah Doty """
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_username = '''
+        UPDATE USERS 
+        SET EMAIL = ?
+        WHERE EMAIL = ?
+        '''
+
+        cursor.execute(update_username, (new_email, old_email,))
+        cursor.commit()
+
