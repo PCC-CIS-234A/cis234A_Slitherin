@@ -304,6 +304,17 @@ class WebUI:
             return render_template('settings.html')
 
     @staticmethod
+    @__app.route('/save_phone', methods=['POST'])
+    def save_phone():
+        new_phone = request.form['phone']
+        current_username = session['username']
+
+        Database.update_phone(new_phone, current_username)
+        user = User.search_usernames(current_username)
+        WebUI.set_session_data(user)
+        return render_template('settings.html')
+
+    @staticmethod
     def set_session_data(user):
         session['username'] = user[1]
         session['email'] = user[3]

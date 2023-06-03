@@ -246,3 +246,20 @@ class Database:
         cursor.execute(update_username, (new_email, old_email,))
         cursor.commit()
 
+    @classmethod
+    def update_phone(cls, new_phone, current_username):
+        """ This method updates the phone in the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_phone = '''
+        UPDATE USERS 
+        SET PHONENUMBER = ?
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_phone, (new_phone, current_username))
+        cursor.commit()
+

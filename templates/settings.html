@@ -4,11 +4,11 @@
 
 {% block add_functions_to_js %}
     function clickedEditUsername() {
-        document.getElementById("edit_username_box").style.display = "block"
+        document.getElementById("edit_username_box").style.display = "block";
     }
 
     function clickedCancelUsername() {
-        document.getElementById("edit_username_box").style.display = "none"
+        document.getElementById("edit_username_box").style.display = "none";
     }
 
     function clickedSaveUsername() {
@@ -16,15 +16,27 @@
     }
 
     function clickedEditEmail() {
-        document.getElementById("edit_email_box").style.display = "block"
+        document.getElementById("edit_email_box").style.display = "block";
     }
 
     function clickedCancelEmail() {
-        document.getElementById("edit_email_box").style.display = "none"
+        document.getElementById("edit_email_box").style.display = "none";
     }
 
     function clickedSaveEmail() {
         window.location.href = "/save_email";
+    }
+
+    function clickedEditPhone() {
+        document.getElementById("edit_phone_box").style.display = "block";
+    }
+
+    function clickedCancelPhone() {
+        document.getElementById("edit_phone_box").style.display = "none";
+    }
+
+    function clickedSavePhone() {
+        pass
     }
 {% endblock %}
 
@@ -62,6 +74,21 @@
                 <button id="save_email_button" onclick="clickedSaveEmail()">SAVE</button>
             </form>
             <button id="cancel_email_button" onclick="clickedCancelEmail()">CANCEL</button>
+        </div>
+
+        <div id="phone_box">
+            <p>Phone Number:</p>
+            <p>{{ session.phone_number }}</p>
+            <button id="edit_phone_button" onclick="clickedEditPhone()">EDIT</button>
+        </div>
+
+        <div id="edit_phone_box">
+            <form name="save_phone_form" action="/save_phone" method="post">
+                <label for="phone"></label>
+                <input type="tel" id="phone" name="phone">
+                <button id="save_phone_button" onclick="clickedSavePhone()">SAVE</button>
+            </form>
+            <button id="cancel_phone_button" onclick="clickedCancelPhone()">CANCEL</button>
         </div>
 
     </div>
