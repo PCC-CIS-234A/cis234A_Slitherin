@@ -279,3 +279,20 @@ class Database:
 
         cursor.execute(update_password, (password, current_username))
         cursor.commit()
+
+    @classmethod
+    def update_preference(cls, new_preference, current_username):
+        """ This method updates the preference in the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_preference = '''
+        UPDATE USERS 
+        SET PREFERENCE = ?
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_preference, (new_preference, current_username))
+        cursor.commit()

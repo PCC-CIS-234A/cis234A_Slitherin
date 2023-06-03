@@ -331,6 +331,18 @@ class WebUI:
             return render_template('settings.html')
 
 
+    @staticmethod
+    @__app.route('/save_preference', methods=['POST'])
+    def save_preference():
+        new_preference = request.form['preference']
+        current_username = session['username']
+
+        Database.update_preference(new_preference, current_username)
+        user = User.search_usernames(current_username)
+        WebUI.set_session_data(user)
+        return render_template('settings.html')
+
+
 
     @staticmethod
     def set_session_data(user):
