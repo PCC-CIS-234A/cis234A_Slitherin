@@ -8,9 +8,15 @@
         window.location.href = "/delete_user" + "?username=" + value;
     }
 
-    function cancelDeleteUser() {
-        document.getElementById("confirm_delete_box").style.display = "none";
+    function clickedMakeStaff(value) {
+        window.location.href = "/make_staff" + "?username=" + value;
     }
+
+    function clickedMakeAdmin(value) {
+        window.location.href = "/make_admin" + "?username=" + value;
+    }
+
+
 
 {% endblock %}
 
@@ -22,18 +28,18 @@
         <tr>
             <th>User ID</th>
             <th>Username</th>
-            <th>Email</th>
             <th>Role</th>
-            <th></th>
+            <th>Remove User</th>
+            <th colspan="2">Change Role</th>
         </tr>
         <tr>
         {% for row in data %}
             <td id="userid">{{ row.USERID }}</td>
             <td id="username">{{ row.USERNAME }}</td>
-            <td id="email">{{ row.EMAIL }}</td>
             <td id="role">{{ row.ROLE }}</td>
-            <td><button value="{{ row.USERNAME }}" onclick="clickedDeleteUser(this.value)">DELETE</button></td>
-            <td><button value="{{ row.USERNAME }}" onclick="clickedEditUserRole(this.value)">EDIT ROLE</button></td>
+            <td><button id="admin_delete_user_button" value="{{ row.USERNAME }}" onclick="clickedDeleteUser(this.value)">DELETE</button></td>
+            <td><button id="staff_change_button" value="{{ row.USERNAME }}" onclick="clickedMakeStaff(this.value)">STAFF</button></td>
+            <td><button id="admin_change_button" value="{{ row.USERNAME }}" onclick="clickedMakeAdmin(this.value)">ADMIN</button></td>
         </tr>
         {% endfor %}
     </table>

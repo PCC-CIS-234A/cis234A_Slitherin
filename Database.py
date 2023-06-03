@@ -363,3 +363,36 @@ class Database:
         users = cursor.fetchall()
         return users
 
+    @classmethod
+    def change_role_staff(cls, selected_username):
+        """ This method changes user role to staff
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_role = '''
+        UPDATE USERS 
+        SET ROLE = 'staff'
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_role, (selected_username, ))
+        cursor.commit()
+
+    @classmethod
+    def change_role_admin(cls, selected_username):
+        """ This method changes user role to admin
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_role = '''
+        UPDATE USERS 
+        SET ROLE = 'admin'
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_role, (selected_username, ))
+        cursor.commit()
