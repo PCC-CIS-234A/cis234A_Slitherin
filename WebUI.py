@@ -282,6 +282,16 @@ class WebUI:
         session['role'] = user[8]
 
     @staticmethod
+    def destroy_session_data():
+        session['username'] = ''
+        session['email'] = ''
+        session['first_name'] = ''
+        session['last_name'] = ''
+        session['phone_number'] = ''
+        session['email'] = ''
+        session['role'] = ''
+
+    @staticmethod
     def run():
         """This method runs the UI"""
 
