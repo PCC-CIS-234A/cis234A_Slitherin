@@ -259,10 +259,10 @@ class WebUI:
             pass_hash = user[2]
             correct_password = Validation.return_hash_password(password, pass_hash)
             if user[1] == username_email and correct_password:
-                WebUI.get_session_data(user)
+                WebUI.set_session_data(user)
                 return render_template('landing_page.html')
             elif user[3] == username_email and correct_password:
-                WebUI.get_session_data(user)
+                WebUI.set_session_data(user)
                 return render_template('landing_page.html')
             else:
                 flash("Password Incorrect! Please log in again.", category='error')

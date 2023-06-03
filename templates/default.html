@@ -92,6 +92,8 @@
         window.location.href = "/view_templates";
     }
 
+    {% block add_functions_to_js %} {% endblock %}
+
     function init() {
         [].slice.call(document.getElementsByClassName("menu_button")).forEach(x => x.addEventListener("click", clickedMnuButton));
         document.getElementById("home_div").addEventListener("click", clickedHome);
@@ -129,6 +131,8 @@
         if (view_templates) {
             view_templates.addEventListener("click", clickedViewTemplates)
         }
+
+        {% block add_to_init_function %} {% endblock %}
     }
     </script>
 </head>
