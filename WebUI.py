@@ -65,6 +65,14 @@ class WebUI:
         return render_template("create_account_form.html")
 
     @staticmethod
+    @__app.route("/settings")
+    def settings_page():
+        """This method displays the Settings page"""
+
+        return render_template("settings.html")
+
+
+    @staticmethod
     @__app.route("/landing_page")
     def index():
         """This method displays the landing page after login"""
@@ -88,6 +96,7 @@ class WebUI:
         """This method allows a user to create a template"""
 
         return render_template("create_template.html")
+
 
     @staticmethod
     def find_template(template_name):
