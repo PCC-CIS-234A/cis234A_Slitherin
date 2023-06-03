@@ -263,3 +263,19 @@ class Database:
         cursor.execute(update_phone, (new_phone, current_username))
         cursor.commit()
 
+    @classmethod
+    def update_password(cls, password, current_username):
+        """ This method updates the password in the DB
+        @author Hannah Doty"""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        update_password = '''
+        UPDATE USERS 
+        SET PASSWORD = ?
+        WHERE USERNAME = ?
+        '''
+
+        cursor.execute(update_password, (password, current_username))
+        cursor.commit()

@@ -11,20 +11,12 @@
         document.getElementById("edit_username_box").style.display = "none";
     }
 
-    function clickedSaveUsername() {
-        window.location.href = "/save_username";
-    }
-
     function clickedEditEmail() {
         document.getElementById("edit_email_box").style.display = "block";
     }
 
     function clickedCancelEmail() {
         document.getElementById("edit_email_box").style.display = "none";
-    }
-
-    function clickedSaveEmail() {
-        window.location.href = "/save_email";
     }
 
     function clickedEditPhone() {
@@ -35,14 +27,27 @@
         document.getElementById("edit_phone_box").style.display = "none";
     }
 
-    function clickedSavePhone() {
-        pass
+    function clickedEditPassword() {
+        document.getElementById("edit_password_box").style.display = "block";
     }
+
+    function clickedCancelPassword() {
+        document.getElementById("edit_password_box").style.display = "none";
+    }
+
 {% endblock %}
 
 {% block content %}
 
     <h2>Settings</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     <div id="profile_settings">
 
@@ -56,7 +61,7 @@
             <form name="save_username_form" action="/save_username" method="post">
                 <label for="username"></label>
                 <input type="text" id="username" name="username">
-                <button id="save_user_button" onclick="clickedSaveUsername()" type="submit">SAVE</button>
+                <button id="save_user_button" type="submit">SAVE</button>
             </form>
             <button id="cancel_username_button" onclick="clickedCancelUsername()">CANCEL</button>
         </div>
@@ -71,7 +76,7 @@
             <form name="save_email_form" action="/save_email" method="post">
                 <label for="email"></label>
                 <input type="email" id="email" name="email">
-                <button id="save_email_button" onclick="clickedSaveEmail()">SAVE</button>
+                <button id="save_email_button" type="submit" >SAVE</button>
             </form>
             <button id="cancel_email_button" onclick="clickedCancelEmail()">CANCEL</button>
         </div>
@@ -86,9 +91,26 @@
             <form name="save_phone_form" action="/save_phone" method="post">
                 <label for="phone"></label>
                 <input type="tel" id="phone" name="phone">
-                <button id="save_phone_button" onclick="clickedSavePhone()">SAVE</button>
+                <button id="save_phone_button" type="submit">SAVE</button>
             </form>
             <button id="cancel_phone_button" onclick="clickedCancelPhone()">CANCEL</button>
+        </div>
+
+        <div id="password_box">
+            <p>Password:</p>
+            <p>********</p>
+            <button id="edit_password_button" onclick="clickedEditPassword()">EDIT</button>
+        </div>
+
+        <div id="edit_password_box">
+            <form name="save_password_box" action="/save_password" method="post">
+                <label for="password1"></label>
+                <input type="password" id="password1" name="password1">
+                <label for="password2">Confirm</label>
+                <input type="password" id="password2" name="password2">
+                <button id="save_password2_button" type="submit">SAVE</button>
+            </form>
+            <button id="cancel_password_button" onclick="clickedCancelPassword">CANCEL</button>
         </div>
 
     </div>

@@ -315,6 +315,24 @@ class WebUI:
         return render_template('settings.html')
 
     @staticmethod
+    @__app.route('/save_password', methods=['POST'])
+    def save_password():
+        new_password = request.form['password1']
+        confirm_password = request.form['password2']
+        current_username = session['username']
+
+        if Validation.validate_password(new_password, confirm_password):
+            return "passwords do not match"
+        else:
+            password = Validation.hash_password(new_password)
+            Database.update_password(password, current_username)
+            user = User.search_usernames(current_username)
+            WebUI.set_session_data(user)
+            return render_template('settings.html')
+
+
+
+    @staticmethod
     def set_session_data(user):
         session['username'] = user[1]
         session['email'] = user[3]
