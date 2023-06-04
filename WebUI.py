@@ -416,6 +416,7 @@ class WebUI:
         session['preference'] = user[7]
         session['role'] = user[8]
         session['hidden_email'] = Validation.hide_email(user[3])
+        session['hidden_phone'] = Validation.hide_phone(user[6])
 
     @staticmethod
     def destroy_session_data():
@@ -426,6 +427,8 @@ class WebUI:
         session['phone_number'] = ''
         session['email'] = ''
         session['role'] = ''
+        session['hidden_email'] = ''
+        session['hidden_phone'] = ''
 
     @staticmethod
     def run():

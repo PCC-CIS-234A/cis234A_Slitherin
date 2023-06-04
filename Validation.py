@@ -114,6 +114,7 @@ def return_hash_password(password1, password):
     pass_hash = bcrypt.checkpw(password1.encode('utf-8'), password.encode('utf-8'))
     return pass_hash
 
+
 def hide_email(email):
     """ This method hides part of the email address
     @author Hannah Doty """
@@ -125,4 +126,11 @@ def hide_email(email):
     hidden_email = ('*' * half) + email_part1[-half:] + '@' + email_part2
     return hidden_email
 
+
+def hide_phone(phone):
+    """ This method hides part of the phone number
+    @author Hannah Doty """
+
+    end = phone[-4:]
+    return '***-***-' + end
 
