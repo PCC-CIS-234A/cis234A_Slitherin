@@ -113,3 +113,16 @@ def return_hash_password(password1, password):
     @author Hannah Doty """
     pass_hash = bcrypt.checkpw(password1.encode('utf-8'), password.encode('utf-8'))
     return pass_hash
+
+def hide_email(email):
+    """ This method hides part of the email address
+    @author Hannah Doty """
+    email_split = email.split('@')
+    email_part1 = email_split[0]
+    email_part2 = email_split[1]
+
+    half = int(len(email_part1) / 2)
+    hidden_email = ('*' * half) + email_part1[-half:] + '@' + email_part2
+    return hidden_email
+
+
