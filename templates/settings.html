@@ -85,8 +85,8 @@
 
         <div id="username_box">
             <p>Username:</p>
-            <p>{{session.username}}</p>
-            <button id="edit_username_button" onclick="clickedEditUsername()">EDIT</button>
+            <p class="current_info">{{session.username}}</p>
+            <button id="edit_username_button" onclick="clickedEditUsername()" class="settings_edit">EDIT</button>
         </div>
 
         <div id="edit_username_box">
@@ -95,13 +95,13 @@
                 <input type="text" id="username" name="username">
                 <button id="save_user_button" type="submit">SAVE</button>
             </form>
-            <button id="cancel_username_button" onclick="clickedCancelUsername()">CANCEL</button>
+            <button id="cancel_username_button" onclick="clickedCancelUsername()" class="cancel_button">CANCEL</button>
         </div>
 
         <div id="email_box">
             <p>Email:</p>
-            <p>{{ session.email }}</p>
-            <button id="edit_email_button" onclick="clickedEditEmail()">EDIT</button>
+            <p class="current_info">{{ session.email }}</p>
+            <button id="edit_email_button" onclick="clickedEditEmail()" class="settings_edit">EDIT</button>
         </div>
 
         <div id="edit_email_box">
@@ -110,13 +110,13 @@
                 <input type="email" id="email" name="email">
                 <button id="save_email_button" type="submit" >SAVE</button>
             </form>
-            <button id="cancel_email_button" onclick="clickedCancelEmail()">CANCEL</button>
+            <button id="cancel_email_button" onclick="clickedCancelEmail()" class="cancel_button">CANCEL</button>
         </div>
 
         <div id="phone_box">
             <p>Phone Number:</p>
-            <p>{{ session.phone_number }}</p>
-            <button id="edit_phone_button" onclick="clickedEditPhone()">EDIT</button>
+            <p class="current_info">{{ session.phone_number }}</p>
+            <button id="edit_phone_button" onclick="clickedEditPhone()" class="settings_edit">EDIT</button>
         </div>
 
         <div id="edit_phone_box">
@@ -125,13 +125,13 @@
                 <input type="tel" id="phone" name="phone">
                 <button id="save_phone_button" type="submit">SAVE</button>
             </form>
-            <button id="cancel_phone_button" onclick="clickedCancelPhone()">CANCEL</button>
+            <button id="cancel_phone_button" onclick="clickedCancelPhone()" class="cancel_button">CANCEL</button>
         </div>
 
         <div id="password_box">
             <p>Password:</p>
-            <p>********</p>
-            <button id="edit_password_button" onclick="clickedEditPassword()">EDIT</button>
+            <p class="current_info">********</p>
+            <button id="edit_password_button" onclick="clickedEditPassword()" class="settings_edit">EDIT</button>
         </div>
 
         <div id="edit_password_box">
@@ -142,15 +142,15 @@
                 <input type="password" id="password2" name="password2">
                 <button id="save_password2_button" type="submit">SAVE</button>
             </form>
-            <button id="cancel_password_button" onclick="clickedCancelPassword()">CANCEL</button>
+            <button id="cancel_password_button" onclick="clickedCancelPassword()" class="cancel_button">CANCEL</button>
         </div>
 
         {% if session.role == 'subscriber' and session.preference != 'none' %}
 
             <div id="preference_box">
                 <p>Notification Delivery:</p>
-                <p>{{ session.preference }}</p>
-                <button id="edit_preference_button" onclick="clickedEditPreference()">EDIT</button>
+                <p class="current_info">{{ session.preference }}</p>
+                <button id="edit_preference_button" class="settings_edit" onclick="clickedEditPreference()">EDIT</button>
             </div>
 
             <div id="edit_preference_box">
@@ -164,7 +164,7 @@
                     <label for="both_radio">both</label>
                     <button id="save_preference_button" type="submit">SAVE</button>
                 </form>
-                <button id="cancel_preference_button" onclick="clickedCancelPreference()">CANCEL</button>
+                <button id="cancel_preference_button" onclick="clickedCancelPreference()" class="cancel_button">CANCEL</button>
             </div>
 
             <div id="status_box">
@@ -174,7 +174,7 @@
 
             <div id="edit_status_box">
                 <p>Are you sure? Doing so will delete your account.</p>
-                <p>If you'd like to take a break from notifications, you can pause your account.</p>
+                <p>If you'd like to take a break, you can pause your account.</p>
 
                 <form name="delete_account_form" action="/delete_account" method="post">
                     <button id="delete_account_button" type="submit">Delete my account.</button>
@@ -183,7 +183,7 @@
                     <button id="pause_account_button" type="submit">Pause my account.</button>
                 </form>
 
-                <button id="cancel_status_button" onclick="clickedCancelUnsubscribe()">CANCEL</button>
+                <button id="cancel_status_button" onclick="clickedCancelUnsubscribe()" class="cancel_button">CANCEL</button>
             </div>
 
         {% endif %}
@@ -206,7 +206,7 @@
                     <label for="both_radio">both</label>
                     <button id="save_preference_button" type="submit">SAVE</button>
                 </form>
-                <button id="cancel_unpause_button" onclick="clickedCancelUnpause()">CANCEL</button>
+                <button id="cancel_unpause_button" onclick="clickedCancelUnpause()" class="cancel_button">CANCEL</button>
             </div>
 
         {% endif %}
@@ -215,7 +215,7 @@
             <h3>Admin Controls</h3>
 
             <div id="edit_user_box">
-                <form name="admin_delete_form" action="/admin_user_list" method="post">
+                <form name="admin_edit_user_form" action="/admin_user_list" method="post">
                     <button id="edit_user_button" type="submit">EDIT USER</button>
                 </form>
             </div>

@@ -149,6 +149,56 @@ nav {
     display: none;
 }
 
+#profile_settings {
+    text-align: left;
+    width: fit-content;
+    margin: 50px auto auto auto;
+    background-color: rgba(0,146,164,0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#profile_settings h3 {
+    text-align: center;
+}
+
+.current_info {
+    background-color: white;
+    padding: 4px;
+}
+
+.settings_edit, #unsubscribe_button, #unpause_account_button, #edit_user_button {
+    background-color: #014a5b;
+    color: white;
+    border-radius: 5px;
+}
+
+.cancel_button, #pause_account_button, #delete_account_button {
+    margin-top: 5px;
+}
+
+#edit_status_box form {
+    display: inline;
+}
+
+#edit_status_box p {
+    font-weight: bold;
+}
+
+#edit_user_box button {
+    margin: 10px;
+}
+
+#edit_users_table {
+    background-color: rgba(0,146,164,0.2);
+    border: rgba(0,146,164,0.2);
+}
+
+#edit_users_table th {
+    background-color: rgba(0,146,164,0.75);
+    padding: 5px;
+}
+
 /* Hakeem */
 table {
     margin: 0 auto;
