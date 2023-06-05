@@ -46,12 +46,12 @@ class Template:
         return Database.build_template_list()
 
     @staticmethod
-    def add_to_db(name, subject, message):
-        Database.create_template(name, subject, message)
+    def add_to_db(name, subject, message, tags):
+        Database.create_template(name, subject, message, tags)
 
     @staticmethod
-    def update_to_db(name, subject, message):
-        Database.update_template(name, subject, message)
+    def update_to_db(name, subject, message, tags):
+        Database.update_template(name, subject, message, tags)
 
     @staticmethod
     def validate_template_name(name):

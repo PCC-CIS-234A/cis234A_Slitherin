@@ -92,6 +92,15 @@ class WebUI:
         )
 
     @staticmethod
+    @__app.route("/view_templates")
+    def view_templates():
+        """This method allows a user to create a template"""
+
+        return render_template(
+            "view_templates.html", template_list=WebUI.get_template_list()
+        )
+
+    @staticmethod
     def find_template(template_name):
         """This method takes a template name and returns a template object"""
 
@@ -202,15 +211,7 @@ class WebUI:
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
-        tags = request.form.getlist('tags[]')
-
-        # Generate the email message using the template and the entered values
-        create_template = f"Dear {tags[1]} Panther Pantry Subscriber,\n\n" \
-                          f"The {tags[1]} Panther Pantry has {tags[2]} available.\n" \
-                          f"Please come between {tags[3]} and {tags[4]} on {{ utc_dt }}.\n" \
-                          f"Remember to bring your PCC ID along with proof of Registration.\n\n" \
-                          f"Sincerely, {tags[5]}\n" \
-                          f"{tags[1]} Panther Pantry"
+        tags = request.args.get('tags[]')
 
         Template.add_to_db(name, subject, message, tags)
 
