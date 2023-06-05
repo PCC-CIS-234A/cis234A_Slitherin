@@ -10,6 +10,9 @@ import Validation
 from Template import Template
 from Database import Database
 from datetime import datetime
+import matplotlib.pyplot as plt
+
+import FetchLogs
 
 
 class WebUI:
@@ -176,19 +179,49 @@ class WebUI:
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
         data = Database.fetch_data(start_date=start_date, end_date=end_date)
-        print('fetch_data', data)
+
         return render_template('data_display.html', data=data)
 
     # Lakey's addition for display_row
     @staticmethod
-    @__app.route('/row_display/<DATE_SENT>')  # display_row
-    def display_row(date_sent):
+    @__app.route('/row_display')  # display_row
+    def display_row():
         """This method displays fetched data from the database
         Hakeem"""
+
         start_date = datetime.now()
         end_date = start_date
-        data = Database.fetch_data(date_sent, end_date)
+        data = Database.fetch_data(start_date, end_date)
+
+        print('DISPLAY DATA', data)
         return render_template('row_display.html', data=data)
+
+    # Lakey's Render the Filtered Logs
+    @staticmethod
+    @__app.route("/filtered_logs")
+    def display_plot():
+        # Call the fetch_data method to retrieve the data
+        start_date = datetime.now()
+        end_date = start_date
+        data = Database.filtered_logs(start_date, end_date)
+
+        # Extract the date_sent and num_recipients into separate lists
+        dates = [row[0] for row in data]
+        recipients = [row[1] for row in data]
+        print('RECIPIENTS', data)
+
+        # Plot the data using Matplotlib
+        plt.plot(dates, recipients)
+        plt.xlabel('Date')
+        plt.ylabel('Number of Recipients')
+        plt.title('Number of Recipients Over Time')
+        plt.xticks(rotation=0)
+
+        # Save the plot as an image file
+        plot_file = 'static/plot.png'
+        plt.savefig(plot_file)
+
+        return render_template('filtered_logs.html', plot_file=plot_file)
 
     @staticmethod
     @__app.route("/add_create_template")

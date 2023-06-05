@@ -136,6 +136,38 @@ class Database:
         return result
 
     @classmethod
+    def filtered_logs(cls, start_date, end_date=None):
+        """Fetches review log data in a specified date range."""
+
+        cls.connect()
+        cursor = cls.__connection.cursor()
+
+        if not end_date:
+            end_date = datetime.now()
+
+        query = '''
+                    SELECT DATE_SENT, COUNT(*) as num_recipients
+                    FROM REVIEW_LOG
+                    WHERE DATE_SENT BETWEEN ? AND ?
+                    GROUP BY DATE_SENT
+                    ORDER BY DATE_SENT
+                    '''
+
+        cursor.execute(query, (start_date, end_date))
+        rows = cursor.fetchall()
+        result = []
+
+        """This method returns review logs dates and count data.
+                    Hakeem"""
+
+        for row in rows:
+            date_sent = row[0]
+            num_recipients = row[1]
+            result.append((date_sent, num_recipients))
+
+        return result
+
+    @classmethod
     def create_template(cls, name, subject, message):
         cls.connect()
         cursor = cls.__connection.cursor()

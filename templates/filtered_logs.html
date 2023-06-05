@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+
+{% block title %} Plot Display{% endblock %}
+{% block content %}
+    <p style="color: #0088A4; font-size: x-large">
+
+    </p>
+<h1>Number of Recipients Over Time</h1>
+    <img src="{{ plot_file }}" alt="Plot">
+
+
+<br>
+
+<a href="/data_display">Return to Logs</a>
+
+{% endblock %}
