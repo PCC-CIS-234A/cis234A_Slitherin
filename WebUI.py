@@ -94,7 +94,7 @@ class WebUI:
     @staticmethod
     @__app.route("/view_templates")
     def view_templates():
-        """This method allows a user to create a template"""
+        """This method allows a user to view a template"""
 
         return render_template(
             "view_templates.html", template_list=WebUI.get_template_list()
@@ -202,7 +202,7 @@ class WebUI:
         return render_template('row_display.html', data=data)
 
     @staticmethod
-    @__app.route("/add_create_template", methods=['GET', 'POST'])
+    @__app.route("/add_create_template", methods=['GET'])
     def add_create_template():
         """This method creates a template"""
         from Template import Template
@@ -218,7 +218,7 @@ class WebUI:
         return render_template("save_success.html")
 
     @staticmethod
-    @__app.route("/update_create_template")
+    @__app.route("/update_create_template", methods=['GET'])
     def update_create_template():
         """This method updates the template"""
         from Template import Template
@@ -227,8 +227,9 @@ class WebUI:
         name = request.args.get('template title')
         subject = request.args.get('subject line')
         message = request.args.get('message')
+        tags = request.args.get('tags[]')
 
-        Template.update_to_db(name, subject, message)
+        Template.update_to_db(name, subject, message, tags)
 
         return render_template("save_success.html")
 
