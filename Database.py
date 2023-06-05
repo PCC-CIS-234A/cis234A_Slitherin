@@ -70,7 +70,7 @@ class Database:
 
         # Define SQL call
         sql = '''
-            SELECT NAME, SUBJECT, MESSAGE
+            SELECT NAME, SUBJECT, MESSAGE, TAGS
             FROM TEMPLATE;
             '''
 
@@ -85,6 +85,7 @@ class Database:
 
         # Build the template list
         while template:
+            template.tags = template[3]
             template = Template(template[0], template[1], template[2])
             template_list.append(template)
             template = cursor.fetchone()
@@ -136,26 +137,26 @@ class Database:
         return result
 
     @classmethod
-    def create_template(cls, name, subject, message):
+    def create_template(cls, name, subject, message, tags):
         """ This method adds the template to the DB
                 @author Tarin Aguirre """
         cls.connect()
         cursor = cls.__connection.cursor()
 
-        cursor.execute("INSERT INTO TEMPLATE VALUES (?, ?, ?)",
-                       name, subject, message)
+        cursor.execute("INSERT INTO TEMPLATE VALUES (?, ?, ?, ?)",
+                       name, subject, message, tags)
         cursor.commit()
 
     @classmethod
-    def update_template(cls, name, subject, message):
+    def update_template(cls, name, subject, message, tags):
         """ This method updates the template to the DB
                 @author Tarin Aguirre """
         cls.connect()
         cursor = cls.__connection.cursor()
 
         cursor.execute("UPDATE TEMPLATE "
-                       "SET VALUES (?, ?, ?)",
-                       name, subject, message)
+                       "SET VALUES (?, ?, ?, ?)",
+                       name, subject, message, tags)
         cursor.commit()
 
     @classmethod

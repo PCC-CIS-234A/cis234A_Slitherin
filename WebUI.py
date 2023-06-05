@@ -87,7 +87,9 @@ class WebUI:
     def create_template():
         """This method allows a user to create a template"""
 
-        return render_template("create_template.html")
+        return render_template(
+            "create_template.html", template_list=WebUI.get_template_list()
+        )
 
     @staticmethod
     def find_template(template_name):
