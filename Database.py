@@ -85,8 +85,7 @@ class Database:
 
         # Build the template list
         while template:
-            template.tags = template[3]
-            template = Template(template[0], template[1], template[2])
+            template = Template(template[0], template[1], template[2], template[3])
             template_list.append(template)
             template = cursor.fetchone()
 
