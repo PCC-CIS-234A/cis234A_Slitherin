@@ -233,7 +233,6 @@ class WebUI:
         from Template import Template
 
         # Collect required information
-        template = WebUI.find_template(template_name)
         name = request.args.get('template title')
         subject = request.args.get('subject')
         message = request.args.get('message')
