@@ -11,18 +11,12 @@
 
     <br><br>
 
-    <form method="GET" action="/create_template">
-        <label id="select_template">Select Template:
-            <select name="template">
-                {% for item in template_list %}
-                    <option value="{{ item }}">
-                        {{ item.get_name() }}
-                    </option>
-                {% endfor %}
-            </select>
-            <button type="submit">Use</button>
-        </label>
-    </form>
+    <p style="font-size: x-large">
+        Using Template:
+    </p>
+    <p style="color: #0088A4">
+        '{{ template_name }}'
+    </p>
 
     <br><br>
 
