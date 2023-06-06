@@ -108,12 +108,12 @@ class Database:
         cls.connect()
         cursor = cls.__connection.cursor()
 
-        # Make SQL call to retrieve list of email addresses
+        # Make SQL call to retrieve list of phone numbers
         cursor.execute(sql)
         phone_list = []
         phone = cursor.fetchone()
 
-        # Build the email list
+        # Build the phone list
         while phone:
             phone_list.append(phone[0])
             phone = cursor.fetchone()

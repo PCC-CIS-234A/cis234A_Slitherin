@@ -46,13 +46,16 @@ class Notification:
 
     @staticmethod
     def send_sms(number, body):
-        """This method sends the notification to sms subs"""
+        """This method sends the notification to SMS subscribers"""
 
         from twilio.rest import Client
 
+        # Set account info
         account_sid = "AC0afd914d5be65b0873ed7a832a9c0f6c"
         auth_token = "d9ed081e90525c4f328e2e9371350557"
         client = Client(account_sid, auth_token)
+
+        # Send SMS
         client.messages.create(
             body=body,
             from_="+18883781722",
