@@ -153,8 +153,7 @@ class Database:
         cls.connect()
         cursor = cls.__connection.cursor()
 
-        cursor.execute("UPDATE TEMPLATE "
-                       "SET VALUES (?, ?, ?, ?)",
+        cursor.execute("UPDATE TEMPLATE SET VALUES (?, ?, ?, ?)",
                        name, subject, message, tags)
         cursor.commit()
 

@@ -11,12 +11,18 @@
 
     <br><br>
 
-    <p style="font-size: x-large">
-        Using Template:
-    </p>
-    <p style="color: #0088A4">
-        '{{ template_name }}'
-    </p>
+    <form method="GET" action="/create_template">
+        <label id="select_template">Select Template:
+            <select name="template">
+                {% for item in template_list %}
+                    <option value="{{ item }}">
+                        {{ item.get_name() }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Use</button>
+        </label>
+    </form>
 
     <br><br>
 
@@ -25,20 +31,15 @@
 
             <br><br>
 
-            <label for="message">Message:</label><br>
+            <label id="subject">Subject:</label><br>
+            <input type="text" name="subject" placeholder="Enter subject" style="text-align: left">
+
+            <br><br>
+
+            <label id="message">Message:</label><br>
             <textarea name="message" cols="100" rows="10" placeholder="Enter message here"></textarea>
 
             <br><br>
-
-            <label for="tags">Tags:</label><br>
-            <input type="text" name="tags[]" placeholder="Tag 1" required style="text-align: left">
-            <input type="text" name="tags[]" placeholder="Tag 2" required style="text-align: left">
-            <input type="text" name="tags[]" placeholder="Tag 3" required style="text-align: left">
-            <input type="text" name="tags[]" placeholder="Tag 4" required style="text-align: left">
-            <input type="text" name="tags[]" placeholder="Tag 5" required style="text-align: left">
-
-            <br><br>
-
 
             <button type="submit">Save</button>
         </label>

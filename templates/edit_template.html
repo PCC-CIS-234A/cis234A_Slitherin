@@ -1,0 +1,36 @@
+{% extends "default.html" %}
+
+{% block title %}Use Template{% endblock %}
+{% block content %}
+    <p style="font-size: x-large">
+        Using Template:
+    </p>
+    <p style="color: #0088A4">
+        '{{ template_name }}'
+    </p>
+
+    <br>
+
+    <form method="GET" action="/update_create_template">
+
+            <br><br>
+
+            <label id="subject">Subject:
+            <input type="text" name="subject" value="{{ template_subject }}">
+                </label>
+
+            <br><br>
+
+            <label id="message">Message:</label><br>
+            <textarea name="message" cols="100" rows="10" placeholder="Enter message here"></textarea>
+
+            <br><br>
+
+            <button type="submit">Save</button>
+        </label>
+    </form>
+
+    <p>
+        <a href="/landing_page">Return Home...</a>
+    </p>
+{% endblock %}

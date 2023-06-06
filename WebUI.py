@@ -85,17 +85,25 @@ class WebUI:
     @staticmethod
     @__app.route("/create_template")
     def create_template():
-        """This method allows a user to retrieve a template"""
+        """This method allows a user to update a template"""
+        template_name = request.args['template']
+        template = WebUI.find_template(template_name)
+        subject = request.args.get('subject')
+        message = request.args.get('message')
+        tags = request.args.get('tags[]')
 
         return render_template(
-            "view_templates.html",
-            template_list=WebUI.get_template_list(),
+            "edit_template.html",
+            template_name=template.get_name(),
+            template_subject=template.get_subject(),
+            template_text=template.get_message()
         )
+
 
     @staticmethod
     @__app.route("/view_templates")
     def view_templates():
-        """This method allows a user to view a template"""
+        """This method allows a user to create a template"""
 
         return render_template(
             "view_templates.html", template_list=WebUI.get_template_list()
@@ -225,8 +233,9 @@ class WebUI:
         from Template import Template
 
         # Collect required information
+        template = WebUI.find_template(template_name)
         name = request.args.get('template title')
-        subject = request.args.get('subject line')
+        subject = request.args.get('subject')
         message = request.args.get('message')
         tags = request.args.get('tags[]')
 
