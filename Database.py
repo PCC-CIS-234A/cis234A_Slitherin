@@ -147,13 +147,13 @@ class Database:
         cursor.commit()
 
     @classmethod
-    def update_template(cls, name, subject, message, tags):
+    def update_template(cls, NAME, SUBJECT, MESSAGE, TAGS):
         """ This method updates the template in the DB """
         cls.connect()
         cursor = cls.__connection.cursor()
 
-        cursor.execute("UPDATE TEMPLATE SET subject = ?, message = ?, tags = ? WHERE name = ?",
-                       name, subject, message, tags)
+        cursor.execute("UPDATE TEMPLATE SET SUBJECT = ?, MESSAGE = ?, TAGS = ? WHERE NAME = ?",
+                       NAME, SUBJECT, MESSAGE, TAGS)
 
         cursor.commit()
 

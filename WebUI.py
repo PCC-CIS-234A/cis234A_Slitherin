@@ -99,7 +99,6 @@ class WebUI:
             template_text=template.get_message()
         )
 
-
     @staticmethod
     @__app.route("/view_templates")
     def view_templates():

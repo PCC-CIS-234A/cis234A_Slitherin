@@ -50,8 +50,8 @@ class Template:
         Database.create_template(name, subject, message, tags)
 
     @staticmethod
-    def update_to_db(name, subject, message, tags):
-        Database.update_template(name, subject, message, tags)
+    def update_to_db(NAME, SUBJECT, MESSAGE, TAGS):
+        Database.update_template(NAME, SUBJECT, MESSAGE, TAGS)
 
     @staticmethod
     def validate_template_name(name):
