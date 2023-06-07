@@ -216,7 +216,8 @@ class WebUI:
     @staticmethod
     @__app.route('/create_account', methods=['POST'])
     def create_account():
-        """This method creates a user account"""
+        """This method creates a user account
+        @author Hannah Doty"""
         from User import User
 
         fname = request.form["fname"]
@@ -248,7 +249,8 @@ class WebUI:
     @staticmethod
     @__app.route('/login', methods=['POST'])
     def login():
-        """This method logs in a user"""
+        """This method logs in a user
+        @author Hannah Doty"""
         from User import User
         session.pop('username', None)
 
@@ -276,6 +278,8 @@ class WebUI:
     @staticmethod
     @__app.route('/save_username', methods=['POST'])
     def save_username():
+        """This method updates a users username
+        @author Hannah Doty"""
         new_username = request.form['username']
         old_username = session['username']
         user_exists = User.search_usernames(new_username)
@@ -291,6 +295,8 @@ class WebUI:
     @staticmethod
     @__app.route('/save_email', methods=['POST'])
     def save_email():
+        """This method updates a users email
+        @author Hannah Doty"""
         new_email = request.form['email']
         old_email = session['email']
         email_exists = User.search_emails(new_email)
@@ -306,6 +312,8 @@ class WebUI:
     @staticmethod
     @__app.route('/save_phone', methods=['POST'])
     def save_phone():
+        """This method updates a users phone number
+        @author Hannah Doty"""
         new_phone = request.form['phone']
         current_username = session['username']
 
@@ -317,6 +325,8 @@ class WebUI:
     @staticmethod
     @__app.route('/save_password', methods=['POST'])
     def save_password():
+        """This method updates a users password
+        @author Hannah Doty"""
         new_password = request.form['password1']
         confirm_password = request.form['password2']
         current_username = session['username']
@@ -333,6 +343,8 @@ class WebUI:
     @staticmethod
     @__app.route('/save_preference', methods=['POST'])
     def save_preference():
+        """This method updates a users notification delivery preference
+        @author Hannah Doty"""
         new_preference = request.form['preference']
         current_username = session['username']
 
@@ -344,6 +356,8 @@ class WebUI:
     @staticmethod
     @__app.route('/pause_account', methods=['POST'])
     def pause_account():
+        """This method pauses a users account
+        @author Hannah Doty"""
         current_username = session['username']
 
         Database.pause_account(current_username)
@@ -354,6 +368,8 @@ class WebUI:
     @staticmethod
     @__app.route('/delete_account', methods=['POST'])
     def delete_account():
+        """This method deletes a users account
+        @author Hannah Doty"""
         current_username = session['username']
 
         Database.delete_account(current_username)
@@ -363,6 +379,8 @@ class WebUI:
     @staticmethod
     @__app.route('/unpause_account', methods=['POST'])
     def unpause_account():
+        """This method unpauses a users account
+        @author Hannah Doty"""
         current_username = session['username']
 
         Database.unpause_account(current_username)
@@ -373,12 +391,16 @@ class WebUI:
     @staticmethod
     @__app.route('/admin_user_list', methods=['POST'])
     def view_delete_user():
+        """This method pulls a list of all users
+        @author Hannah Doty"""
         users_list = Database.list_users()
         return render_template('edit_user.html', data=users_list)
 
     @staticmethod
     @__app.route('/delete_user')
     def delete_user():
+        """This method deletes a users account
+        @author Hannah Doty"""
         selected_username = request.args.get('username')
         Database.delete_account(selected_username)
 
@@ -388,6 +410,8 @@ class WebUI:
     @staticmethod
     @__app.route('/make_staff')
     def make_staff():
+        """This method changes a users role to staff
+        @author Hannah Doty"""
         selected_username = request.args.get('username')
 
         Database.change_role_staff(selected_username)
@@ -399,6 +423,8 @@ class WebUI:
     @staticmethod
     @__app.route('/make_admin')
     def make_admin():
+        """This method changes a users role to admin
+        @author Hannah Doty"""
         selected_username = request.args.get('username')
 
         Database.change_role_admin(selected_username)
@@ -408,6 +434,8 @@ class WebUI:
 
     @staticmethod
     def set_session_data(user):
+        """This method sets session data for user
+        @author Hannah Doty"""
         session['username'] = user[1]
         session['email'] = user[3]
         session['first_name'] = user[4]
@@ -420,6 +448,8 @@ class WebUI:
 
     @staticmethod
     def destroy_session_data():
+        """This method destroys session data for user
+        @author Hannah Doty"""
         session['username'] = ''
         session['email'] = ''
         session['first_name'] = ''
