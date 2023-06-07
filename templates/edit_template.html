@@ -13,24 +13,41 @@
 
     <form method="GET" action="/update_create_template">
 
-            <br><br>
+        <br><br>
 
-            <label id="subject">Subject:
+        <label id="subject">Subject:
             <input type="text" name="subject" value="{{ template_subject }}">
-                </label>
+        </label>
 
-            <br><br>
+        <br><br>
 
-            <label id="message">Message:</label><br>
-            <textarea id="message" name="message" cols="80" rows="20">{{ template_text }}</textarea>
+        <label id="message">Message:</label><br>
+        <textarea id="message" name="message" cols="80" rows="20">{{ template_text }}</textarea>
 
-            <br><br>
+        <br><br>
 
-            <button type="submit">Save</button>
+        <button type="submit">Save</button>
         </label>
     </form>
 
-    <p>
-        <a href="/landing_page">Return Home...</a>
-    </p>
+    <br><br>
+
+    <label id="message">Fill Template:</label>
+
+    <br><br>
+
+    <form action="/fill_template" method="post">
+        <label for="fill_name">Template Name:</label>
+        <input type="text" id="fill_name" name="name" required><br><br>
+
+        <label for="tag1">Tag 1:</label>
+        <input type="text" id="tag1" name="tag_tag1"><br><br>
+
+        <br><br>
+
+        <button type="submit">Save</button>
+
+        <p>
+            <a href="/landing_page">Return Home...</a>
+        </p>
 {% endblock %}

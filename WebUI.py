@@ -214,7 +214,7 @@ class WebUI:
         return render_template('row_display.html', data=data)
 
     @staticmethod
-    @__app.route("/add_create_template", methods=['GET'])
+    @__app.route("/add_create_template", methods=['GET', 'POST'])
     def add_create_template():
         """This method creates a template"""
         from Template import Template
@@ -242,6 +242,19 @@ class WebUI:
         tags = request.args.get('tags[]')
 
         Template.update_to_db(name, subject, message, tags)
+
+        return render_template("save_success.html")
+
+    @staticmethod
+    @__app.route('/fill_template', methods=['POST'])
+    def fill_template():
+        name = request.form['name']
+        tag_values = {}
+        for key, value in request.form.items():
+            if key.startswith('tag_'):
+                tag = key.replace('tag_', '')
+                tag_values[tag] = value
+        Template.fill_template(name, tag_values)
 
         return render_template("save_success.html")
 

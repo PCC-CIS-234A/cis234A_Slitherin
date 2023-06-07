@@ -54,19 +54,10 @@ class Template:
         Database.update_template(NAME, SUBJECT, MESSAGE, TAGS)
 
     @staticmethod
-    def validate_template_name(name):
-        if '' in name:
-            flash("Template must have name.", category='error')
-            return True
+    def fill_template(self, name, tag_values):
+        if name in self.templates:
+            template = self.templates[name]
+            subject = template.fill_tags(tag_values)
+            message = template.fill_tags(tag_values)
 
-    @staticmethod
-    def validate_template_subject(subject):
-        if '' in subject:
-            flash("Template must have subject.", category='error')
-            return True
 
-    @staticmethod
-    def validate_template_message(message):
-        if '' in message:
-            flash("Template must have a message.", category='error')
-            return True
