@@ -83,14 +83,11 @@ class WebUI:
         )
 
     @staticmethod
-    @__app.route("/create_template")
+    @__app.route("/update_template")
     def create_template():
         """This method allows a user to update a template"""
         template_name = request.args['template']
         template = WebUI.find_template(template_name)
-        subject = request.args.get('subject')
-        message = request.args.get('message')
-        tags = request.args.get('tags[]')
 
         return render_template(
             "edit_template.html",
@@ -107,6 +104,13 @@ class WebUI:
         return render_template(
             "view_templates.html", template_list=WebUI.get_template_list()
         )
+
+    @staticmethod
+    @__app.route("/create_template")
+    def update_template():
+        """This method allows a user to create a template"""
+
+        return render_template("create_template.html")
 
     @staticmethod
     def find_template(template_name):
