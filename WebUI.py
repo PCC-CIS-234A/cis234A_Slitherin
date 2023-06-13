@@ -281,12 +281,13 @@ class WebUI:
         """This method updates a users username
         @author Hannah Doty"""
         new_username = request.form['username']
-        old_username = session['username']
         user_exists = User.search_usernames(new_username)
 
         if user_exists:
-            return "username already exists"
+            flash("username already exists", category='error')
+            return render_template('settings.html')
         else:
+            old_username = session['username']
             Database.update_username(old_username, new_username)
             user = User.search_usernames(new_username)
             WebUI.set_session_data(user)
@@ -302,7 +303,8 @@ class WebUI:
         email_exists = User.search_emails(new_email)
 
         if email_exists:
-            return "email already exists"
+            flash("email already exists", category='error')
+            return render_template('settings.html')
         else:
             Database.update_email(old_email, new_email)
             user = User.search_emails(new_email)
@@ -332,7 +334,8 @@ class WebUI:
         current_username = session['username']
 
         if Validation.validate_password(new_password, confirm_password):
-            return "passwords do not match"
+            flash("passwords do not match", category='error')
+            return render_template('settings.html')
         else:
             password = Validation.hash_password(new_password)
             Database.update_password(password, current_username)
