@@ -18,12 +18,12 @@ class User:
         self.role = role
 
     @classmethod
-    def create_account(cls, username, password1, email, fname, lname):
+    def create_account(cls, username, password1, email, fname, lname, phone, pref):
         """ This method creates a user object and passes it to the add_user DB method
         @author Hannah Doty """
 
         from Database import Database
-        user = User(username, password1, email, fname, lname)
+        user = User(username, password1, email, fname, lname, phone, pref)
         Database.add_user(user)
 
     @classmethod

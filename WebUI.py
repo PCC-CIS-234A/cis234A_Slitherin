@@ -138,28 +138,32 @@ class WebUI:
         """This method gathers information from the UI for sending a
         notification"""
 
-        from Email import Email
+        from Notification import Notification
         from Log import Log
         from datetime import datetime
 
         # Collect required information
-        to_addresses = Email.get_email_list()
+        to_addresses = Notification.get_email_list()
+        to_numbers = Notification.get_phone_list()
         from_address = "PantherPantry.PCC.01@gmail.com"
         subject = request.args['subject']
         body = request.args['message']
-        count = len(to_addresses)
+        count = len(to_addresses) + len(to_numbers)
         time_sent = datetime.now()
 
         # Send emails
-        Email.send_email(
+        Notification.send_email(
             from_address,
             to_addresses,
             subject,
             body
         )
 
+        # Send SMS
+        for num in to_numbers:
+            Notification.send_sms(num, body)
+
         # Send notification to log
-        # TODO: POPULATE sender_id WITH USER DATA (REQUIRES LOGIN INFO)
         Log.send_to_db(subject, body, 101, time_sent, count)
 
         return render_template(
@@ -226,6 +230,8 @@ class WebUI:
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
+        phone = request.form["phone"]
+        pref = request.form["notification_delivery"]
 
         user_email = User.search_emails(email)
         user_username = User.search_usernames(username)
@@ -242,7 +248,7 @@ class WebUI:
             return render_template('create_account_form.html')
         else:
             password = Validation.hash_password(password1)
-            User.create_account(username, password, email, fname, lname)
+            User.create_account(username, password, email, fname, lname, phone, pref)
             flash("Account Created Successfully! Please log in to your account.", category='success')
             return render_template('login.html')
 
